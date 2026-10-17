@@ -2,11 +2,12 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <title>가람상사 | KCC·노루페인트 공식 대리점 직영 방수·탄성코트·에폭시 견적 서비스</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script>
-    tailwind.config = {
+    if (typeof tailwind !== 'undefined') {
+      tailwind.config = {
       theme: {
         extend: {
           colors: {
@@ -22,7 +23,7 @@
             }
           }
         }
-      }
+      };
     }
   </script>
   <style>
@@ -45,16 +46,324 @@
     .gold-border-glow {
       box-shadow: 0 0 25px -5px rgba(245, 158, 11, 0.25);
     }
+    /* Mobile Optimization Rules */
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+    button, a, label {
+      touch-action: manipulation;
+    }
+    /* Larger, thumb-friendly range sliders on mobile */
+    input[type="range"] {
+      height: 8px;
+      border-radius: 999px;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    /* Prevent iOS auto-zoom on form focus */
+    @media (max-width: 640px) {
+      input[type="text"],
+      input[type="tel"],
+      input[type="email"],
+      input[type="number"],
+      input[type="password"],
+      select {
+        font-size: 16px !important;
+      }
+    }
+    .safe-bottom-pad {
+      padding-bottom: calc(5.25rem + env(safe-area-inset-bottom, 0px));
+    }
+    .safe-sticky-bar {
+      padding-bottom: calc(0.65rem + env(safe-area-inset-bottom, 0px));
+    }
+    /* High-Readability Typography & Card Enhancements */
+    body {
+      line-height: 1.65;
+      letter-spacing: -0.01em;
+    }
+    .readable-card {
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.96) 0%, rgba(9, 14, 28, 0.98) 100%);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+    }
+    .step-pill {
+      box-shadow: 0 2px 10px rgba(245, 158, 11, 0.35);
+    }
+  
+    /* Self-Contained Fallback Utility CSS (Ensures 100% rendering even if external CDN is blocked by iframe CSP) */
+    *, ::before, ::after { box-sizing: border-box; border-width: 0; border-style: solid; border-color: #1e293b; }
+    html, body { margin: 0; padding: 0; background-color: #020617; color: #f1f5f9; }
+    button, input, select, textarea { font-family: inherit; font-size: 100%; line-height: inherit; color: inherit; margin: 0; padding: 0; background-color: transparent; }
+    button, select { text-transform: none; cursor: pointer; }
+    img, svg, video, canvas { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: inherit; }
+    p, h1, h2, h3, h4, blockquote { margin: 0; }
+    .hidden { display: none !important; }
+    .block { display: block; }
+    .inline-flex { display: inline-flex; }
+    .flex { display: flex; }
+    .grid { display: grid; }
+    .flex-1 { flex: 1 1 0%; }
+    .flex-col { flex-direction: column; }
+    .flex-wrap { flex-wrap: wrap; }
+    .shrink-0 { flex-shrink: 0; }
+    .items-center { align-items: center; }
+    .items-start { align-items: flex-start; }
+    .items-baseline { align-items: baseline; }
+    .justify-between { justify-content: space-between; }
+    .justify-center { justify-content: center; }
+    .gap-1 { gap: 0.25rem; }
+    .gap-1\.5 { gap: 0.375rem; }
+    .gap-2 { gap: 0.5rem; }
+    .gap-2\.5 { gap: 0.625rem; }
+    .gap-3 { gap: 0.75rem; }
+    .gap-3\.5 { gap: 0.875rem; }
+    .gap-4 { gap: 1rem; }
+    .gap-5 { gap: 1.25rem; }
+    .gap-6 { gap: 1.5rem; }
+    .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+    .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .col-span-2 { grid-column: span 2 / span 2; }
+    .max-w-5xl { max-width: 64rem; }
+    .max-w-2xl { max-width: 42rem; }
+    .max-w-xl { max-width: 36rem; }
+    .max-w-lg { max-width: 32rem; }
+    .max-w-md { max-width: 28rem; }
+    .max-w-sm { max-width: 24rem; }
+    .w-full { width: 100%; }
+    .w-20 { width: 5rem; }
+    .w-24 { width: 6rem; }
+    .w-14 { width: 3.5rem; }
+    .w-7 { width: 1.75rem; }
+    .w-6 { width: 1.5rem; }
+    .w-5 { width: 1.25rem; }
+    .w-4 { width: 1rem; }
+    .h-24 { height: 6rem; }
+    .h-14 { height: 3.5rem; }
+    .h-7 { height: 1.75rem; }
+    .h-6 { height: 1.5rem; }
+    .h-5 { height: 1.25rem; }
+    .h-4 { height: 1rem; }
+    .min-h-screen { min-height: 100vh; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .ml-auto { margin-left: auto; }
+    .my-5 { margin-top: 1.25rem; margin-bottom: 1.25rem; }
+    .mt-0\.5 { margin-top: 0.125rem; }
+    .mt-1 { margin-top: 0.25rem; }
+    .mt-1\.5 { margin-top: 0.375rem; }
+    .mt-2 { margin-top: 0.5rem; }
+    .mt-2\.5 { margin-top: 0.625rem; }
+    .mt-3 { margin-top: 0.75rem; }
+    .mt-4 { margin-top: 1rem; }
+    .mt-6 { margin-top: 1.5rem; }
+    .mt-12 { margin-top: 3rem; }
+    .mb-1 { margin-bottom: 0.25rem; }
+    .mb-1\.5 { margin-bottom: 0.375rem; }
+    .mb-2 { margin-bottom: 0.5rem; }
+    .mb-2\.5 { margin-bottom: 0.625rem; }
+    .mb-3 { margin-bottom: 0.75rem; }
+    .mb-3\.5 { margin-bottom: 0.875rem; }
+    .mb-4 { margin-bottom: 1rem; }
+    .mb-5 { margin-bottom: 1.25rem; }
+    .p-0\.5 { padding: 0.125rem; }
+    .p-2 { padding: 0.5rem; }
+    .p-2\.5 { padding: 0.625rem; }
+    .p-3 { padding: 0.75rem; }
+    .p-3\.5 { padding: 0.875rem; }
+    .p-4 { padding: 1rem; }
+    .p-5 { padding: 1.25rem; }
+    .p-6 { padding: 1.5rem; }
+    .px-1\.5 { padding-left: 0.375rem; padding-right: 0.375rem; }
+    .px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
+    .px-2\.5 { padding-left: 0.625rem; padding-right: 0.625rem; }
+    .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+    .px-3\.5 { padding-left: 0.875rem; padding-right: 0.875rem; }
+    .px-4 { padding-left: 1rem; padding-right: 1rem; }
+    .px-5 { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .py-0\.5 { padding-top: 0.125rem; padding-bottom: 0.125rem; }
+    .py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+    .py-1\.5 { padding-top: 0.375rem; padding-bottom: 0.375rem; }
+    .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+    .py-2\.5 { padding-top: 0.625rem; padding-bottom: 0.625rem; }
+    .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+    .py-3\.5 { padding-top: 0.875rem; padding-bottom: 0.875rem; }
+    .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+    .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+    .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+    .pt-2 { padding-top: 0.5rem; }
+    .pt-3 { padding-top: 0.75rem; }
+    .pt-3\.5 { padding-top: 0.875rem; }
+    .pt-4 { padding-top: 1rem; }
+    .pb-3 { padding-bottom: 0.75rem; }
+    .pb-3\.5 { padding-bottom: 0.875rem; }
+    .pb-4 { padding-bottom: 1rem; }
+    .space-y-1 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.25rem; }
+    .space-y-1\.5 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.375rem; }
+    .space-y-2 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.5rem; }
+    .space-y-2\.5 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.625rem; }
+    .space-y-3 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.75rem; }
+    .space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 1rem; }
+    .space-y-5 > :not([hidden]) ~ :not([hidden]) { margin-top: 1.25rem; }
+    .space-y-6 > :not([hidden]) ~ :not([hidden]) { margin-top: 1.5rem; }
+    .space-y-8 > :not([hidden]) ~ :not([hidden]) { margin-top: 2rem; }
+    .rounded { border-radius: 0.25rem; }
+    .rounded-md { border-radius: 0.375rem; }
+    .rounded-lg { border-radius: 0.5rem; }
+    .rounded-xl { border-radius: 0.75rem; }
+    .rounded-2xl { border-radius: 1rem; }
+    .rounded-full { border-radius: 9999px; }
+    .border { border-width: 1px; }
+    .border-2 { border-width: 2px; }
+    .border-t { border-top-width: 1px; }
+    .border-b { border-bottom-width: 1px; }
+    .border-b-2 { border-bottom-width: 2px; }
+    .border-l-4 { border-left-width: 4px; }
+    .border-slate-700 { border-color: #334155; }
+    .border-slate-700\/80 { border-color: rgba(51, 65, 85, 0.8); }
+    .border-slate-800 { border-color: #1e293b; }
+    .border-amber-400 { border-color: #fbbf24; }
+    .border-amber-500 { border-color: #f59e0b; }
+    .border-amber-500\/40 { border-color: rgba(245, 158, 11, 0.4); }
+    .border-amber-500\/50 { border-color: rgba(245, 158, 11, 0.5); }
+    .border-amber-500\/60 { border-color: rgba(245, 158, 11, 0.6); }
+    .border-amber-500\/70 { border-color: rgba(245, 158, 11, 0.7); }
+    .border-amber-500\/80 { border-color: rgba(245, 158, 11, 0.8); }
+    .border-emerald-400 { border-color: #34d399; }
+    .border-emerald-500\/40 { border-color: rgba(16, 185, 129, 0.4); }
+    .border-emerald-500\/50 { border-color: rgba(16, 185, 129, 0.5); }
+    .border-sky-400\/50 { border-color: rgba(56, 189, 248, 0.5); }
+    .border-rose-500\/50 { border-color: rgba(244, 63, 94, 0.5); }
+    .bg-slate-950 { background-color: #020617; }
+    .bg-slate-950\/80 { background-color: rgba(2, 6, 23, 0.8); }
+    .bg-slate-950\/90 { background-color: rgba(2, 6, 23, 0.9); }
+    .bg-slate-950\/95 { background-color: rgba(2, 6, 23, 0.95); }
+    .bg-slate-900 { background-color: #0f172a; }
+    .bg-slate-900\/60 { background-color: rgba(15, 23, 42, 0.6); }
+    .bg-slate-900\/90 { background-color: rgba(15, 23, 42, 0.9); }
+    .bg-slate-900\/95 { background-color: rgba(15, 23, 42, 0.95); }
+    .bg-slate-800 { background-color: #1e293b; }
+    .bg-navy-950 { background-color: #060b16; }
+    .bg-navy-950\/95 { background-color: rgba(6, 11, 22, 0.95); }
+    .bg-amber-400 { background-color: #fbbf24; }
+    .bg-amber-500 { background-color: #f59e0b; }
+    .bg-amber-500\/10 { background-color: rgba(245, 158, 11, 0.1); }
+    .bg-amber-500\/15 { background-color: rgba(245, 158, 11, 0.15); }
+    .bg-amber-500\/20 { background-color: rgba(245, 158, 11, 0.2); }
+    .bg-emerald-400 { background-color: #34d399; }
+    .bg-emerald-500\/10 { background-color: rgba(16, 185, 129, 0.1); }
+    .bg-emerald-500\/20 { background-color: rgba(16, 185, 129, 0.2); }
+    .bg-emerald-950\/30 { background-color: rgba(2, 44, 34, 0.3); }
+    .bg-sky-400 { background-color: #38bdf8; }
+    .bg-sky-500\/20 { background-color: rgba(14, 165, 233, 0.2); }
+    .bg-rose-950\/30 { background-color: rgba(76, 5, 25, 0.3); }
+    .bg-rose-950\/40 { background-color: rgba(76, 5, 25, 0.4); }
+    .bg-blue-500 { background-color: #3b82f6; }
+    .bg-blue-500\/20 { background-color: rgba(59, 130, 246, 0.2); }
+    .bg-white { background-color: #ffffff; }
+    .bg-black\/75 { background-color: rgba(0, 0, 0, 0.75); }
+    .bg-black\/80 { background-color: rgba(0, 0, 0, 0.8); }
+    .text-white { color: #ffffff; }
+    .text-slate-100 { color: #f1f5f9; }
+    .text-slate-200 { color: #e2e8f0; }
+    .text-slate-300 { color: #cbd5e1; }
+    .text-slate-400 { color: #94a3b8; }
+    .text-slate-500 { color: #64748b; }
+    .text-slate-950 { color: #020617; }
+    .text-amber-200 { color: #fde68a; }
+    .text-amber-300 { color: #fcd34d; }
+    .text-amber-400 { color: #fbbf24; }
+    .text-emerald-300 { color: #6ee7b7; }
+    .text-emerald-400 { color: #34d399; }
+    .text-sky-300 { color: #7dd3fc; }
+    .text-blue-300 { color: #93c5fd; }
+    .text-blue-400 { color: #60a5fa; }
+    .text-rose-200 { color: #fecdd3; }
+    .text-rose-300 { color: #fda4af; }
+    .text-rose-400 { color: #fb7185; }
+    .text-xs { font-size: 0.75rem; line-height: 1rem; }
+    .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+    .text-base { font-size: 1rem; line-height: 1.5rem; }
+    .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+    .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+    .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+    .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+    .font-medium { font-weight: 500; }
+    .font-semibold { font-weight: 600; }
+    .font-bold { font-weight: 700; }
+    .font-extrabold { font-weight: 800; }
+    .font-black { font-weight: 900; }
+    .text-left { text-align: left; }
+    .text-center { text-align: center; }
+    .text-right { text-align: right; }
+    .sticky { position: sticky; }
+    .fixed { position: fixed; }
+    .relative { position: relative; }
+    .absolute { position: absolute; }
+    .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+    .top-0 { top: 0; }
+    .z-10 { z-index: 10; }
+    .z-40 { z-index: 40; }
+    .z-50 { z-index: 50; }
+    .pointer-events-none { pointer-events: none; }
+    .opacity-0 { opacity: 0; }
+    .opacity-50 { opacity: 0.5; }
+    .overflow-hidden { overflow: hidden; }
+    .overflow-y-auto { overflow-y: auto; }
+    @media (min-width: 640px) {
+      .sm\:flex-row { flex-direction: row; }
+      .sm\:items-center { align-items: center; }
+      .sm\:justify-between { justify-content: space-between; }
+      .sm\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .sm\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .sm\:grid-cols-9 { grid-template-columns: repeat(9, minmax(0, 1fr)); }
+      .sm\:col-span-2 { grid-column: span 2 / span 2; }
+      .sm\:col-span-1 { grid-column: span 1 / span 1; }
+      .sm\:inline-block { display: inline-block; }
+      .sm\:flex { display: flex; }
+      .sm\:text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+      .sm\:text-base { font-size: 1rem; line-height: 1.5rem; }
+      .sm\:text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+      .sm\:text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+      .sm\:text-2xl { font-size: 1.5rem; line-height: 2rem; }
+      .sm\:text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+    }
+    @media (min-width: 768px) {
+      .md\:hidden { display: none !important; }
+      .md\:inline { display: inline; }
+      .md\:flex-row { flex-direction: row; }
+      .md\:items-center { align-items: center; }
+      .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .md\:grid-cols-12 { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+      .md\:col-span-6 { grid-column: span 6 / span 6; }
+    }
+    @media (min-width: 1024px) {
+      .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .lg\:grid-cols-12 { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+      .lg\:col-span-7 { grid-column: span 7 / span 7; }
+      .lg\:col-span-5 { grid-column: span 5 / span 5; }
+    }
+
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-amber-500 selection:text-slate-950">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-amber-500 selection:text-slate-950 ">
 
-  <!-- Top Live Status Bar (Hooje Studio Style) -->
-  <div class="bg-navy-950 border-b border-slate-800/80 text-xs py-2 px-3 sm:px-6 sticky top-0 z-40 backdrop-blur-md bg-opacity-95">
-    <div class="max-w-5xl mx-auto flex flex-wrap items-center justify-between gap-2">
-      <div class="flex items-center gap-2">
-        <span class="inline-flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 px-2.5 py-0.5 rounded-full font-semibold text-[11px]">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+  <!-- Top Live Status & Quick Estimate Bar (Sticky at Top - Never blocked by mobile bottom system bars) -->
+  <div class="bg-navy-950/95 border-b-2 border-amber-500/70 text-xs sticky top-0 z-40 backdrop-blur-md shadow-xl">
+    <!-- Row 1: Status & Utility Buttons -->
+    <div class="max-w-5xl mx-auto py-2 px-2.5 sm:px-6 flex items-center justify-between gap-1.5">
+      <div class="flex items-center gap-1.5 shrink-0">
+        <span class="inline-flex items-center gap-1 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 px-2 py-0.5 rounded-full font-semibold text-[10px] sm:text-[11px] whitespace-nowrap">
+          <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400 animate-ping"></span>
           실시간 직영 접수중
         </span>
         <span class="text-slate-400 hidden md:inline text-[11px]">
@@ -71,9 +380,32 @@
           <span>◉ 내 접수현황</span>
           <span id="myOrderCountBadge" class="bg-blue-500 text-white font-extrabold px-1.5 py-0.2 rounded-full text-[10px]">0</span>
         </button>
-        <button type="button" id="openAdminBtn" class="inline-flex items-center gap-1 bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 text-amber-300 px-2.5 py-1 rounded-lg text-[11px] font-semibold transition">
-          <span>⚙️ 알림·관리</span>
-        </button>
+        <a href="tel:0324277749" class="inline-flex items-center gap-1 bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 text-amber-300 px-2.5 py-1 rounded-lg text-[11px] font-semibold transition">
+          <span>📞 전화문의</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Row 2 (Mobile Quick Live Total & Action Bar): Always visible at top, never clipped at bottom -->
+    <div id="mobileStickyBar" class="md:hidden bg-slate-900/95 border-t border-slate-800 px-3 py-2">
+      <div class="flex items-center justify-between gap-2">
+        <div class="min-w-0 flex-1">
+          <div class="text-[10px] text-slate-400 font-semibold truncate" id="mobLiveTitle">
+            [옥상 방수] 2액형 우레탄 · 20~30평
+          </div>
+          <div class="flex flex-wrap items-baseline gap-x-1.5">
+            <span class="text-sm sm:text-base font-black text-amber-400 whitespace-nowrap" id="mobLivePrice">140만 ~ 180만 원</span>
+            <span class="text-[10px] text-emerald-300 font-bold whitespace-nowrap" id="mobLiveSubBadge">VAT별도</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-1.5 shrink-0">
+          <a href="tel:0324277749" id="mobCallBtn" class="bg-slate-800 active:bg-slate-700 text-amber-300 border border-amber-500/40 font-extrabold px-3 py-2 rounded-xl text-xs flex items-center gap-1 whitespace-nowrap">
+            <span>📞 전화</span>
+          </a>
+          <button type="button" id="mobJumpNotifyBtn" class="bg-gradient-to-r from-amber-500 to-amber-400 active:scale-95 text-slate-950 font-black px-3 py-2 rounded-xl text-xs shadow-md flex items-center gap-1 whitespace-nowrap">
+            <span>🔔 견적알림 신청</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -94,23 +426,23 @@
                 KCC·노루페인트 공식 대리점 & 월드매직 탄성코트 공식 대리점
               </span>
             </div>
-            <h1 class="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight">
               가람상사
             </h1>
-            <p class="text-slate-300 text-xs sm:text-sm mt-1.5 max-w-xl leading-relaxed">
-              외주 하청 없이 대리점 소속 전문 시공팀이 <strong>100% 정품·정량 원액</strong>으로 직접 투입됩니다. 간판을 걸고 영업하는 공식 대리점인 만큼 끝까지 확실하게 A/S를 책임집니다.
+            <p class="text-slate-100 text-sm sm:text-base mt-2 max-w-xl leading-relaxed font-medium">
+              외주 하청 없이 대리점 소속 전문 시공팀이 <strong class="text-amber-300">100% 정품·정량 원액</strong>으로 직접 투입됩니다. 간판을 걸고 영업하는 공식 대리점인 만큼 끝까지 확실하게 A/S를 책임집니다.
             </p>
           </div>
         </div>
 
         <!-- Guarantee Box -->
-        <div class="border border-amber-500/70 bg-navy-950/90 px-4 py-3 rounded-xl text-center shrink-0 shadow-lg gold-border-glow">
-          <div class="text-amber-400 font-extrabold text-xs sm:text-sm tracking-wide">가람상사 직영</div>
-          <div class="text-amber-300 font-bold text-xs mt-0.5">정품 · 정량 · A/S 보증</div>
-          <div class="mt-2 pt-2 border-t border-slate-800 flex items-center justify-center gap-2 text-[11px] text-slate-300">
-            <a href="tel:0324277749" id="topPhoneLink" class="hover:text-amber-400 underline font-semibold">📞 032-427-7749</a>
+        <div class="w-full sm:w-auto border-2 border-amber-500/80 bg-navy-950/95 px-5 py-4 rounded-2xl text-center shrink-0 shadow-xl gold-border-glow">
+          <div class="text-amber-400 font-black text-sm sm:text-base tracking-wide">가람상사 직영 책임시공</div>
+          <div class="text-white font-extrabold text-xs sm:text-sm mt-1">정품 · 정량 · 확실한 A/S 보증</div>
+          <div class="mt-2.5 pt-2.5 border-t border-slate-800 flex items-center justify-center gap-2.5 text-xs sm:text-sm text-slate-200">
+            <a href="tel:0324277749" id="topPhoneLink" class="hover:text-amber-400 underline font-extrabold text-amber-300">📞 032-427-7749</a>
             <span>·</span>
-            <button type="button" id="topQuickGuideBtn" class="hover:text-amber-400 underline font-semibold">이용가이드</button>
+            <button type="button" id="topQuickGuideBtn" class="hover:text-amber-400 underline font-bold">이용가이드</button>
           </div>
         </div>
       </div>
@@ -121,35 +453,35 @@
   <main class="max-w-5xl mx-auto px-4 py-6 sm:py-8 w-full flex-1 space-y-8">
 
     <!-- Section 1: Hooje Style FIRST ORDER 4-Step Guide -->
-    <section id="guideSection" class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-6 shadow-lg">
+    <section id="guideSection" class="readable-card border border-slate-700/80 rounded-2xl p-5 sm:p-6 shadow-xl">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 mb-4 border-b border-slate-800">
         <div>
-          <span class="text-[11px] font-extrabold tracking-widest text-amber-400 uppercase">FIRST ESTIMATE GUIDE</span>
-          <h2 class="text-base sm:text-lg font-extrabold text-white mt-0.5">처음이어도 괜찮습니다. 이 순서만 따라오세요</h2>
+          <span class="text-xs font-extrabold tracking-widest text-amber-400 uppercase">EASY ESTIMATE GUIDE · 간편 견적 안내</span>
+          <h2 class="text-lg sm:text-xl font-black text-white mt-0.5">처음이어도 괜찮습니다. 이 순서만 따라오세요</h2>
         </div>
-        <p class="text-xs text-slate-400">품목과 평수(칸수)를 고른 뒤, 마지막에 <strong class="text-amber-300">견적 알림 버튼</strong>만 누르면 사장님께 즉시 알림이 울립니다.</p>
+        <p class="text-xs sm:text-sm text-slate-200">품목과 평수(칸수)를 고른 뒤, 마지막에 <strong class="text-amber-300">견적 알림 버튼</strong>만 누르면 사장님께 즉시 알림이 울립니다.</p>
       </div>
 
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <div class="bg-slate-950/80 border border-slate-800/90 rounded-xl p-3.5 relative">
-          <span class="text-xs font-black text-amber-400 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded">01</span>
-          <div class="font-bold text-sm text-white mt-2">시공 품목 선택</div>
-          <p class="text-[11px] text-slate-400 mt-1 leading-relaxed">옥상 방수, 베란다 탄성코트, 바닥 에폭시 중 원하는 시공 탭을 선택하세요.</p>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
+        <div class="bg-slate-950/90 border border-slate-700/80 rounded-xl p-4 relative">
+          <span class="text-xs font-black text-amber-400 bg-amber-500/15 border border-amber-500/40 px-2.5 py-0.5 rounded-md">STEP 01</span>
+          <div class="font-extrabold text-sm sm:text-base text-white mt-2.5">시공 품목 선택</div>
+          <p class="text-xs sm:text-sm text-slate-200 mt-1 leading-relaxed">옥상 방수, 베란다 탄성코트, 바닥 에폭시 중 원하는 시공 탭을 선택하세요.</p>
         </div>
-        <div class="bg-slate-950/80 border border-slate-800/90 rounded-xl p-3.5 relative">
-          <span class="text-xs font-black text-amber-400 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded">02</span>
-          <div class="font-bold text-sm text-white mt-2">평수·칸수 및 등급 확인</div>
-          <p class="text-[11px] text-slate-400 mt-1 leading-relaxed">베란다 칸수(1~4칸) 또는 옥상/바닥 평수와 정품 도료 등급을 선택하세요.</p>
+        <div class="bg-slate-950/90 border border-slate-700/80 rounded-xl p-4 relative">
+          <span class="text-xs font-black text-amber-400 bg-amber-500/15 border border-amber-500/40 px-2.5 py-0.5 rounded-md">STEP 02</span>
+          <div class="font-extrabold text-sm sm:text-base text-white mt-2.5">평수·칸수 및 공법 선택</div>
+          <p class="text-xs sm:text-sm text-slate-200 mt-1 leading-relaxed">옥상/바닥 평수 또는 베란다 칸수(1~4칸)와 정품 도료 등급을 선택하세요.</p>
         </div>
-        <div class="bg-slate-950/80 border border-slate-800/90 rounded-xl p-3.5 relative">
-          <span class="text-xs font-black text-amber-400 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded">03</span>
-          <div class="font-bold text-sm text-white mt-2">정찰제 예상 견적 확인</div>
-          <p class="text-[11px] text-slate-400 mt-1 leading-relaxed">대리점 표준 정찰제 금액과 포함 공정(하도 프라이머·풀보양)을 확인하세요.</p>
+        <div class="bg-slate-950/90 border border-slate-700/80 rounded-xl p-4 relative">
+          <span class="text-xs font-black text-amber-400 bg-amber-500/15 border border-amber-500/40 px-2.5 py-0.5 rounded-md">STEP 03</span>
+          <div class="font-extrabold text-sm sm:text-base text-white mt-2.5">기본 견적 & 할인 확인</div>
+          <p class="text-xs sm:text-sm text-slate-200 mt-1 leading-relaxed">표준 시공 견적과 외벽 발수 동시 시공 할인, 방문 실측 안내를 확인하세요.</p>
         </div>
-        <div class="bg-amber-500/10 border border-amber-500/40 rounded-xl p-3.5 relative">
-          <span class="text-xs font-black text-slate-950 bg-amber-400 px-2 py-0.5 rounded">04 필수</span>
-          <div class="font-bold text-sm text-amber-300 mt-2">사장님께 견적 알림 전송</div>
-          <p class="text-[11px] text-slate-300 mt-1 leading-relaxed">사이트 하단의 <strong>[견적 알림 보내기]</strong>를 누르면 사장님 이메일/폰으로 즉시 알림이 갑니다!</p>
+        <div class="bg-amber-500/15 border-2 border-amber-500/60 rounded-xl p-4 relative">
+          <span class="text-xs font-black text-slate-950 bg-amber-400 px-2.5 py-0.5 rounded-md">STEP 04 필수</span>
+          <div class="font-extrabold text-sm sm:text-base text-amber-300 mt-2.5">무료 방문견적 · 알림 신청</div>
+          <p class="text-xs sm:text-sm text-slate-100 mt-1 leading-relaxed">하단의 <strong>[견적 알림 보내기]</strong>를 누르면 사장님께 즉시 알림이 전송됩니다!</p>
         </div>
       </div>
     </section>
@@ -158,43 +490,43 @@
     <section id="estimatorSection" class="space-y-6">
       <!-- Category Selector Tabs (3 Core Services) -->
       <div>
-        <div class="flex items-center justify-between mb-3">
-          <h2 class="text-sm sm:text-base font-extrabold text-white flex items-center gap-2">
-            <span class="w-6 h-6 rounded-lg bg-amber-500 text-slate-950 font-black text-xs flex items-center justify-center">1</span>
-            <span>시공 품목을 선택하세요</span>
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-3.5">
+          <h2 class="text-base sm:text-xl font-black text-white flex items-center gap-2.5">
+            <span class="w-7 h-7 rounded-lg bg-amber-500 text-slate-950 font-black text-sm flex items-center justify-center step-pill">1</span>
+            <span>원하시는 시공 품목을 선택하세요</span>
           </h2>
-          <span class="text-xs text-slate-400">탭을 터치하면 해당 공정 안내서와 단가표가 열립니다</span>
+          <span class="text-xs sm:text-sm text-amber-300 font-semibold">👇 탭을 터치하면 해당 품목의 상세 견적 화면으로 전환됩니다</span>
         </div>
 
         <div class="grid grid-cols-3 gap-2.5 sm:gap-4" id="mainCategoryTabs">
           <!-- Tab 1: Waterproof (옥상 방수) -->
-          <button type="button" data-cat="waterproof" class="cat-tab group relative p-3.5 sm:p-5 rounded-2xl border-2 text-left transition-all border-amber-500 bg-slate-900 shadow-lg gold-border-glow">
-            <div class="flex items-center justify-between mb-2">
+          <button type="button" data-cat="waterproof" class="cat-tab active:scale-[0.98] group relative p-3 sm:p-5 rounded-2xl border-2 text-left transition-all border-amber-500 bg-slate-900 shadow-lg gold-border-glow">
+            <div class="flex items-center justify-between mb-1.5 sm:mb-2">
               <span class="text-2xl sm:text-3xl">💧</span>
-              <span class="cat-badge text-[10px] font-extrabold bg-amber-400 text-slate-950 px-2 py-0.5 rounded-full">선택됨</span>
+              <span class="cat-badge text-[10px] sm:text-xs font-extrabold bg-amber-400 text-slate-950 px-2 py-0.5 rounded-full whitespace-nowrap">선택됨</span>
             </div>
-            <div class="font-extrabold text-sm sm:text-lg text-white">옥상 방수 · 외벽 발수</div>
-            <div class="text-[11px] sm:text-xs text-slate-400 mt-0.5">KCC·노루 정품 우레탄 1액형/2액형</div>
+            <div class="font-black text-sm sm:text-xl text-white leading-snug">옥상 방수 · 외벽 발수</div>
+            <div class="text-xs sm:text-sm text-slate-200 mt-1 leading-tight font-medium">정품 우레탄 방수 · 외벽 동시할인</div>
           </button>
 
           <!-- Tab 2: Elastic Coat (베란다 탄성코트) -->
-          <button type="button" data-cat="elastic" class="cat-tab group relative p-3.5 sm:p-5 rounded-2xl border-2 text-left transition-all border-slate-800 bg-slate-900/60 hover:border-slate-700">
-            <div class="flex items-center justify-between mb-2">
+          <button type="button" data-cat="elastic" class="cat-tab active:scale-[0.98] group relative p-3 sm:p-5 rounded-2xl border-2 text-left transition-all border-slate-800 bg-slate-900/60 hover:border-slate-700">
+            <div class="flex items-center justify-between mb-1.5 sm:mb-2">
               <span class="text-2xl sm:text-3xl">✨</span>
-              <span class="cat-badge hidden text-[10px] font-extrabold bg-amber-400 text-slate-950 px-2 py-0.5 rounded-full">선택됨</span>
+              <span class="cat-badge hidden text-[10px] sm:text-xs font-extrabold bg-amber-400 text-slate-950 px-2 py-0.5 rounded-full whitespace-nowrap">선택됨</span>
             </div>
-            <div class="font-extrabold text-sm sm:text-lg text-white">베란다 탄성코트</div>
-            <div class="text-[11px] sm:text-xs text-slate-400 mt-0.5">월드매직 공식대리점 · 에어로겔</div>
+            <div class="font-black text-sm sm:text-xl text-white leading-snug">베란다 탄성코트</div>
+            <div class="text-xs sm:text-sm text-slate-200 mt-1 leading-tight font-medium">월드매직 공식대리점 · 에어로겔</div>
           </button>
 
           <!-- Tab 3: Epoxy (바닥 에폭시) -->
-          <button type="button" data-cat="epoxy" class="cat-tab group relative p-3.5 sm:p-5 rounded-2xl border-2 text-left transition-all border-slate-800 bg-slate-900/60 hover:border-slate-700">
-            <div class="flex items-center justify-between mb-2">
+          <button type="button" data-cat="epoxy" class="cat-tab active:scale-[0.98] group relative p-3 sm:p-5 rounded-2xl border-2 text-left transition-all border-slate-800 bg-slate-900/60 hover:border-slate-700">
+            <div class="flex items-center justify-between mb-1.5 sm:mb-2">
               <span class="text-2xl sm:text-3xl">🛡️</span>
-              <span class="cat-badge hidden text-[10px] font-extrabold bg-amber-400 text-slate-950 px-2 py-0.5 rounded-full">선택됨</span>
+              <span class="cat-badge hidden text-[10px] sm:text-xs font-extrabold bg-amber-400 text-slate-950 px-2 py-0.5 rounded-full whitespace-nowrap">선택됨</span>
             </div>
-            <div class="font-extrabold text-sm sm:text-lg text-white">바닥 에폭시 시공</div>
-            <div class="text-[11px] sm:text-xs text-slate-400 mt-0.5">상가·카페·창고·주차장 정품 코팅</div>
+            <div class="font-black text-sm sm:text-xl text-white leading-snug">바닥 에폭시 시공</div>
+            <div class="text-xs sm:text-sm text-slate-200 mt-1 leading-tight font-medium">상가·카페·창고·수평몰탈 시공</div>
           </button>
         </div>
       </div>
@@ -222,125 +554,304 @@
         </div>
 
         <!-- Proposal 1 vs Proposal 2 Selection -->
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-6 space-y-5">
-          <h3 class="text-sm sm:text-base font-extrabold text-white flex items-center gap-2">
-            <span class="w-6 h-6 rounded-lg bg-amber-500 text-slate-950 font-black text-xs flex items-center justify-center">2</span>
-            <span>옥상 방수 공법(제안 1 / 제안 2)을 선택하세요</span>
+        <div class="readable-card border border-slate-700/80 rounded-2xl p-5 sm:p-6 space-y-6">
+          <h3 class="text-base sm:text-lg font-black text-white flex items-center gap-2.5">
+            <span class="w-7 h-7 rounded-lg bg-amber-500 text-slate-950 font-black text-sm flex items-center justify-center step-pill">2</span>
+            <span>옥상 방수 공법 및 평수를 선택하세요</span>
           </h3>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="wpMethodCards">
             <!-- Proposal 1: 1액형 우레탄 -->
-            <button type="button" data-wpmethod="one_part" class="wp-method-btn text-left p-4 sm:p-5 rounded-2xl border-2 transition-all border-slate-700 bg-slate-950/60 hover:border-slate-600 flex flex-col justify-between">
+            <button type="button" data-wpmethod="one_part" class="wp-method-btn text-left p-5 rounded-2xl border-2 transition-all border-slate-700 bg-slate-950/80 hover:border-slate-500 flex flex-col justify-between">
               <div>
-                <div class="flex items-center justify-between gap-2 mb-2">
-                  <span class="bg-blue-500/20 text-blue-300 border border-blue-500/30 text-[11px] font-extrabold px-2.5 py-0.5 rounded-full">
-                    제안 1 · 하루(1일) 신속 시공
+                <div class="flex items-center justify-between gap-2 mb-2.5">
+                  <span class="bg-blue-500/20 text-blue-300 border border-blue-500/40 text-xs font-extrabold px-3 py-1 rounded-full">
+                    💡 제안 1 · 하루(1일) 신속 시공
                   </span>
-                  <span class="text-xs font-bold text-slate-400">🛡️ A/S 1년 책임 보장</span>
+                  <span class="text-xs sm:text-sm font-extrabold text-amber-300">🛡️ A/S 2년 책임 보장</span>
                 </div>
-                <div class="text-base sm:text-lg font-extrabold text-white">가성비 신속 시공 (1액형 우레탄)</div>
-                <p class="text-xs text-slate-400 mt-1.5 leading-relaxed">
-                  하도(프라이머) 밀착 도포 후 방수와 코팅 기능을 겸한 1액형 우레탄 제품으로 하루(1일) 만에 신속하고 경제적으로 마감하는 실속 공법입니다.
+                <div class="text-lg sm:text-xl font-black text-white">가성비 신속 시공 (1액형 우레탄)</div>
+                <p class="text-xs sm:text-sm text-slate-200 mt-2 leading-relaxed">
+                  <strong>시공 특징:</strong> 하도(프라이머) 밀착 도포 후 방수와 코팅 기능을 겸한 1액형 제품으로 <strong>하루(1일) 신속 시공</strong>
                 </p>
               </div>
-              <div class="mt-4 pt-3 border-t border-slate-800/80 text-xs space-y-1 text-slate-300">
-                <div class="flex justify-between"><span>• 20 ~ 30평 기준:</span><strong class="text-white">120만 ~ 160만 원</strong></div>
-                <div class="flex justify-between"><span>• 30 ~ 40평 기준:</span><strong class="text-white">160만 ~ 200만 원</strong></div>
+              <div class="mt-4 pt-3.5 border-t border-slate-800 text-xs sm:text-sm space-y-1.5 text-slate-100">
+                <div class="text-xs font-extrabold text-blue-300 mb-1">예상 견적 (A/S 2년 책임 보장)</div>
+                <div class="flex justify-between"><span>• 10 ~ 20평:</span><strong class="text-white text-sm sm:text-base">80만 ~ 120만 원</strong></div>
+                <div class="flex justify-between"><span>• 20 ~ 30평:</span><strong class="text-white text-sm sm:text-base">120만 ~ 160만 원</strong></div>
+                <div class="flex justify-between"><span>• 30 ~ 40평:</span><strong class="text-white text-sm sm:text-base">160만 ~ 200만 원</strong></div>
+                <div class="flex justify-between"><span>• 50평 이상~:</span><strong class="text-emerald-300 text-xs sm:text-sm">별도 문의 (커질수록 더 할인!)</strong></div>
               </div>
             </button>
 
             <!-- Proposal 2: 2액형 우레탄 (Default Selected) -->
-            <button type="button" data-wpmethod="two_part" class="wp-method-btn text-left p-4 sm:p-5 rounded-2xl border-2 transition-all border-amber-500 bg-amber-500/10 shadow-md flex flex-col justify-between">
+            <button type="button" data-wpmethod="two_part" class="wp-method-btn text-left p-5 rounded-2xl border-2 transition-all border-amber-500 bg-amber-500/10 shadow-lg flex flex-col justify-between">
               <div>
-                <div class="flex items-center justify-between gap-2 mb-2">
-                  <span class="bg-amber-400 text-slate-950 text-[11px] font-extrabold px-2.5 py-0.5 rounded-full">
-                    ★ 제안 2 · 정석 시공 (인기 1위)
+                <div class="flex items-center justify-between gap-2 mb-2.5">
+                  <span class="bg-amber-400 text-slate-950 text-xs font-black px-3 py-1 rounded-full">
+                    💡 제안 2 · 정석 시공 (선택 1위)
                   </span>
-                  <span class="text-xs font-bold text-amber-300">🛡️ A/S 2년 책임 보장</span>
+                  <span class="text-xs sm:text-sm font-extrabold text-amber-300">🛡️ A/S 2년 책임 보장</span>
                 </div>
-                <div class="text-base sm:text-lg font-extrabold text-white">내구성 중심 정석 시공 (2액형 우레탄)</div>
-                <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
-                  하도(프라이머) 칠 후 두툼한 방수층(중도)을 깔고, 자외선 보호 코팅(상도)을 완벽히 분리하여 <strong>이틀(2일)간 정석 양생</strong>하는 고내구성 표준 공법입니다.
+                <div class="text-lg sm:text-xl font-black text-white">내구성 중심 정석 시공 (2액형 우레탄)</div>
+                <p class="text-xs sm:text-sm text-slate-100 mt-2 leading-relaxed">
+                  <strong>시공 특징:</strong> 방수층(중도)을 두툼하게 깔고 자외선 코팅(상도)을 완벽히 분리하여 <strong>이틀(2일)간 양생</strong>
                 </p>
               </div>
-              <div class="mt-4 pt-3 border-t border-amber-500/30 text-xs space-y-1 text-slate-200">
-                <div class="flex justify-between"><span>• 20 ~ 30평 기준:</span><strong class="text-amber-300">140만 ~ 180만 원</strong></div>
-                <div class="flex justify-between"><span>• 30 ~ 40평 기준:</span><strong class="text-amber-300">180만 ~ 240만 원</strong></div>
-                <div class="flex justify-between"><span>• 50평 이상~ 대형:</span><strong class="text-emerald-300">평당 약 6만 원 기준</strong></div>
+              <div class="mt-4 pt-3.5 border-t border-amber-500/30 text-xs sm:text-sm space-y-1.5 text-slate-100">
+                <div class="text-xs font-extrabold text-amber-300 mb-1">예상 견적 (A/S 2년 책임 보장)</div>
+                <div class="flex justify-between"><span>• 10 ~ 20평:</span><strong class="text-amber-300 text-sm sm:text-base">100만 ~ 140만 원</strong></div>
+                <div class="flex justify-between"><span>• 20 ~ 30평:</span><strong class="text-amber-300 text-sm sm:text-base">140만 ~ 180만 원</strong></div>
+                <div class="flex justify-between"><span>• 30 ~ 40평:</span><strong class="text-amber-300 text-sm sm:text-base">180만 ~ 240만 원</strong></div>
+                <div class="flex justify-between"><span>• 50평 이상~:</span><strong class="text-emerald-300 text-xs sm:text-sm">평당 6만 원 정도 (커질수록 더 저렴!)</strong></div>
               </div>
             </button>
           </div>
 
           <!-- Waterproof Area Range Selection -->
-          <div class="pt-3 border-t border-slate-800">
-            <label class="block text-xs sm:text-sm font-bold text-slate-200 mb-2.5">
-              옥상 평수 구간 선택
-            </label>
-            <div class="grid grid-cols-3 gap-2.5" id="wpRangeBtns">
-              <button type="button" data-wprange="20_30" class="wp-range-btn p-3 rounded-xl border-2 text-left transition border-amber-500 bg-amber-500/10">
-                <div class="text-xs text-amber-300 font-bold">일반 단독/다가구 표준</div>
-                <div class="text-sm sm:text-base font-extrabold text-white mt-0.5">20 ~ 30평</div>
-                <div class="text-[11px] text-slate-400 mt-0.5">약 66㎡ ~ 99㎡</div>
-              </button>
-              <button type="button" data-wprange="30_40" class="wp-range-btn p-3 rounded-xl border-2 text-left transition border-slate-700 bg-slate-950/60 hover:border-slate-600">
-                <div class="text-xs text-slate-400 font-bold">중형 주택/빌라 옥상</div>
-                <div class="text-sm sm:text-base font-extrabold text-white mt-0.5">30 ~ 40평</div>
-                <div class="text-[11px] text-slate-400 mt-0.5">약 99㎡ ~ 132㎡</div>
-              </button>
-              <button type="button" data-wprange="50_plus" class="wp-range-btn p-3 rounded-xl border-2 text-left transition border-slate-700 bg-slate-950/60 hover:border-slate-600">
-                <div class="text-xs text-emerald-400 font-bold">대형 옥상/상가/건물</div>
-                <div class="text-sm sm:text-base font-extrabold text-white mt-0.5">50평 이상~</div>
-                <div class="text-[11px] text-slate-400 mt-0.5">평당 단가 적용 구간</div>
-              </button>
+          <div class="pt-4 border-t border-slate-800">
+            <!-- Updated Area Guide Banner (Includes Parapet Wall + Reassuring Note) -->
+            <div class="p-4 rounded-2xl bg-rose-950/40 border-2 border-rose-500/50 text-xs sm:text-sm text-rose-200 font-bold mb-4 flex items-start gap-3 shadow-md">
+              <span class="text-rose-400 text-lg shrink-0 mt-0.5">📐</span>
+              <div class="space-y-1.5 leading-relaxed">
+                <div>
+                  <span class="text-white font-black underline decoration-rose-500 underline-offset-4 text-sm sm:text-base">[평수 입력 가이드]</span>
+                  전체 건물 분양/공급 평수가 아닌, 실제로 방수 도료를 칠할 <strong class="text-amber-300">[실제 옥상 바닥 + 외벽 난간(벽면)을 포함한 도장 면적]</strong>을 기준으로 선택해 주세요.
+                </div>
+                <div class="text-emerald-300 font-extrabold bg-slate-950/80 border border-emerald-500/30 rounded-xl px-3 py-2 text-xs sm:text-sm">
+                  ✓ 단, 평수가 너무 정확할 필요는 없습니다! 잘 모르시면 대략적인 구간만 누르시거나 그냥 무시하셔도 됩니다. (방문 견적 시 무료로 정확히 실측해 드립니다)
+                </div>
+              </div>
             </div>
 
-            <!-- Slider for 50+ Pyung -->
-            <div id="wpLargeSliderBox" class="mt-4 p-4 rounded-xl bg-slate-950 border border-slate-800 hidden">
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-bold text-slate-300">50평 이상 대형 평수 상세 지정:</span>
-                <span id="wpLargePyungText" class="text-sm font-extrabold text-amber-400">50평 (약 165㎡)</span>
+            <!-- Interactive 5-Pyung Step Slider Calculator (10 - 15 - 20 - 25 - 30 - 35 - 40 - 45 - 50평 이상) -->
+            <div class="bg-slate-950 border-2 border-amber-500/50 rounded-2xl p-4 sm:p-5 space-y-4 shadow-lg">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-3.5">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="bg-amber-400 text-slate-950 text-xs font-black px-2.5 py-0.5 rounded-md">슬라이드 평수 계산기</span>
+                    <label for="wpPyungSlider" class="text-sm sm:text-base font-extrabold text-white">
+                      옥상 시공 평수를 슬라이드로 맞춰보세요 (10평 ~ 50평 이상)
+                    </label>
+                  </div>
+                  <p class="text-xs text-slate-300 mt-1">
+                    • 바를 좌우로 움직이거나 아래 평수 버튼을 누르면 <strong>5평 단위(10·15·20·25·30·35·40평...)로 맞춤 견적</strong>이 즉시 계산됩니다.
+                  </p>
+                </div>
+                <div class="bg-amber-500/15 border border-amber-500/40 px-3.5 py-2 rounded-xl text-right shrink-0">
+                  <div class="text-[11px] text-amber-200 font-semibold">현재 선택 평수</div>
+                  <div class="text-lg sm:text-xl font-black text-amber-400" id="wpPyungDisplayBadge">20평 (약 66㎡)</div>
+                </div>
               </div>
-              <input type="range" id="wpLargeSlider" min="50" max="150" step="5" value="50" class="w-full accent-amber-500 cursor-pointer">
-              <div class="flex justify-between text-[10px] text-slate-500 mt-1">
-                <span>50평</span>
-                <span>75평</span>
-                <span>100평</span>
-                <span>125평</span>
-                <span>150평</span>
+
+              <!-- Range Slider (10 to 50, step 5) -->
+              <div class="px-1 pt-1">
+                <input type="range" id="wpPyungSlider" min="10" max="50" step="5" value="20" class="w-full accent-amber-500 cursor-pointer">
+                <div class="flex justify-between text-xs text-slate-300 font-bold mt-2 px-0.5">
+                  <span>10평</span>
+                  <span>15평</span>
+                  <span class="text-amber-400">20평</span>
+                  <span>25평</span>
+                  <span>30평</span>
+                  <span>35평</span>
+                  <span>40평</span>
+                  <span>45평</span>
+                  <span class="text-emerald-400">50평+</span>
+                </div>
               </div>
+
+              <!-- Quick-Tap Pyung Buttons (Synchronized with Slider) -->
+              <div>
+                <div class="text-xs text-slate-300 font-semibold mb-2">👇 원하는 평수를 바로 터치하셔도 됩니다:</div>
+                <div class="grid grid-cols-3 sm:grid-cols-9 gap-1.5" id="wpRangeBtns">
+                  <button type="button" data-wppyung="10" class="wp-range-btn py-2 px-1 rounded-xl border text-center transition border-slate-700 bg-slate-900 hover:border-slate-500">
+                    <div class="text-xs sm:text-sm font-extrabold text-white">10평</div>
+                    <div class="text-[10px] text-slate-400">33㎡</div>
+                  </button>
+                  <button type="button" data-wppyung="15" class="wp-range-btn py-2 px-1 rounded-xl border text-center transition border-slate-700 bg-slate-900 hover:border-slate-500">
+                    <div class="text-xs sm:text-sm font-extrabold text-white">15평</div>
+                    <div class="text-[10px] text-slate-400">50㎡</div>
+                  </button>
+                  <button type="button" data-wppyung="20" class="wp-range-btn py-2 px-1 rounded-xl border-2 text-center transition border-amber-500 bg-amber-500/20 shadow-md">
+                    <div class="text-xs sm:text-sm font-black text-amber-300">20평</div>
+                    <div class="text-[10px] text-amber-200">66㎡</div>
+                  </button>
+                  <button type="button" data-wppyung="25" class="wp-range-btn py-2 px-1 rounded-xl border text-center transition border-slate-700 bg-slate-900 hover:border-slate-500">
+                    <div class="text-xs sm:text-sm font-extrabold text-white">25평</div>
+                    <div class="text-[10px] text-slate-400">83㎡</div>
+                  </button>
+                  <button type="button" data-wppyung="30" class="wp-range-btn py-2 px-1 rounded-xl border text-center transition border-slate-700 bg-slate-900 hover:border-slate-500">
+                    <div class="text-xs sm:text-sm font-extrabold text-white">30평</div>
+                    <div class="text-[10px] text-slate-400">99㎡</div>
+                  </button>
+                  <button type="button" data-wppyung="35" class="wp-range-btn py-2 px-1 rounded-xl border text-center transition border-slate-700 bg-slate-900 hover:border-slate-500">
+                    <div class="text-xs sm:text-sm font-extrabold text-white">35평</div>
+                    <div class="text-[10px] text-slate-400">116㎡</div>
+                  </button>
+                  <button type="button" data-wppyung="40" class="wp-range-btn py-2 px-1 rounded-xl border text-center transition border-slate-700 bg-slate-900 hover:border-slate-500">
+                    <div class="text-xs sm:text-sm font-extrabold text-white">40평</div>
+                    <div class="text-[10px] text-slate-400">132㎡</div>
+                  </button>
+                  <button type="button" data-wppyung="45" class="wp-range-btn py-2 px-1 rounded-xl border text-center transition border-slate-700 bg-slate-900 hover:border-slate-500">
+                    <div class="text-xs sm:text-sm font-extrabold text-white">45평</div>
+                    <div class="text-[10px] text-slate-400">149㎡</div>
+                  </button>
+                  <button type="button" data-wppyung="50" class="wp-range-btn py-2 px-1 rounded-xl border text-center transition border-emerald-500/50 bg-emerald-950/30 hover:border-emerald-400">
+                    <div class="text-xs sm:text-sm font-extrabold text-emerald-300">50평+</div>
+                    <div class="text-[10px] text-emerald-400">별도문의</div>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Live Pyung Calculation Breakdown Box -->
+              <div class="bg-slate-900/95 border border-slate-700 rounded-xl p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div class="text-xs sm:text-sm text-slate-200">
+                  <span class="font-extrabold text-amber-300" id="wpLiveCalcMethodLabel">[제안 2 · 2액형 우레탄 20평 기준]</span>
+                  <span class="block sm:inline sm:ml-2 text-slate-300" id="wpLiveCalcIntervalNote">10~20평 구간 (100만~140만 원) 적용</span>
+                </div>
+                <div class="text-right shrink-0">
+                  <span class="text-xs text-slate-300 mr-1.5">기본 방수 견적:</span>
+                  <strong class="text-lg sm:text-xl font-black text-amber-400" id="wpLiveBasePriceBadge">140만 원</strong>
+                </div>
+              </div>
+
+              <!-- 50+ Pyung Inquiry & Discount Info Box (Shown when 50+ selected) -->
+              <div id="wpLargeSliderBox" class="p-4 sm:p-5 rounded-2xl bg-emerald-950/30 border-2 border-emerald-500/50 hidden space-y-3">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <div class="text-sm sm:text-base font-extrabold text-emerald-300">
+                    🏢 50평 이상 대형 옥상은 별도 문의해 주세요! (대량 평수 추가 할인)
+                  </div>
+                  <span id="wpLargePyungText" class="text-xs sm:text-sm font-extrabold bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full border border-emerald-500/40">
+                    예상 평수: 50평 이상 (약 165㎡~)
+                  </span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                  • 50평 이상은 <strong>평당 6만 원 정도</strong> 보시면 되며, <strong>시공 평수가 커질수록 평당 단가가 더 내려가 훨씬 저렴해집니다!</strong><br>
+                  • 50평 이상 대형 현장의 대략적인 평수를 아래 슬라이더로 지정해 주시면 상담 및 차열페인트 계산에 자동 반영됩니다.
+                </p>
+                <div>
+                  <input type="range" id="wpLargeSlider" min="50" max="150" step="5" value="50" class="w-full accent-emerald-400 cursor-pointer">
+                  <div class="flex justify-between text-xs text-slate-400 font-semibold mt-1">
+                    <span>50평</span>
+                    <span>75평</span>
+                    <span>100평</span>
+                    <span>125평</span>
+                    <span>150평 이상</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Heat-Reflective Paint (차열페인트) Option Card (+10만원 per 20 Pyung) -->
+            <div class="mt-4 bg-gradient-to-r from-sky-950/70 via-slate-900 to-slate-950 border-2 border-sky-400/60 rounded-2xl p-4 sm:p-5 shadow-lg space-y-3.5">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div class="flex items-center gap-2">
+                  <span class="bg-sky-400 text-slate-950 text-xs font-black px-2.5 py-1 rounded-lg">☀️ 쿨루프 차열 옵션</span>
+                  <h4 class="text-base sm:text-lg font-extrabold text-white">옥상 차열페인트 기능성 코팅 추가 (20평당 +10만 원)</h4>
+                </div>
+                <span id="wpHeatCostBadge" class="text-xs sm:text-sm font-black bg-sky-500/20 border border-sky-400/40 text-sky-300 px-3 py-1 rounded-full">
+                  현재 20평 기준: +10만 원 추가
+                </span>
+              </div>
+
+              <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                한여름 직사광선과 태양열을 반사하여 <strong>옥상 바닥 열기와 실내 온도를 크게 낮춰주는 고기능성 차열페인트</strong> 마감 옵션입니다. 평수 구간에 따라 <strong>20평마다 10만 원씩만 투명하게 추가</strong>됩니다.
+              </p>
+
+              <!-- 20-Pyung Step Price Pills -->
+              <div class="grid grid-cols-3 gap-2 text-center text-xs">
+                <div class="p-2.5 rounded-xl bg-slate-950/90 border border-sky-500/30">
+                  <div class="text-slate-300 font-bold">10 ~ 20평까지</div>
+                  <div class="text-sky-300 font-black text-sm sm:text-base mt-0.5">+10만 원 추가</div>
+                </div>
+                <div class="p-2.5 rounded-xl bg-slate-950/90 border border-sky-500/30">
+                  <div class="text-slate-300 font-bold">21 ~ 40평까지</div>
+                  <div class="text-sky-300 font-black text-sm sm:text-base mt-0.5">+20만 원 추가</div>
+                </div>
+                <div class="p-2.5 rounded-xl bg-slate-950/90 border border-sky-500/30">
+                  <div class="text-slate-300 font-bold">41 ~ 60평 (20평마다)</div>
+                  <div class="text-sky-300 font-black text-sm sm:text-base mt-0.5">+30만 원 (+10만/20평)</div>
+                </div>
+              </div>
+
+              <label class="flex items-center justify-between gap-3 p-3.5 sm:p-4 rounded-xl border-2 border-sky-400/50 bg-slate-950/90 cursor-pointer hover:border-sky-300 transition">
+                <div class="flex items-start sm:items-center gap-3">
+                  <input type="checkbox" id="wpOptHeat" class="mt-1 sm:mt-0 w-5 h-5 accent-sky-400 rounded shrink-0">
+                  <div>
+                    <div class="text-sm sm:text-base font-extrabold text-white">
+                      ☀️ 우레탄 방수 시 '차열페인트' 옵션 추가하기 <span class="text-sky-300 font-black" id="wpHeatInlineCostText">(+10만 원)</span>
+                    </div>
+                    <div class="text-xs sm:text-sm text-slate-300 mt-0.5">
+                      ✓ 체크하시면 선택한 평수에 맞춰 차열페인트 비용(10~20평 +10만, 21~40평 +20만...)이 예상 견적에 자동 합산됩니다
+                    </div>
+                  </div>
+                </div>
+                <span class="hidden sm:inline-block bg-sky-500/20 border border-sky-400/40 text-sky-300 text-xs font-extrabold px-3 py-1 rounded-full shrink-0">자동 합산</span>
+              </label>
             </div>
           </div>
 
-          <!-- Transparent Extra Notice & Checkboxes -->
-          <div class="bg-slate-950/90 border border-slate-800 rounded-xl p-4 space-y-3">
-            <div class="text-xs font-extrabold text-amber-400 flex items-center gap-1.5">
-              <span>⚠️ [투명한 추가 비용 및 외벽 발수 맞춤 시공 안내]</span>
+          <!-- Bundle Discount Services: 1) Exterior Water-Repellent Coating & 2) Slope (구배) Leveling Work -->
+          <div class="pt-4 border-t border-slate-800 space-y-4">
+            <div class="bg-gradient-to-r from-amber-500/15 via-slate-900 to-slate-950 border-2 border-amber-500/60 rounded-2xl p-4 sm:p-5 shadow-lg space-y-4">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div class="flex items-center gap-2">
+                  <span class="bg-amber-400 text-slate-950 text-xs font-black px-2.5 py-1 rounded-lg step-pill">🎁 동시시공 특별할인</span>
+                  <h4 class="text-base sm:text-lg font-extrabold text-white">옥상 방수와 함께하면 할인해 드리는 맞춤 공정 (선택)</h4>
+                </div>
+                <span class="text-xs text-amber-300 font-bold">방문 견적 시 현장 확인 후 특별 할인가 적용</span>
+              </div>
+
+              <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                아래 항목은 현장 상태를 직접 보고 결정해야 정확한 견적이 나오는 공정입니다. <strong>옥상 방수와 함께 진행하시면 가람상사 직영 특별 할인 서비스 혜택</strong>을 드리오니 필요한 항목을 체크해 주세요!
+              </p>
+
+              <div class="grid grid-cols-1 gap-3">
+                <!-- Checkbox 1: Exterior Wall Water-Repellent Coating -->
+                <label class="flex items-center justify-between gap-3 p-3.5 sm:p-4 rounded-xl border-2 border-amber-500/40 bg-slate-950/90 cursor-pointer hover:border-amber-400 transition">
+                  <div class="flex items-start sm:items-center gap-3">
+                    <input type="checkbox" id="wpOptWall" class="mt-1 sm:mt-0 w-5 h-5 accent-amber-500 rounded shrink-0">
+                    <div>
+                      <div class="text-sm sm:text-base font-extrabold text-white">
+                        1. 외벽 발수 코팅 동시 시공 할인 신청
+                      </div>
+                      <div class="text-xs sm:text-sm text-slate-200 mt-0.5 leading-relaxed">
+                        벽면을 타고 스며드는 빗물·외벽 누수 차단 코팅 (현장 확인 후 결정 · <strong class="text-amber-300">옥상 방수와 함께 시공 시 특별 할인!</strong>)
+                      </div>
+                    </div>
+                  </div>
+                  <span class="hidden sm:inline-block bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-extrabold px-3 py-1 rounded-full shrink-0">동시시공 할인</span>
+                </label>
+
+                <!-- Checkbox 2: Roof Slope / Drainage (구배 잡는 작업) -->
+                <label class="flex items-center justify-between gap-3 p-3.5 sm:p-4 rounded-xl border-2 border-amber-500/40 bg-slate-950/90 cursor-pointer hover:border-amber-400 transition">
+                  <div class="flex items-start sm:items-center gap-3">
+                    <input type="checkbox" id="wpOptSlope" class="mt-1 sm:mt-0 w-5 h-5 accent-amber-500 rounded shrink-0">
+                    <div>
+                      <div class="text-sm sm:text-base font-extrabold text-white">
+                        2. 물고임 구배(물매·경사) 잡는 작업 별도 견적 및 동시 시공 할인 신청
+                      </div>
+                      <div class="text-xs sm:text-sm text-slate-200 mt-0.5 leading-relaxed">
+                        옥상 바닥 물고임 해결을 위한 구배(경사) 작업은 현장을 보고 별도 견적을 받아야 하며, <strong class="text-amber-300">옥상 방수와 같이 진행 시 특별 할인!</strong>
+                      </div>
+                    </div>
+                  </div>
+                  <span class="hidden sm:inline-block bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-extrabold px-3 py-1 rounded-full shrink-0">별도견적 + 할인</span>
+                </label>
+              </div>
             </div>
-            <p class="text-xs text-slate-400 leading-relaxed">
-              하도(프라이머) 도포 및 기본 크랙 정리는 견적에 포함되어 있습니다. 아래 항목이 필요한 현장은 체크해 주시면 사전 점검 시 투명하게 맞춤 안내해 드립니다.
-            </p>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
-              <label class="flex items-start gap-2.5 p-3 rounded-xl border border-slate-800 bg-slate-900/70 cursor-pointer hover:border-slate-700 transition">
-                <input type="checkbox" id="wpOptWall" class="mt-0.5 w-4 h-4 accent-amber-500 rounded">
-                <div class="text-xs">
-                  <div class="font-bold text-white">외벽 발수 코팅 맞춤 견적</div>
-                  <div class="text-[11px] text-slate-400 mt-0.5">벽면을 타고 스며드는 빗물 차단 시공 함께 문의</div>
+
+            <!-- On-Site Floor Condition Notice (No arbitrary pre-set price) -->
+            <div class="bg-slate-950/90 border border-slate-700/80 rounded-2xl p-4 sm:p-5 flex items-start gap-3">
+              <span class="text-xl shrink-0 mt-0.5">🔍</span>
+              <div class="space-y-1 text-xs sm:text-sm">
+                <div class="font-extrabold text-white text-sm sm:text-base">
+                  기존 바닥 면갈이 · 철거 · 보수는 방문 견적 시 정확하게 안내해 드립니다
                 </div>
-              </label>
-              <label class="flex items-start gap-2.5 p-3 rounded-xl border border-slate-800 bg-slate-900/70 cursor-pointer hover:border-slate-700 transition">
-                <input type="checkbox" id="wpOptParapet" class="mt-0.5 w-4 h-4 accent-amber-500 rounded">
-                <div class="text-xs">
-                  <div class="font-bold text-white">옥상 난간(벽면) 끝까지 방수</div>
-                  <div class="text-[11px] text-slate-400 mt-0.5">파라펫 벽면 상단까지 우레탄 도포 희망 시 점검</div>
-                </div>
-              </label>
-              <label class="flex items-start gap-2.5 p-3 rounded-xl border border-slate-800 bg-slate-900/70 cursor-pointer hover:border-slate-700 transition">
-                <input type="checkbox" id="wpOptLeveling" class="mt-0.5 w-4 h-4 accent-amber-500 rounded">
-                <div class="text-xs">
-                  <div class="font-bold text-white">바닥 불량 대대적 미장(평탄화)</div>
-                  <div class="text-[11px] text-slate-400 mt-0.5">심한 패임·물고임으로 시멘트 미장 보수 필요 시</div>
-                </div>
-              </label>
+                <p class="text-slate-300 leading-relaxed">
+                  하도(프라이머) 도포 및 기본 크랙 정리는 기본 견적에 포함되어 있습니다. 다만 <strong>기존 노후 바닥 상태(면갈이·철거·보수 여부)는 현장을 직접 보고 결정해야 하는 문제</strong>이므로 임의로 가격을 매기지 않고, <strong>무료 방문 견적 시 정확하고 투명한 견적</strong>을 말씀드립니다.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -419,24 +930,24 @@
               <span class="font-bold text-slate-200">등급별 핵심 단열·조습 성능 비교</span>
               <span class="text-[11px] text-slate-500">※ 도막 두께 및 핵심 기능성 원료 함량 기준</span>
             </div>
-            <div class="space-y-2 text-xs">
-              <div class="flex items-center gap-3">
-                <span class="w-36 text-slate-400 shrink-0 text-[11px]">일반 수성페인트 (기본)</span>
-                <div class="flex-1 bg-slate-900 rounded-full h-5 overflow-hidden flex items-center p-0.5">
-                  <div class="bg-slate-700 h-full w-1/5 rounded-full"></div>
-                  <span class="ml-2 text-[10px] text-slate-400">단열·조습 기능 없음 (결로·곰팡이 취약)</span>
+            <div class="space-y-2.5 text-xs">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                <span class="sm:w-36 text-slate-400 shrink-0 text-[11px]">일반 수성페인트 (기본)</span>
+                <div class="w-full flex-1 bg-slate-900 rounded-full h-5 overflow-hidden flex items-center p-0.5">
+                  <div class="bg-slate-700 h-full w-1/5 rounded-full shrink-0"></div>
+                  <span class="ml-2 text-[10px] text-slate-400 truncate">단열·조습 기능 없음 (결로·곰팡이 취약)</span>
                 </div>
               </div>
-              <div class="flex items-center gap-3">
-                <span class="w-36 text-blue-400 font-bold shrink-0 text-[11px]">바이오세라믹·월드클래스</span>
-                <div class="flex-1 bg-slate-900 rounded-full h-5 overflow-hidden flex items-center p-0.5">
-                  <div class="bg-blue-600 h-full w-3/5 rounded-full flex items-center px-2 text-[10px] text-white font-bold">우수 (생활 결로 및 항균 방어)</div>
+              <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                <span class="sm:w-36 text-blue-400 font-bold shrink-0 text-[11px]">바이오세라믹·월드클래스</span>
+                <div class="w-full flex-1 bg-slate-900 rounded-full h-5 overflow-hidden flex items-center p-0.5">
+                  <div class="bg-blue-600 h-full w-3/4 sm:w-3/5 rounded-full flex items-center px-2.5 text-[10px] text-white font-bold truncate">우수 (생활 결로 및 항균 방어)</div>
                 </div>
               </div>
-              <div class="flex items-center gap-3">
-                <span class="w-36 text-amber-400 font-extrabold shrink-0 text-[11px]">제로스탑 (에어로겔)</span>
-                <div class="flex-1 bg-slate-900 rounded-full h-6 overflow-hidden flex items-center p-0.5">
-                  <div class="bg-gradient-to-r from-amber-600 to-amber-500 h-full w-11/12 rounded-full flex items-center px-3 text-[11px] text-slate-950 font-extrabold">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                <span class="sm:w-36 text-amber-400 font-extrabold shrink-0 text-[11px]">제로스탑 (에어로겔)</span>
+                <div class="w-full flex-1 bg-slate-900 rounded-full h-6 overflow-hidden flex items-center p-0.5">
+                  <div class="bg-gradient-to-r from-amber-600 to-amber-500 h-full w-full sm:w-11/12 rounded-full flex items-center px-2.5 sm:px-3 text-[10px] sm:text-[11px] text-slate-950 font-extrabold truncate">
                     ★ 초단열 에어로겔 + 규조토 조습 (결로·곰팡이 완벽 방어)
                   </div>
                 </div>
@@ -446,6 +957,15 @@
 
           <!-- Floor Plan Guide & Bay Count Selection (From 월드2.png) -->
           <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
+            <!-- Red Bay Guide Banner (User Improvement Point 2) -->
+            <div class="p-3 rounded-xl bg-rose-950/40 border border-rose-500/50 text-xs text-rose-300 font-bold flex items-start gap-2.5 shadow-sm">
+              <span class="text-rose-400 text-sm shrink-0">⚠️</span>
+              <div class="leading-relaxed">
+                <span class="text-white font-extrabold underline decoration-rose-500 underline-offset-2">[베란다 칸수 책정 가이드]</span>
+                전체 아파트 분양 평수(예: 24평, 32평, 40평형)가 아닌, 창문/샷시 및 가벽으로 분리된 <strong class="text-rose-200">[실제 발코니 칸수(개소)]</strong>를 확인해 선택해 주세요.
+              </div>
+            </div>
+
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-slate-800 pb-3">
               <div class="font-extrabold text-sm text-white">
                 📐 1. 우리 집 베란다 칸수(개소) 책정 방법
@@ -584,6 +1104,15 @@
 
           <!-- Epoxy Area Selection -->
           <div class="pt-3 border-t border-slate-800">
+            <!-- Red Area Guide Banner (User Improvement Point 2) -->
+            <div class="p-3 rounded-xl bg-rose-950/40 border border-rose-500/50 text-xs text-rose-300 font-bold mb-3 flex items-start gap-2.5 shadow-sm">
+              <span class="text-rose-400 text-sm shrink-0">⚠️</span>
+              <div class="leading-relaxed">
+                <span class="text-white font-extrabold underline decoration-rose-500 underline-offset-2">[평수 입력 가이드]</span>
+                상가·매장 계약/분양 평수가 아닌, 주방/가벽/고정 집기를 제외한 <strong class="text-rose-200">[실제 에폭시 도장 바닥 면적]</strong>을 기준으로 선택해 주세요.
+              </div>
+            </div>
+
             <label class="block text-xs sm:text-sm font-bold text-slate-200 mb-2.5">
               바닥 시공 평수 선택
             </label>
@@ -603,15 +1132,119 @@
             </div>
           </div>
 
-          <!-- Epoxy Grinding / Tile Removal Check -->
-          <div class="bg-slate-950 border border-slate-800 rounded-xl p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <div class="text-xs text-slate-300">
-              <strong class="text-amber-400">⚠️ 바닥 면갈이(그라인딩) 안내:</strong> 기존 바닥에 본드 자국, 들뜬 페인트, 심한 요철이 있는 경우 다이아몬드 연삭기 면갈이 작업이 추가될 수 있습니다.
+          <!-- Self-Leveling Mortar (수평몰탈) Interactive Calculator -->
+          <div class="pt-4 border-t border-slate-800 space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="bg-amber-400 text-slate-950 text-[11px] font-black px-2 py-0.5 rounded">수평몰탈 계산기</span>
+                <h4 class="text-sm sm:text-base font-extrabold text-white">바닥 수평몰탈(셀프레벨링) 추가 자동 계산기</h4>
+              </div>
+              <span class="text-[11px] text-amber-300 font-semibold">
+                ⏱️ 수평몰탈 시공 시 양생을 위해 공사기간 하루(+1일) 추가됩니다
+              </span>
             </div>
-            <label class="inline-flex items-center gap-2 bg-slate-900 px-3 py-2 rounded-lg border border-slate-700 cursor-pointer shrink-0">
-              <input type="checkbox" id="epoxyGrindingCheck" class="w-4 h-4 accent-amber-500 rounded">
-              <span class="text-xs font-bold text-white">기존 바닥 면갈이/보수 점검 요청</span>
-            </label>
+
+            <div class="bg-slate-950 border-2 border-amber-500/40 rounded-2xl p-4 sm:p-5 space-y-4 shadow-lg">
+              <!-- Thickness / Inclusion Selector -->
+              <div>
+                <label class="block text-xs font-bold text-slate-300 mb-2">
+                  1) 수평몰탈 시공 여부 및 두께 선택
+                </label>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5" id="mortarThicknessBtns">
+                  <button type="button" data-mthick="0" class="mortar-thick-btn p-3 rounded-xl border-2 text-left transition border-slate-800 bg-slate-900 hover:border-slate-700">
+                    <div class="text-xs font-bold text-slate-400">수평몰탈 미포함</div>
+                    <div class="text-sm font-extrabold text-white mt-0.5">기본 에폭시만 시공</div>
+                    <div class="text-[11px] text-slate-500 mt-0.5">기존 바닥 수평이 양호한 경우</div>
+                  </button>
+                  <button type="button" data-mthick="3" class="mortar-thick-btn p-3 rounded-xl border-2 text-left transition border-amber-500 bg-amber-500/15 shadow-md">
+                    <div class="flex items-center justify-between">
+                      <span class="text-xs font-extrabold text-amber-300">두께 3mm 시공</span>
+                      <span class="bg-amber-400 text-slate-950 text-[9px] font-black px-1.5 py-0.2 rounded">표준 추천</span>
+                    </div>
+                    <div class="text-sm font-extrabold text-white mt-0.5">3mm 실속 수평몰탈</div>
+                    <div class="text-[11px] text-slate-300 mt-0.5">일반 상가·카페 바닥 수평 보정</div>
+                  </button>
+                  <button type="button" data-mthick="5" class="mortar-thick-btn p-3 rounded-xl border-2 text-left transition border-slate-800 bg-slate-900 hover:border-slate-700">
+                    <div class="flex items-center justify-between">
+                      <span class="text-xs font-extrabold text-emerald-300">두께 5mm 시공</span>
+                      <span class="bg-emerald-400 text-slate-950 text-[9px] font-black px-1.5 py-0.2 rounded">고강도 후막</span>
+                    </div>
+                    <div class="text-sm font-extrabold text-white mt-0.5">5mm 고강도 수평몰탈</div>
+                    <div class="text-[11px] text-slate-300 mt-0.5">구축·굴곡이 심한 바닥 완벽 보정</div>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Mortar Pyung Slider & Input -->
+              <div id="mortarCalcDetailBox" class="space-y-4 pt-2 border-t border-slate-800/80">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div>
+                    <label for="mortarPyungInput" class="text-xs font-bold text-slate-200">
+                      2) 수평몰탈 시공 평수 입력 (10평 ~ 50평)
+                    </label>
+                    <p class="text-[11px] text-slate-400 mt-0.5">
+                      • 평수와 두께를 선택하시면 아래 총 예상 견적에 자동 합산됩니다.
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <input type="number" id="mortarPyungInput" min="10" max="50" step="1" value="20" class="w-20 bg-slate-900 border border-amber-500/60 rounded-lg px-2.5 py-1.5 text-sm font-extrabold text-amber-400 text-center outline-none">
+                    <span class="text-xs font-bold text-slate-300">평 (약 <span id="mortarSqmText">66</span>㎡)</span>
+                  </div>
+                </div>
+
+                <div>
+                  <input type="range" id="mortarPyungSlider" min="10" max="50" step="1" value="20" class="w-full accent-amber-500 cursor-pointer">
+                  <div class="flex justify-between text-[11px] text-slate-400 font-semibold mt-1.5">
+                    <span>10평</span>
+                    <span>20평</span>
+                    <span>30평</span>
+                    <span>40평</span>
+                    <span>50평</span>
+                  </div>
+                </div>
+
+                <!-- Clean Customer-Facing Summary Box (No internal unit/labor cost breakdown exposed) -->
+                <div class="bg-amber-500/15 border border-amber-500/50 rounded-xl p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div>
+                    <div class="text-xs font-extrabold text-amber-300" id="mortarSpecSummaryText">
+                      수평몰탈 20평 · 두께 3mm 시공 선택됨
+                    </div>
+                    <div class="text-[11px] text-slate-300 mt-0.5" id="mortarScheduleSubText">
+                      ✓ 정품 셀프레벨링 타설 및 양생 공정 포함 (공사기간 +1일 추가)
+                    </div>
+                  </div>
+                  <div class="sm:text-right pt-2 sm:pt-0 border-t sm:border-t-0 border-amber-500/30 flex sm:block items-baseline justify-between">
+                    <span class="text-[11px] text-amber-200 font-semibold block">수평몰탈 추가 시공비</span>
+                    <span class="text-lg sm:text-xl font-black text-amber-400" id="mortarTotalCostText">+98만 원</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- On-Site Floor Condition Inspection Notice for Epoxy (No pre-set arbitrary price) -->
+          <div class="pt-4 border-t border-slate-800">
+            <div class="bg-slate-950/95 border border-slate-700/80 rounded-2xl p-4 sm:p-5 space-y-3">
+              <div class="flex items-start gap-3">
+                <span class="text-xl shrink-0 mt-0.5">🔍</span>
+                <div class="space-y-1 text-xs sm:text-sm">
+                  <div class="font-extrabold text-white text-sm sm:text-base">
+                    기존 바닥 면갈이(연삭) · 철거 여부는 방문 견적 시 정확하게 안내해 드립니다
+                  </div>
+                  <p class="text-slate-200 leading-relaxed">
+                    기존 바닥에 남아있는 본드 자국, 들뜬 페인트, 데코타일 철거 및 기계 연삭(면갈이) 여부는 <strong>현장 바닥 상태를 직접 보고 결정해야 하는 문제</strong>입니다. 임의로 금액을 정하지 않고, <strong>무료 방문 견적 시 현장을 꼼꼼히 확인한 뒤 정확한 견적</strong>을 산출해 드립니다.
+                  </p>
+                </div>
+              </div>
+
+              <label class="flex items-center justify-between gap-3 p-3.5 rounded-xl border border-slate-700 bg-slate-900/90 cursor-pointer hover:border-amber-400 transition">
+                <div class="flex items-center gap-3">
+                  <input type="checkbox" id="epoxyGrindingCheck" class="w-5 h-5 accent-amber-500 rounded shrink-0">
+                  <span class="text-xs sm:text-sm font-bold text-white">방문 견적 시 기존 바닥 상태(면갈이·철거·보수 여부) 현장 확인 함께 요청</span>
+                </div>
+                <span class="hidden sm:inline-block text-xs font-bold text-amber-300 shrink-0">무료 방문실측</span>
+              </label>
+            </div>
           </div>
         </div>
       </div>
@@ -630,46 +1263,49 @@
           </span>
         </div>
 
-        <div class="my-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="my-5 flex flex-col md:flex-row md:items-center justify-between gap-5">
           <div>
-            <div class="text-xs text-slate-400 font-medium" id="liveSelectedTitle">
+            <div class="text-sm sm:text-base text-amber-200 font-extrabold" id="liveSelectedTitle">
               [옥상 방수] 제안 2. 내구성 중심 정석 시공 (2액형 우레탄) · 20~30평
             </div>
-            <div class="flex items-baseline gap-2 mt-1">
-              <span id="livePriceText" class="text-3xl sm:text-4xl font-black text-amber-400 tracking-tight">
+            <div class="flex flex-wrap items-baseline gap-2.5 mt-1.5">
+              <span id="livePriceText" class="text-3xl sm:text-4xl md:text-5xl font-black text-amber-400 tracking-tight">
                 140만 ~ 180만 원
               </span>
-              <span class="text-xs text-slate-400">(VAT 별도)</span>
+              <span class="text-xs sm:text-sm text-slate-200 font-semibold">(VAT 별도 · 현장 방문 시 최종 확정)</span>
             </div>
-            <p id="liveSubDesc" class="text-xs text-slate-300 mt-1.5">
+            <p id="liveSubDesc" class="text-xs sm:text-sm text-slate-100 mt-2 font-medium">
               ✓ 하도(프라이머) 밀착 도포 + 중도 방수층 + 상도 자외선 코팅 분리 (2일 양생 정석 시공)
             </p>
           </div>
 
           <!-- Action Buttons: Add to Cart / Copy / Instant Notify -->
-          <div class="flex flex-wrap sm:flex-nowrap gap-2 shrink-0">
-            <button type="button" id="addToCartBtn" class="flex-1 sm:flex-initial bg-slate-800 hover:bg-slate-700 text-white border border-slate-600 font-bold text-xs sm:text-sm px-4 py-3 rounded-xl transition flex items-center justify-center gap-1.5">
+          <div class="grid grid-cols-2 sm:flex sm:flex-nowrap gap-2 shrink-0 w-full md:w-auto">
+            <button type="button" id="addToCartBtn" class="bg-slate-800 hover:bg-slate-700 text-white border border-slate-600 font-bold text-xs sm:text-sm px-3.5 py-3 rounded-xl transition flex items-center justify-center gap-1">
               <span>＋ 견적함에 담기</span>
             </button>
-            <button type="button" id="copyCurrentEstimateBtn" class="flex-1 sm:flex-initial bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/40 font-bold text-xs sm:text-sm px-4 py-3 rounded-xl transition flex items-center justify-center gap-1.5">
+            <button type="button" id="copyCurrentEstimateBtn" class="bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/40 font-bold text-xs sm:text-sm px-3.5 py-3 rounded-xl transition flex items-center justify-center gap-1">
               <span>📋 견적 복사</span>
+            </button>
+            <button type="button" id="boxJumpNotifyBtn" class="col-span-2 sm:col-span-1 bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black text-xs sm:text-sm px-4 py-3 rounded-xl shadow-md transition flex items-center justify-center gap-1">
+              <span>🔔 이 견적으로 상담신청 ↓</span>
             </button>
           </div>
         </div>
 
         <!-- Included Standard Process Tags -->
-        <div class="bg-slate-950/80 border border-slate-800/90 rounded-xl p-3.5 text-xs space-y-1.5" id="liveProcessSummary">
-          <div class="flex justify-between text-slate-300">
-            <span>• 시공 주체:</span>
-            <strong class="text-white">가람상사 대리점 직영 시공팀 (외주 하청 없음)</strong>
+        <div class="bg-slate-950/95 border border-slate-700/80 rounded-xl p-4 text-xs sm:text-sm space-y-2.5" id="liveProcessSummary">
+          <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-3 text-slate-200">
+            <span class="text-slate-300 font-semibold shrink-0">• 시공 주체:</span>
+            <strong class="text-white sm:text-right">가람상사 대리점 직영 시공팀 (외주 하청 없음)</strong>
           </div>
-          <div class="flex justify-between text-slate-300">
-            <span>• 정품 자재:</span>
-            <strong class="text-amber-300" id="liveMaterialText">KCC·노루페인트 100% 정품 하도 프라이머 + 2액형 우레탄 중도·상도</strong>
+          <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-3 text-slate-200 pt-2 border-t border-slate-800/80">
+            <span class="text-slate-300 font-semibold shrink-0">• 정품 자재:</span>
+            <strong class="text-amber-300 sm:text-right" id="liveMaterialText">KCC·노루페인트 100% 정품 하도 프라이머 + 2액형 우레탄 중도·상도</strong>
           </div>
-          <div class="flex justify-between text-slate-300">
-            <span>• 선택 특이사항:</span>
-            <strong class="text-emerald-400" id="liveAddonText">기본 정석 공정 (추가 체크 없음)</strong>
+          <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-3 text-slate-200 pt-2 border-t border-slate-800/80">
+            <span class="text-slate-300 font-semibold shrink-0">• 현장 점검 및 할인 안내:</span>
+            <strong class="text-emerald-300 sm:text-right" id="liveAddonText">기본 정석 공정 포함 · 바닥 면갈이/철거 여부는 방문 견적 시 정확히 안내</strong>
           </div>
         </div>
       </div>
@@ -718,7 +1354,7 @@
           </div>
           <div class="sm:col-span-2">
             <label for="custMemo" class="block text-xs font-bold text-slate-300 mb-1">현장 상태 메모 (평면도나 현장 사진 유무 등)</label>
-            <input type="text" id="custMemo" placeholder="예: 베란다 3칸 제로스탑 희망합니다 / 옥상 난간까지 방수 견적 궁금합니다" class="w-full bg-slate-950 border border-slate-700 focus:border-amber-400 rounded-xl px-3.5 py-2.5 text-sm text-white outline-none transition">
+            <input type="text" id="custMemo" placeholder="예: 옥상 방수와 외벽 발수 동시시공 할인 문의합니다 / 베란다 3칸 제로스탑 희망합니다" class="w-full bg-slate-950 border border-slate-700 focus:border-amber-400 rounded-xl px-3.5 py-2.5 text-sm text-white outline-none transition">
           </div>
         </div>
 
@@ -771,7 +1407,7 @@
             <div>
               <div class="font-bold text-white text-sm">간판을 걸고 약속하는 확실한 A/S 책임 보증</div>
               <p class="text-slate-400 mt-1 leading-relaxed">
-                공사 후 연락 두절되는 무책임한 시공과 다릅니다. 공식 대리점의 이름을 걸고 1액형 1년, 2액형 2년, 탄성코트 무결점 마감을 끝까지 책임지고 보증합니다.
+                공사 후 연락 두절되는 무책임한 시공과 다릅니다. 공식 대리점의 이름을 걸고 우레탄 방수(1액형·2액형) 2년 책임 보증 및 탄성코트·에폭시 무결점 마감을 끝까지 책임지고 보증합니다.
               </p>
             </div>
           </div>
@@ -820,8 +1456,8 @@
         </p>
       </div>
       <div class="flex items-center gap-2">
-        <button type="button" id="footerAdminBtn" class="bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 px-3 py-1.5 rounded-lg text-[11px] font-semibold transition">
-          ⚙️ 사장님 이메일/알림 설정
+        <button type="button" id="footerAdminBtn" class="text-slate-600 hover:text-slate-400 px-2 py-1 rounded text-[11px] transition" title="사장님 전용 관리">
+          🔒 관리자
         </button>
       </div>
     </div>
@@ -866,6 +1502,31 @@
       <div id="myOrdersList" class="p-4 overflow-y-auto flex-1 space-y-3 text-xs">
         <!-- Dynamic Orders -->
       </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL 2.5: ADMIN PASSWORD LOGIN MODAL      -->
+  <!-- ========================================== -->
+  <div id="adminPinModal" class="fixed inset-0 bg-black/80 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-sm w-full p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="font-extrabold text-sm text-amber-400 flex items-center gap-1.5">
+          <span>🔒 가람상사 관리자 인증</span>
+        </h3>
+        <button type="button" id="closeAdminPinModalBtn" class="text-slate-400 hover:text-white text-xl leading-none">&times;</button>
+      </div>
+      <p class="text-xs text-slate-300 leading-relaxed">
+        이 메뉴는 가람상사 대표님 전용 설정 화면입니다.<br>관리자 비밀번호를 입력해 주세요.
+      </p>
+      <form id="adminPinForm" class="space-y-3">
+        <input type="password" id="adminPinInput" placeholder="비밀번호 입력" class="w-full bg-slate-950 border border-slate-700 focus:border-amber-400 rounded-xl px-3.5 py-2.5 text-sm text-white text-center tracking-widest outline-none">
+        <p id="adminPinError" class="text-[11px] text-rose-400 text-center hidden">비밀번호가 일치하지 않습니다.</p>
+        <div class="flex gap-2 pt-1">
+          <button type="button" id="cancelAdminPinBtn" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold py-2.5 rounded-xl text-xs transition">취소</button>
+          <button type="submit" class="flex-1 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-2.5 rounded-xl text-xs transition">확인</button>
+        </div>
+      </form>
     </div>
   </div>
 
@@ -923,6 +1584,14 @@
                 * 후제공방처럼 1초 만에 폰에 푸시 알림을 받고 싶다면 디스코드 앱에서 무료 웹훅 URL을 복사해 붙여넣으세요. 고객 접수 즉시 "띠링!" 하고 알림이 옵니다.
               </p>
             </div>
+
+            <div class="pt-2 border-t border-slate-800">
+              <label class="block font-bold text-amber-300 mb-1">4. 🔒 관리자 접속 비밀번호 변경 (기본값: 7749)</label>
+              <input type="password" id="cfgAdminPin" value="7749" placeholder="새 비밀번호 입력" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white outline-none focus:border-amber-400">
+              <p class="text-[11px] text-slate-400 mt-1">
+                * 일반 손님은 관리자 화면에 들어올 수 없도록 잠금 보호됩니다.
+              </p>
+            </div>
           </div>
 
           <button type="button" id="saveAdminConfigBtn" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-3 rounded-xl text-xs sm:text-sm transition">
@@ -974,8 +1643,10 @@
     </div>
   </div>
 
+
+
   <!-- Toast -->
-  <div id="toast" class="fixed bottom-5 right-5 bg-amber-400 text-slate-950 font-extrabold px-4 py-3 rounded-xl text-xs shadow-2xl transform translate-y-24 opacity-0 transition-all duration-300 z-50 pointer-events-none flex items-center gap-2">
+  <div id="toast" class="fixed bottom-20 md:bottom-5 right-4 md:right-5 left-4 md:left-auto bg-amber-400 text-slate-950 font-extrabold px-4 py-3 rounded-xl text-xs shadow-2xl transform translate-y-28 opacity-0 transition-all duration-300 z-50 pointer-events-none flex items-center justify-center md:justify-start gap-2">
     <span id="toastIcon">🔔</span>
     <span id="toastText">알림</span>
   </div>
@@ -987,11 +1658,12 @@
       
       waterproof: {
         method: 'two_part', // 'one_part' (제안1) | 'two_part' (제안2)
-        range: '20_30',     // '20_30' | '30_40' | '50_plus'
-        largePyung: 50,
-        optWall: false,
-        optParapet: false,
-        optLeveling: false
+        pyung: 20,          // 10, 15, 20, 25, 30, 35, 40, 45, 50 (50 means 50+)
+        range: '20_30',     // legacy compatibility
+        largePyung: 50,     // 50 ~ 150 when pyung === 50
+        optHeat: false,     // 차열페인트 옵션 (20평마다 +10만원: 10~20평 +10만, 21~40평 +20만, 41~60평 +30만...)
+        optWall: false,     // 옥상 방수 + 외벽 발수 동시 시공 할인 서비스 신청
+        optSlope: false     // 물고임 구배(경사) 잡는 작업 별도 견적 & 동시 시공 할인 신청
       },
 
       elastic: {
@@ -1003,7 +1675,10 @@
       epoxy: {
         type: 'coating',   // 'coating' | 'vintage' | 'lining'
         range: '20_30',    // '20_30' | '30_40' | '50_plus'
-        grinding: false
+        floorCondition: 'good', // 'good' (+0) | 'grind' (+20) | 'demolish' (+50)
+        grinding: false,
+        mortarThickness: 3, // 0 (미포함) | 3 (3mm, 1포=1.5평) | 5 (5mm, 1포=1평)
+        mortarPyung: 20     // 10 ~ 50평
       },
 
       currentResult: {
@@ -1021,7 +1696,8 @@
       adminConfig: {
         ownerEmail: 'okiyoki@naver.com',
         ownerPhone: '032-427-7749',
-        webhookUrl: ''
+        webhookUrl: '',
+        adminPin: '7749'
       }
     };
 
@@ -1073,34 +1749,113 @@
       if (state.category === 'waterproof') {
         const isTwo = state.waterproof.method === 'two_part';
         const methodTitle = isTwo ? '제안 2. 내구성 중심 정석 시공 (2액형 우레탄)' : '제안 1. 가성비 신속 시공 (1액형 우레탄)';
-        guarantee = isTwo ? '🛡️ A/S 2년 책임 보장' : '🛡️ A/S 1년 책임 보장';
+        const shortMethod = isTwo ? '제안 2 · 2액형 우레탄' : '제안 1 · 1액형 우레탄';
+        guarantee = '🛡️ A/S 2년 책임 보장';
+
+        const p = state.waterproof.pyung; // 10, 15, 20, 25, 30, 35, 40, 45, 50
+        const effectivePyung = p >= 50 ? state.waterproof.largePyung : p;
+        const sqm = Math.round(effectivePyung * 3.3);
+
+        // 차열페인트 추가금 계산: 10~20평 +10만원, 21~40평 +20만원, 41~60평 +30만원 (20평마다 +10만원)
+        const heatExtraMan = Math.ceil(effectivePyung / 20) * 10;
+
+        const heatBadgeEl = document.getElementById('wpHeatCostBadge');
+        const heatInlineEl = document.getElementById('wpHeatInlineCostText');
+        if (heatBadgeEl) {
+          heatBadgeEl.textContent = `현재 ${effectivePyung}평 기준: +${heatExtraMan}만 원 추가`;
+        }
+        if (heatInlineEl) {
+          heatInlineEl.textContent = `(+${heatExtraMan}만 원)`;
+        }
+
+        // 평수별 우레탄 방수 기본 견적 계산 (10-15-20-25-30-35-40-45평 선형 정찰 단가)
+        // 제안 1 (1액형): 10~20평(80~120만: 10평=80, 15평=100, 20평=120), 20~30평(120~160만: 25평=140, 30평=160), 30~40평(160~200만: 35평=180, 40평=200), 45평=220만
+        // 제안 2 (2액형): 10~20평(100~140만: 10평=100, 15평=120, 20평=140), 20~30평(140~180만: 25평=160, 30평=180), 30~40평(180~240만: 35평=210, 40평=240), 45평=270만
+        let baseMan = 0;
+        let intervalNote = '';
+        if (p <= 20) {
+          baseMan = isTwo ? (100 + (p - 10) * 4) : (80 + (p - 10) * 4);
+          intervalNote = isTwo ? '10~20평 구간 (100만~140만 원 기준)' : '10~20평 구간 (80만~120만 원 기준)';
+        } else if (p <= 30) {
+          baseMan = isTwo ? (140 + (p - 20) * 4) : (120 + (p - 20) * 4);
+          intervalNote = isTwo ? '20~30평 구간 (140만~180만 원 기준)' : '20~30평 구간 (120만~160만 원 기준)';
+        } else if (p <= 40) {
+          baseMan = isTwo ? (180 + (p - 30) * 6) : (160 + (p - 30) * 4);
+          intervalNote = isTwo ? '30~40평 구간 (180만~240만 원 기준)' : '30~40평 구간 (160만~200만 원 기준)';
+        } else if (p < 50) {
+          baseMan = isTwo ? (240 + (p - 40) * 6) : (200 + (p - 40) * 4);
+          intervalNote = '40~50평 구간 표준 산출 기준';
+        } else {
+          intervalNote = '50평 이상 대형 옥상 (평당 약 6만 원 · 커질수록 추가 할인)';
+        }
+
+        // Update Slider Display Badges
+        const dispBadgeEl = document.getElementById('wpPyungDisplayBadge');
+        const methodLblEl = document.getElementById('wpLiveCalcMethodLabel');
+        const intervalNoteEl = document.getElementById('wpLiveCalcIntervalNote');
+        const baseBadgeEl = document.getElementById('wpLiveBasePriceBadge');
+
+        if (p < 50) {
+          if (dispBadgeEl) dispBadgeEl.textContent = `${p}평 (약 ${sqm}㎡)`;
+          if (methodLblEl) methodLblEl.textContent = `[${shortMethod} · ${p}평 기준]`;
+          if (intervalNoteEl) intervalNoteEl.textContent = intervalNote;
+          if (baseBadgeEl) {
+            baseBadgeEl.textContent = state.waterproof.optHeat
+              ? `${baseMan + heatExtraMan}만 원 (차열 +${heatExtraMan}만 포함)`
+              : `${baseMan}만 원`;
+          }
+        } else {
+          if (dispBadgeEl) dispBadgeEl.textContent = `50평 이상 (${effectivePyung}평 / 약 ${sqm}㎡)`;
+          if (methodLblEl) methodLblEl.textContent = `[${shortMethod} · ${effectivePyung}평 대형 기준]`;
+          if (intervalNoteEl) intervalNoteEl.textContent = intervalNote;
+          if (baseBadgeEl) {
+            baseBadgeEl.textContent = state.waterproof.optHeat
+              ? `평당 6만 원 정도 + 차열 ${heatExtraMan}만 원 (별도 문의)`
+              : `평당 6만 원 정도 (별도 문의 · 대량할인)`;
+          }
+        }
+
         material = isTwo
           ? 'KCC·노루 정품 하도(프라이머) + 2액형 우레탄 중도(방수층) + 상도(자외선 코팅)'
           : 'KCC·노루 정품 하도(프라이머) + 1액형 우레탄 방수·코팅 겸용';
-        subDesc = isTwo
-          ? '✓ 방수층(중도)을 두툼하게 깔고 자외선 코팅(상도)을 분리하여 이틀(2일)간 정석 양생'
-          : '✓ 바닥 밀착 하도 작업 후 방수와 코팅을 겸한 1액형 제품으로 하루(1일) 신속 시공';
-
-        let rangeLabel = '';
-        if (state.waterproof.range === '20_30') {
-          rangeLabel = '20~30평';
-          priceText = isTwo ? '140만 ~ 180만 원' : '120만 ~ 160만 원';
-        } else if (state.waterproof.range === '30_40') {
-          rangeLabel = '30~40평';
-          priceText = isTwo ? '180만 ~ 240만 원' : '160만 ~ 200만 원';
-        } else {
-          const pyung = state.waterproof.largePyung;
-          rangeLabel = `${pyung}평 (대형 평당 단가)`;
-          const unitMan = isTwo ? 6 : 5;
-          const approxMan = pyung * unitMan;
-          priceText = `약 ${approxMan.toLocaleString('ko-KR')}만 원 (평당 ${unitMan}만원 기준)`;
+        if (state.waterproof.optHeat) {
+          material += ` + ☀️ 고기능성 옥상 차열페인트 코팅`;
         }
 
-        title = `[옥상 방수] ${methodTitle} · ${rangeLabel}`;
+        subDesc = isTwo
+          ? '✓ 방수층(중도)을 두툼하게 깔고 자외선 코팅(상도)을 완벽히 분리하여 이틀(2일)간 양생 (A/S 2년 책임 보장)'
+          : '✓ 방수와 코팅 기능을 겸한 1액형 제품으로 하루(1일) 신속 시공 (A/S 2년 책임 보장)';
 
-        if (state.waterproof.optWall) addonsList.push('외벽 발수 코팅 맞춤 견적 함께 요청');
-        if (state.waterproof.optParapet) addonsList.push('옥상 난간(벽면) 끝까지 방수 올림 점검');
-        if (state.waterproof.optLeveling) addonsList.push('바닥 불량 평탄화 미장 점검');
+        let rangeLabel = '';
+        if (p < 50) {
+          rangeLabel = `${p}평 (약 ${sqm}㎡)`;
+          const finalMan = state.waterproof.optHeat ? (baseMan + heatExtraMan) : baseMan;
+          priceText = state.waterproof.optHeat
+            ? `${finalMan}만 원 (우레탄 ${baseMan}만 + 차열페인트 ${heatExtraMan}만)`
+            : `${baseMan}만 원`;
+        } else {
+          rangeLabel = `50평 이상 (약 ${effectivePyung}평 · 별도 문의)`;
+          priceText = state.waterproof.optHeat
+            ? `평당 6만 원 정도 + 차열페인트 ${heatExtraMan}만 원 (별도 문의 · 커질수록 더 할인!)`
+            : `평당 6만 원 정도 (평수가 커질수록 더 저렴해집니다 · 별도 문의)`;
+        }
+
+        const extraTags = [];
+        if (state.waterproof.optHeat) {
+          addonsList.push(`☀️ 차열페인트 옵션 추가 (${effectivePyung}평 기준 +${heatExtraMan}만 원 합산됨)`);
+          extraTags.push(`차열페인트 +${heatExtraMan}만`);
+        }
+        if (state.waterproof.optWall) {
+          addonsList.push('🎁 외벽 발수 코팅 동시 시공 할인 신청');
+          extraTags.push('외벽발수 할인');
+        }
+        if (state.waterproof.optSlope) {
+          addonsList.push('🎁 물고임 구배(물매) 작업 별도 견적 & 동시 시공 할인 신청');
+          extraTags.push('구배작업 별도견적·할인');
+        }
+        addonsList.push('기존 바닥 면갈이·철거·보수 여부는 방문 견적 시 정확 안내');
+
+        title = `[옥상 방수] ${methodTitle} · ${rangeLabel}` + (extraTags.length > 0 ? ` + [${extraTags.join(' · ')}]` : '');
 
       } else if (state.category === 'elastic') {
         const isZero = state.elastic.grade === 'zerostop';
@@ -1139,23 +1894,91 @@
         material = 'KCC·노루페인트 정품 에폭시 하도 프라이머 + 전용 상도 정량 도포';
         subDesc = '✓ 바닥 기초 청소 및 밀착 하도 프라이머 공정 기본 포함';
 
+        // Base Epoxy Min/Max in Man-won (만원)
+        let epMin = 100;
+        let epMax = 140;
         let rLabel = '20~30평';
+
         if (state.epoxy.range === '20_30') {
           rLabel = '20~30평';
-          priceText = state.epoxy.type === 'coating' ? '100만 ~ 140만 원' : state.epoxy.type === 'vintage' ? '140만 ~ 180만 원' : '180만 ~ 240만 원';
+          if (state.epoxy.type === 'coating') { epMin = 100; epMax = 140; }
+          else if (state.epoxy.type === 'vintage') { epMin = 140; epMax = 180; }
+          else { epMin = 180; epMax = 240; }
         } else if (state.epoxy.range === '30_40') {
           rLabel = '30~40평';
-          priceText = state.epoxy.type === 'coating' ? '140만 ~ 180만 원' : state.epoxy.type === 'vintage' ? '180만 ~ 230만 원' : '240만 ~ 320만 원';
+          if (state.epoxy.type === 'coating') { epMin = 140; epMax = 180; }
+          else if (state.epoxy.type === 'vintage') { epMin = 180; epMax = 230; }
+          else { epMin = 240; epMax = 320; }
         } else {
           rLabel = '50평 이상~';
-          priceText = state.epoxy.type === 'coating' ? '평당 약 4만 원 기준' : state.epoxy.type === 'vintage' ? '평당 약 5.5만 원 기준' : '평당 약 8만 원 기준';
+        }
+
+        // Self-Leveling Mortar Calculation
+        const mThick = state.epoxy.mortarThickness; // 0 | 3 | 5
+        const mPyung = Math.max(10, Math.min(50, parseInt(state.epoxy.mortarPyung, 10) || 20));
+        const sqm = Math.round(mPyung * 3.3);
+
+        const sqEl = document.getElementById('mortarSqmText');
+        if (sqEl) sqEl.textContent = sqm;
+
+        const detailBox = document.getElementById('mortarCalcDetailBox');
+        let mortarTotalMan = 0;
+
+        const specSumEl = document.getElementById('mortarSpecSummaryText');
+        const schedSubEl = document.getElementById('mortarScheduleSubText');
+
+        if (mThick === 0) {
+          if (detailBox) detailBox.classList.add('opacity-50');
+          if (specSumEl) specSumEl.textContent = '수평몰탈 미포함 (기본 바닥 에폭시 시공)';
+          if (schedSubEl) schedSubEl.textContent = '기존 바닥 상태가 양호한 경우 수평몰탈 없이 시공합니다';
+          document.getElementById('mortarTotalCostText').textContent = '+0원';
+        } else {
+          if (detailBox) detailBox.classList.remove('opacity-50');
+          // 내부 전용 계산식 (고객 비공개):
+          // 1) 몰탈 자재: 5mm는 1포=1평, 3mm는 1포=1.5평 (포당 2만원)
+          // 2) 기본 50만 + 평수별 점진 가산: 10~20평은 평당 +2만(20평 시 +20만), 21~25평은 평당 +1만(25평 시 +25만 맞춤)
+          const bags = mThick === 5 ? mPyung : Math.ceil(mPyung / 1.5);
+          const matCostMan = bags * 2;
+          let extraLaborMan = 0;
+          if (mPyung <= 20) {
+            extraLaborMan = (mPyung - 10) * 2;
+          } else if (mPyung <= 25) {
+            extraLaborMan = 20 + (mPyung - 20) * 1;
+          } else {
+            extraLaborMan = 25;
+          }
+          const laborCostMan = 50 + extraLaborMan;
+          mortarTotalMan = matCostMan + laborCostMan;
+
+          if (specSumEl) specSumEl.textContent = `수평몰탈 ${mPyung}평 (약 ${sqm}㎡) · 두께 ${mThick}mm 시공`;
+          if (schedSubEl) schedSubEl.textContent = `✓ 정품 셀프레벨링 수평몰탈 타설·양생 포함 (공사기간 하루 +1일 추가)`;
+          document.getElementById('mortarTotalCostText').textContent = `+${mortarTotalMan}만 원`;
+
+          addonsList.push(`수평몰탈 ${mPyung}평(두께 ${mThick}mm, +${mortarTotalMan}만원 포함 / 공사기간 +1일 추가)`);
+          material = `KCC·노루 정품 에폭시 하도·상도 + 정품 셀프레벨링 수평몰탈 (${mThick}mm 두께)`;
+          subDesc = `✓ 바닥 기초 하도 + 수평몰탈(${mPyung}평·${mThick}mm, +${mortarTotalMan}만원 합산됨) 타설·양생으로 공사기간 하루(+1일) 추가`;
+        }
+
+        if (state.epoxy.range !== '50_plus') {
+          if (mortarTotalMan > 0) {
+            const totalMin = epMin + mortarTotalMan;
+            const totalMax = epMax + mortarTotalMan;
+            priceText = `${totalMin}만 ~ ${totalMax}만 원`;
+          } else {
+            priceText = `${epMin}만 ~ ${epMax}만 원`;
+          }
+        } else {
+          const unitStr = state.epoxy.type === 'coating' ? '평당 약 4만 원' : state.epoxy.type === 'vintage' ? '평당 약 5.5만 원' : '평당 약 8만 원';
+          priceText = mortarTotalMan > 0 ? `${unitStr} + 수평몰탈 ${mortarTotalMan}만 원` : `${unitStr} 기준`;
         }
 
         if (state.epoxy.grinding) {
-          addonsList.push('기존 바닥 연삭(면갈이) 및 보수 현장 점검 요청');
+          addonsList.push('방문 견적 시 기존 바닥 상태(면갈이·철거·보수 여부) 현장 확인 요청');
+        } else {
+          addonsList.push('기존 바닥 면갈이·철거 여부는 방문 실측 시 현장 확인 후 정확 안내');
         }
 
-        title = `[바닥 에폭시] ${typeNames[state.epoxy.type]} · ${rLabel}`;
+        title = `[바닥 에폭시] ${typeNames[state.epoxy.type]} (${rLabel})` + (mThick > 0 ? ` + 수평몰탈 ${mPyung}평(${mThick}mm)` : '');
       }
 
       const addonsStr = addonsList.length > 0 ? addonsList.join(' / ') : '기본 정석 공정 (추가 옵션 없음)';
@@ -1176,6 +1999,20 @@
       document.getElementById('liveSubDesc').textContent = subDesc;
       document.getElementById('liveMaterialText').textContent = material;
       document.getElementById('liveAddonText').textContent = addonsStr;
+
+      // Sync Mobile Top Quick Estimate Bar
+      const mobTitleEl = document.getElementById('mobLiveTitle');
+      const mobPriceEl = document.getElementById('mobLivePrice');
+      const mobSubBadgeEl = document.getElementById('mobLiveSubBadge');
+      if (mobTitleEl) mobTitleEl.textContent = title;
+      if (mobPriceEl) mobPriceEl.textContent = priceText;
+      if (mobSubBadgeEl) {
+        if (state.category === 'epoxy' && state.epoxy.mortarThickness > 0) {
+          mobSubBadgeEl.textContent = `(수평몰탈 포함 · VAT별도)`;
+        } else {
+          mobSubBadgeEl.textContent = `(VAT별도)`;
+        }
+      }
     }
 
     // Switch Category Tab
@@ -1375,19 +2212,48 @@
         });
       });
 
-      // Waterproof Range
+      // Helper to sync Waterproof Pyung Slider & Quick Buttons
+      const wpPyungSliderEl = document.getElementById('wpPyungSlider');
+      function syncWpPyungUI(pyungVal) {
+        state.waterproof.pyung = pyungVal;
+        if (wpPyungSliderEl) wpPyungSliderEl.value = pyungVal;
+
+        document.querySelectorAll('.wp-range-btn').forEach(b => {
+          const btnPyung = parseInt(b.getAttribute('data-wppyung'), 10);
+          const isSelected = btnPyung === pyungVal;
+          b.classList.toggle('border-2', isSelected);
+          b.classList.toggle('border-amber-500', isSelected);
+          b.classList.toggle('bg-amber-500/20', isSelected);
+          b.classList.toggle('shadow-md', isSelected);
+          if (!isSelected) {
+            b.classList.remove('border-amber-500', 'bg-amber-500/20', 'shadow-md');
+            if (btnPyung === 50) {
+              b.classList.add('border-emerald-500/50', 'bg-emerald-950/30');
+            } else {
+              b.classList.add('border-slate-700', 'bg-slate-900');
+            }
+          }
+        });
+
+        const largeBox = document.getElementById('wpLargeSliderBox');
+        if (largeBox) {
+          largeBox.classList.toggle('hidden', pyungVal < 50);
+        }
+        updateCalculation();
+      }
+
+      if (wpPyungSliderEl) {
+        wpPyungSliderEl.addEventListener('input', (e) => {
+          const val = parseInt(e.target.value, 10) || 20;
+          syncWpPyungUI(val);
+        });
+      }
+
+      // Waterproof Quick-Tap Pyung Buttons
       document.querySelectorAll('.wp-range-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-          state.waterproof.range = btn.getAttribute('data-wprange');
-          document.querySelectorAll('.wp-range-btn').forEach(b => {
-            b.classList.remove('border-amber-500', 'bg-amber-500/10');
-            b.classList.add('border-slate-700', 'bg-slate-950/60');
-          });
-          btn.classList.add('border-amber-500', 'bg-amber-500/10');
-          btn.classList.remove('border-slate-700', 'bg-slate-950/60');
-
-          document.getElementById('wpLargeSliderBox').classList.toggle('hidden', state.waterproof.range !== '50_plus');
-          updateCalculation();
+          const pyungVal = parseInt(btn.getAttribute('data-wppyung'), 10) || 20;
+          syncWpPyungUI(pyungVal);
         });
       });
 
@@ -1395,23 +2261,31 @@
       document.getElementById('wpLargeSlider').addEventListener('input', (e) => {
         const val = parseInt(e.target.value, 10);
         state.waterproof.largePyung = val;
-        document.getElementById('wpLargePyungText').textContent = `${val}평 (약 ${Math.round(val * 3.3)}㎡)`;
+        document.getElementById('wpLargePyungText').textContent = `예상 평수: ${val}평 (약 ${Math.round(val * 3.3)}㎡)`;
         updateCalculation();
       });
 
-      // Waterproof Checkboxes
+      // Waterproof Heat-Reflective Paint (차열페인트) Checkbox
+      const wpHeatEl = document.getElementById('wpOptHeat');
+      if (wpHeatEl) {
+        wpHeatEl.addEventListener('change', (e) => {
+          state.waterproof.optHeat = e.target.checked;
+          updateCalculation();
+        });
+      }
+
+      // Waterproof Bundle Discount Checkboxes (Exterior Wall & Slope Work)
       document.getElementById('wpOptWall').addEventListener('change', (e) => {
         state.waterproof.optWall = e.target.checked;
         updateCalculation();
       });
-      document.getElementById('wpOptParapet').addEventListener('change', (e) => {
-        state.waterproof.optParapet = e.target.checked;
-        updateCalculation();
-      });
-      document.getElementById('wpOptLeveling').addEventListener('change', (e) => {
-        state.waterproof.optLeveling = e.target.checked;
-        updateCalculation();
-      });
+      const wpSlopeEl = document.getElementById('wpOptSlope');
+      if (wpSlopeEl) {
+        wpSlopeEl.addEventListener('change', (e) => {
+          state.waterproof.optSlope = e.target.checked;
+          updateCalculation();
+        });
+      }
 
       // Elastic Grade
       document.querySelectorAll('.el-grade-btn').forEach(btn => {
@@ -1475,10 +2349,59 @@
         });
       });
 
-      document.getElementById('epoxyGrindingCheck').addEventListener('change', (e) => {
-        state.epoxy.grinding = e.target.checked;
+      // Mortar Thickness Buttons
+      document.querySelectorAll('.mortar-thick-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          state.epoxy.mortarThickness = parseInt(btn.getAttribute('data-mthick'), 10);
+          document.querySelectorAll('.mortar-thick-btn').forEach(b => {
+            b.classList.remove('border-amber-500', 'bg-amber-500/15', 'shadow-md');
+            b.classList.add('border-slate-800', 'bg-slate-900');
+          });
+          btn.classList.add('border-amber-500', 'bg-amber-500/15', 'shadow-md');
+          btn.classList.remove('border-slate-800', 'bg-slate-900');
+          updateCalculation();
+        });
+      });
+
+      // Mortar Pyung Slider & Input Sync
+      const mortarSlider = document.getElementById('mortarPyungSlider');
+      const mortarInput = document.getElementById('mortarPyungInput');
+
+      mortarSlider.addEventListener('input', (e) => {
+        const val = parseInt(e.target.value, 10) || 20;
+        state.epoxy.mortarPyung = val;
+        mortarInput.value = val;
+        if (state.epoxy.mortarThickness === 0) {
+          state.epoxy.mortarThickness = 3;
+          document.querySelectorAll('.mortar-thick-btn').forEach(b => {
+            const is3 = b.getAttribute('data-mthick') === '3';
+            b.classList.toggle('border-amber-500', is3);
+            b.classList.toggle('bg-amber-500/15', is3);
+            b.classList.toggle('shadow-md', is3);
+            b.classList.toggle('border-slate-800', !is3);
+            b.classList.toggle('bg-slate-900', !is3);
+          });
+        }
         updateCalculation();
       });
+
+      mortarInput.addEventListener('input', (e) => {
+        let val = parseInt(e.target.value, 10);
+        if (isNaN(val)) return;
+        if (val < 10) val = 10;
+        if (val > 50) val = 50;
+        state.epoxy.mortarPyung = val;
+        mortarSlider.value = val;
+        updateCalculation();
+      });
+
+      const epGrindCheck = document.getElementById('epoxyGrindingCheck');
+      if (epGrindCheck) {
+        epGrindCheck.addEventListener('change', (e) => {
+          state.epoxy.grinding = e.target.checked;
+          updateCalculation();
+        });
+      }
 
       // Add to Cart
       document.getElementById('addToCartBtn').addEventListener('click', () => {
@@ -1516,6 +2439,20 @@
         document.getElementById('guideSection').scrollIntoView({ behavior: 'smooth' });
       });
 
+      // Mobile Sticky Bar & Box Jump to Notify Form
+      const jumpToNotify = () => {
+        document.getElementById('notifySection').scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => document.getElementById('custName').focus(), 450);
+      };
+      const mobJumpBtn = document.getElementById('mobJumpNotifyBtn');
+      if (mobJumpBtn) mobJumpBtn.addEventListener('click', jumpToNotify);
+      const boxJumpBtn = document.getElementById('boxJumpNotifyBtn');
+      if (boxJumpBtn) boxJumpBtn.addEventListener('click', jumpToNotify);
+      const mobCallBtn = document.getElementById('mobCallBtn');
+      if (mobCallBtn) {
+        mobCallBtn.href = `tel:${cleanPhone}`;
+      }
+
       // Cart Modal Controls
       const cartModal = document.getElementById('cartModal');
       document.getElementById('openCartDrawerBtn').addEventListener('click', () => {
@@ -1546,17 +2483,44 @@
       });
       document.getElementById('closeMyOrdersModalBtn').addEventListener('click', () => myOrdersModal.classList.add('hidden'));
 
-      // Admin Modal Controls
+      // Admin Modal Controls (Protected by PIN)
       const adminModal = document.getElementById('adminModal');
-      const openAdmin = () => {
+      const adminPinModal = document.getElementById('adminPinModal');
+      const adminPinInput = document.getElementById('adminPinInput');
+      const adminPinError = document.getElementById('adminPinError');
+
+      const openAdminUnlocked = () => {
         document.getElementById('cfgOwnerEmail').value = state.adminConfig.ownerEmail;
         document.getElementById('cfgOwnerPhone').value = state.adminConfig.ownerPhone;
         document.getElementById('cfgWebhookUrl').value = state.adminConfig.webhookUrl;
+        document.getElementById('cfgAdminPin').value = state.adminConfig.adminPin || '7749';
         renderOrdersAndLeads();
         adminModal.classList.remove('hidden');
       };
-      document.getElementById('openAdminBtn').addEventListener('click', openAdmin);
-      document.getElementById('footerAdminBtn').addEventListener('click', openAdmin);
+
+      const requestAdminPin = () => {
+        adminPinInput.value = '';
+        adminPinError.classList.add('hidden');
+        adminPinModal.classList.remove('hidden');
+        setTimeout(() => adminPinInput.focus(), 50);
+      };
+
+      document.getElementById('footerAdminBtn').addEventListener('click', requestAdminPin);
+      document.getElementById('closeAdminPinModalBtn').addEventListener('click', () => adminPinModal.classList.add('hidden'));
+      document.getElementById('cancelAdminPinBtn').addEventListener('click', () => adminPinModal.classList.add('hidden'));
+
+      document.getElementById('adminPinForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const entered = adminPinInput.value.trim();
+        const correctPin = state.adminConfig.adminPin || '7749';
+        if (entered === correctPin) {
+          adminPinModal.classList.add('hidden');
+          openAdminUnlocked();
+        } else {
+          adminPinError.classList.remove('hidden');
+        }
+      });
+
       document.getElementById('closeAdminModalBtn').addEventListener('click', () => adminModal.classList.add('hidden'));
 
       const admTabNotify = document.getElementById('admTabNotify');
@@ -1583,12 +2547,12 @@
       });
 
       document.getElementById('saveAdminConfigBtn').addEventListener('click', () => {
-        state.adminConfig.ownerEmail = document.getElementById('cfgOwnerEmail').value.trim();
         state.adminConfig.ownerEmail = document.getElementById('cfgOwnerEmail').value.trim() || 'okiyoki@naver.com';
         state.adminConfig.ownerPhone = document.getElementById('cfgOwnerPhone').value.trim() || '032-427-7749';
         state.adminConfig.webhookUrl = document.getElementById('cfgWebhookUrl').value.trim();
+        state.adminConfig.adminPin = document.getElementById('cfgAdminPin').value.trim() || '7749';
         saveStorage();
-        showToast('사장님 알림 설정이 저장되었습니다!', '⚙️');
+        showToast('사장님 알림 및 비밀번호 설정이 저장되었습니다!', '🔒');
       });
 
       document.getElementById('clearAllLeadsBtn').addEventListener('click', () => {
