@@ -2345,55 +2345,70 @@
       // Waterproof Method (Full visual sync: card border/bg, top pill, title, price text, divider, and ✓ 선택됨 badge)
       function syncWpMethodUI(selectedMethod) {
         state.waterproof.method = selectedMethod;
-        document.querySelectorAll('.wp-method-btn').forEach(b => {
-          const isSel = b.getAttribute('data-wpmethod') === selectedMethod;
-          b.classList.toggle('selectable-card-active', isSel);
-          b.classList.toggle('selectable-card-inactive', !isSel);
+        document.querySelectorAll(".wp-method-btn").forEach(b => {
+          const isSel = b.getAttribute("data-wpmethod") === selectedMethod;
+          b.classList.toggle("selectable-card-active", isSel);
+          b.classList.toggle("selectable-card-inactive", !isSel);
+          b.style.borderColor = isSel ? "#f59e0b" : "#334155";
+          b.style.backgroundColor = isSel ? "rgba(245, 158, 11, 0.12)" : "rgba(9, 14, 28, 0.78)";
+          b.style.boxShadow = isSel ? "0 0 25px -4px rgba(245, 158, 11, 0.35)" : "none";
 
-          const topPill = b.querySelector('.wp-top-pill');
+          const topPill = b.querySelector(".wp-top-pill");
           if (topPill) {
-            topPill.classList.toggle('pill-active', isSel);
-            topPill.classList.toggle('pill-inactive-blue', !isSel);
+            topPill.classList.toggle("pill-active", isSel);
+            topPill.classList.toggle("pill-inactive-blue", !isSel);
+            topPill.style.backgroundColor = isSel ? "#fbbf24" : "rgba(59, 130, 246, 0.18)";
+            topPill.style.color = isSel ? "#020617" : "#93c5fd";
+            topPill.style.borderColor = isSel ? "#fbbf24" : "rgba(59, 130, 246, 0.38)";
           }
 
-          const badge = b.querySelector('.wp-select-badge');
+          const badge = b.querySelector(".wp-select-badge");
           if (badge) {
-            badge.classList.toggle('status-check-active', isSel);
-            badge.classList.toggle('status-check-inactive', !isSel);
-            badge.textContent = isSel ? '✓ 선택됨' : '클릭하여 선택';
+            badge.classList.toggle("status-check-active", isSel);
+            badge.classList.toggle("status-check-inactive", !isSel);
+            badge.textContent = isSel ? "✓ 선택됨" : "클릭하여 선택";
+            badge.style.backgroundColor = isSel ? "#fbbf24" : "rgba(30, 41, 59, 0.85)";
+            badge.style.color = isSel ? "#020617" : "#94a3b8";
           }
 
-          const titleEl = b.querySelector('.wp-card-title');
+          const titleEl = b.querySelector(".wp-card-title");
           if (titleEl) {
-            titleEl.classList.toggle('text-amber-300', isSel);
-            titleEl.classList.toggle('text-white', !isSel);
+            titleEl.classList.toggle("text-amber-300", isSel);
+            titleEl.classList.toggle("text-white", !isSel);
+            titleEl.style.color = isSel ? "#fcd34d" : "#ffffff";
           }
 
-          const subHeading = b.querySelector('.wp-sub-heading');
+          const subHeading = b.querySelector(".wp-sub-heading");
           if (subHeading) {
-            subHeading.classList.toggle('text-amber-300', isSel);
-            subHeading.classList.toggle('text-blue-300', !isSel);
+            subHeading.classList.toggle("text-amber-300", isSel);
+            subHeading.classList.toggle("text-blue-300", !isSel);
+            subHeading.style.color = isSel ? "#fcd34d" : "#93c5fd";
           }
 
-          const divider = b.querySelector('.wp-divider');
+          const divider = b.querySelector(".wp-divider");
           if (divider) {
-            divider.classList.toggle('border-amber-500/40', isSel);
-            divider.classList.toggle('border-slate-800', !isSel);
+            divider.classList.toggle("border-amber-500/40", isSel);
+            divider.classList.toggle("border-slate-800", !isSel);
+            divider.style.borderColor = isSel ? "rgba(245, 158, 11, 0.35)" : "#1e293b";
           }
 
-          b.querySelectorAll('.wp-price-val').forEach(pv => {
-            pv.classList.toggle('text-amber-300', isSel);
-            pv.classList.toggle('text-white', !isSel);
+          b.querySelectorAll(".wp-price-val").forEach(pv => {
+            pv.classList.toggle("text-amber-300", isSel);
+            pv.classList.toggle("text-white", !isSel);
+            pv.style.color = isSel ? "#fcd34d" : "#ffffff";
           });
         });
         updateCalculation();
       }
 
-      document.querySelectorAll('.wp-method-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          syncWpMethodUI(btn.getAttribute('data-wpmethod'));
+      document.querySelectorAll(".wp-method-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          syncWpMethodUI(btn.getAttribute("data-wpmethod"));
         });
       });
+
+      // Initialize UI on load so styles are guaranteed consistent
+      syncWpMethodUI(state.waterproof.method);
 
       // Helper to sync Waterproof Pyung Slider & Quick Buttons (including inner text color!)
       const wpPyungSliderEl = document.getElementById('wpPyungSlider');
