@@ -650,6 +650,74 @@
       display: none;
     }
 
+  
+    /* === SIMPLIFIED MOBILE & CATEGORY SELECTION ENHANCEMENTS === */
+    .cat-tab-selected {
+      border-color: #fbbf24 !important;
+      border-width: 3px !important;
+      background: linear-gradient(180deg, rgba(245, 158, 11, 0.28) 0%, rgba(15, 23, 42, 0.98) 100%) !important;
+      box-shadow: 0 0 28px -2px rgba(251, 191, 36, 0.45), inset 0 0 0 1px rgba(251, 191, 36, 0.5) !important;
+      transform: translateY(-1px);
+    }
+    .cat-tab-unselected {
+      border-color: #475569 !important;
+      border-width: 2px !important;
+      background: rgba(15, 23, 42, 0.78) !important;
+      box-shadow: none !important;
+      opacity: 0.94;
+    }
+    .cat-tab-unselected:hover {
+      border-color: #94a3b8 !important;
+      opacity: 1;
+    }
+    .mob-quick-cat-active {
+      background-color: #fbbf24 !important;
+      color: #020617 !important;
+      border-color: #fbbf24 !important;
+      font-weight: 900 !important;
+      box-shadow: 0 2px 10px rgba(251, 191, 36, 0.4) !important;
+    }
+    .mob-quick-cat-inactive {
+      background-color: #1e293b !important;
+      color: #cbd5e1 !important;
+      border-color: #475569 !important;
+      font-weight: 700 !important;
+    }
+    details.collapsible-info-box > summary {
+      list-style: none;
+      cursor: pointer;
+      user-select: none;
+    }
+    details.collapsible-info-box > summary::-webkit-details-marker {
+      display: none;
+    }
+    details.collapsible-info-box > summary .when-open {
+      display: none;
+    }
+    details.collapsible-info-box[open] > summary .when-closed {
+      display: none;
+    }
+    details.collapsible-info-box[open] > summary .when-open {
+      display: inline;
+    }
+    @media (max-width: 639px) {
+      /* Hide multi-row static price tables inside selection cards on mobile (live calculator below shows exact price) */
+      .wp-divider,
+      .ep-primer-divider,
+      .el-grade-btn p.text-xs.mt-2 {
+        display: none !important;
+      }
+      header p.text-slate-100 {
+        font-size: 0.8125rem !important;
+        line-height: 1.45 !important;
+        margin-top: 0.35rem !important;
+      }
+      /* Keep category tabs super clear and easy to tap on mobile */
+      #mainCategoryTabs .cat-tab {
+        padding: 0.85rem 1rem !important;
+      }
+    }
+
   </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-amber-500 selection:text-slate-950 ">
@@ -683,20 +751,36 @@
       </div>
     </div>
 
-    <!-- Row 2 (Mobile Quick Live Total & Action Bar): Always visible at top, never clipped at bottom -->
-    <div id="mobileStickyBar" class="md:hidden bg-slate-900/95 border-t border-slate-800 px-3 py-2">
-      <div class="flex items-center justify-between gap-2">
+    <!-- Row 2 (Mobile Quick Category Switcher + Live Total Bar): Always visible at top -->
+    <div id="mobileStickyBar" class="md:hidden bg-slate-900/95 border-t border-slate-800 px-2.5 py-2 space-y-1.5">
+      <!-- Mobile 1-Tap Category Switcher (Unmistakable Selection State) -->
+      <div class="grid grid-cols-3 gap-1.5" id="mobileQuickCatBar">
+        <button type="button" data-mobcat="waterproof" class="mob-cat-btn mob-quick-cat-active py-1.5 px-1.5 rounded-lg border text-[11px] flex items-center justify-center gap-1 transition">
+          <span>💧 우레탄방수</span>
+          <span class="mob-cat-check text-[10px]">✓</span>
+        </button>
+        <button type="button" data-mobcat="elastic" class="mob-cat-btn mob-quick-cat-inactive py-1.5 px-1.5 rounded-lg border text-[11px] flex items-center justify-center gap-1 transition">
+          <span>✨ 탄성코트</span>
+          <span class="mob-cat-check text-[10px] hidden">✓</span>
+        </button>
+        <button type="button" data-mobcat="epoxy" class="mob-cat-btn mob-quick-cat-inactive py-1.5 px-1.5 rounded-lg border text-[11px] flex items-center justify-center gap-1 transition">
+          <span>🛡️ 바닥에폭시</span>
+          <span class="mob-cat-check text-[10px] hidden">✓</span>
+        </button>
+      </div>
+      <!-- Mobile Live Total & Quick CTA -->
+      <div class="flex items-center justify-between gap-2 pt-1 border-t border-slate-800/80">
         <div class="min-w-0 flex-1">
-          <div class="text-[10px] text-slate-400 font-semibold truncate" id="mobLiveTitle">
+          <div class="text-[10px] text-amber-200 font-bold truncate" id="mobLiveTitle">
             [옥상 방수] 2액형 우레탄 · 20~30평
           </div>
           <div class="flex flex-wrap items-baseline gap-x-1.5">
-            <span class="text-sm sm:text-base font-black text-amber-400 whitespace-nowrap" id="mobLivePrice">140만 ~ 180만 원</span>
+            <span class="text-sm sm:text-base font-black text-amber-400 whitespace-nowrap" id="mobLivePrice">150만 ~ 190만 원</span>
             <span class="text-[10px] text-emerald-300 font-bold whitespace-nowrap" id="mobLiveSubBadge">VAT별도</span>
           </div>
         </div>
         <div class="flex items-center gap-1.5 shrink-0">
-          <a href="tel:0324277749" id="mobCallBtn" class="bg-slate-800 active:bg-slate-700 text-amber-300 border border-amber-500/40 font-extrabold px-3 py-2 rounded-xl text-xs flex items-center gap-1 whitespace-nowrap">
+          <a href="tel:0324277749" id="mobCallBtn" class="bg-slate-800 active:bg-slate-700 text-amber-300 border border-amber-500/40 font-extrabold px-2.5 py-2 rounded-xl text-xs flex items-center gap-1 whitespace-nowrap">
             <span>📞 전화</span>
           </a>
           <button type="button" id="mobJumpNotifyBtn" class="bg-gradient-to-r from-amber-500 to-amber-400 active:scale-95 text-slate-950 font-black px-3 py-2 rounded-xl text-xs shadow-md flex items-center gap-1 whitespace-nowrap">
@@ -749,121 +833,71 @@
   <!-- Main Content -->
   <main class="max-w-5xl mx-auto px-4 py-6 sm:py-8 w-full flex-1 space-y-8">
 
-    <!-- Section 1: Hooje Style FIRST ORDER 4-Step Guide (Collapsible on Mobile for Fast Calculator Access) -->
-    <section id="guideSection" class="readable-card border border-slate-700/80 rounded-2xl p-4 sm:p-6 shadow-xl">
-      <div class="flex items-center justify-between gap-2">
-        <div>
-          <span class="text-[11px] sm:text-xs font-extrabold tracking-widest text-amber-400 uppercase">EASY ESTIMATE GUIDE · 1분 간편 견적</span>
-          <h2 class="text-base sm:text-xl font-black text-white mt-0.5">품목과 평수(칸수)만 터치하면 즉시 견적이 계산됩니다</h2>
-        </div>
-        <button type="button" id="toggleMobileGuideBtn" class="md:hidden bg-slate-800 border border-slate-600 text-amber-300 font-extrabold text-xs px-3 py-1.5 rounded-xl shrink-0">
-          안내 접기 ▲
-        </button>
-      </div>
-
-      <div id="guideStepsGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3.5 mt-3.5 pt-3.5 border-t border-slate-800">
-        <div class="bg-slate-950/90 border border-slate-700/80 rounded-xl p-3.5 sm:p-4 relative">
-          <div class="flex items-center gap-2">
-            <span class="text-[11px] font-black text-amber-400 bg-amber-500/15 border border-amber-500/40 px-2 py-0.5 rounded-md">STEP 01</span>
-            <span class="font-extrabold text-sm sm:text-base text-white">시공 품목 선택</span>
-          </div>
-          <p class="text-xs sm:text-sm text-slate-300 mt-1.5 leading-relaxed">옥상 방수, 베란다 탄성코트, 바닥 에폭시 중 원하는 시공 탭을 터치하세요.</p>
-        </div>
-        <div class="bg-slate-950/90 border border-slate-700/80 rounded-xl p-3.5 sm:p-4 relative">
-          <div class="flex items-center gap-2">
-            <span class="text-[11px] font-black text-amber-400 bg-amber-500/15 border border-amber-500/40 px-2 py-0.5 rounded-md">STEP 02</span>
-            <span class="font-extrabold text-sm sm:text-base text-white">평수·칸수 및 공법 선택</span>
-          </div>
-          <p class="text-xs sm:text-sm text-slate-300 mt-1.5 leading-relaxed">옥상/바닥 평수 또는 베란다 칸수(1~5칸)와 정품 도료 등급을 선택하세요.</p>
-        </div>
-        <div class="bg-slate-950/90 border border-slate-700/80 rounded-xl p-3.5 sm:p-4 relative">
-          <div class="flex items-center gap-2">
-            <span class="text-[11px] font-black text-amber-400 bg-amber-500/15 border border-amber-500/40 px-2 py-0.5 rounded-md">STEP 03</span>
-            <span class="font-extrabold text-sm sm:text-base text-white">실시간 정찰 견적 확인</span>
-          </div>
-          <p class="text-xs sm:text-sm text-slate-300 mt-1.5 leading-relaxed">상단 고정바와 하단 결과창에서 실시간 총 견적과 동시시공 할인을 확인하세요.</p>
-        </div>
-        <div class="bg-amber-500/15 border-2 border-amber-500/60 rounded-xl p-3.5 sm:p-4 relative">
-          <div class="flex items-center gap-2">
-            <span class="text-[11px] font-black text-slate-950 bg-amber-400 px-2 py-0.5 rounded-md">STEP 04 필수</span>
-            <span class="font-extrabold text-sm sm:text-base text-amber-300">무료 방문견적 · 알림 신청</span>
-          </div>
-          <p class="text-xs sm:text-sm text-slate-100 mt-1.5 leading-relaxed">하단의 <strong>[견적 알림 보내기]</strong>를 누르면 사장님께 즉시 알림이 전송됩니다!</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 2: Main Interactive Estimator -->
-    
-    <!-- Quick Jump Banner to New Address Auto-Area Lookup Test Module -->
-    <div class="bg-gradient-to-r from-emerald-950/90 via-slate-900 to-navy-950 border-2 border-emerald-400/70 rounded-2xl p-3.5 sm:p-4 shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-      <div class="flex items-start sm:items-center gap-3">
-        <span class="bg-emerald-400 text-slate-950 text-xs font-black px-2.5 py-1 rounded-lg shrink-0">NEW 테스트 기능</span>
-        <div class="text-xs sm:text-sm text-slate-100 font-bold leading-snug">
-          📍 <strong class="text-emerald-300">"우리 건물 옥상·바닥이 몇 평인지 모르시나요?"</strong> 주소만 넣으면 건축물대장 기준 면적·노후도 진단과 예상 견적이 3초 만에 나옵니다!
-        </div>
-      </div>
-      <button type="button" onclick="document.getElementById('addressAutoEstimateSection').scrollIntoView({behavior:'smooth'}); setTimeout(() => document.getElementById('addrSearchInput').focus(), 450);" class="bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black text-xs sm:text-sm px-4 py-2.5 rounded-xl shrink-0 shadow-md transition">
-        📍 주소로 면적·견적 무료 조회하기 ↓
-      </button>
-    </div>
-
     <section id="estimatorSection" class="space-y-6">
-      <!-- Category Selector Tabs (3 Core Services) -->
-      <div>
-        <div class="flex flex-wrap items-center justify-between gap-2 mb-3.5">
+      <!-- Category Selector Tabs (3 Core Services - Ultra-Clear Selection Box) -->
+      <div class="readable-card border-2 border-amber-500/80 rounded-2xl p-4 sm:p-6 shadow-2xl space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 border-b border-slate-800 pb-3">
           <h2 class="text-base sm:text-xl font-black text-white flex items-center gap-2.5">
-            <span class="w-7 h-7 rounded-lg bg-amber-500 text-slate-950 font-black text-sm flex items-center justify-center step-pill">1</span>
-            <span>원하시는 시공 품목을 선택하세요</span>
+            <span class="bg-amber-400 text-slate-950 font-black text-xs sm:text-sm px-2.5 py-1 rounded-lg step-pill shrink-0">STEP 1</span>
+            <span>어떤 시공 견적을 보시겠어요? <span class="text-amber-300">(3가지 중 1곳 터치)</span></span>
           </h2>
-          <span class="text-xs sm:text-sm text-amber-300 font-semibold">👇 탭을 터치하면 해당 품목의 상세 견적 화면으로 전환됩니다</span>
+          <span class="text-xs text-slate-300 font-semibold">👇 우레탄 방수 · 탄성코트 · 바닥 에폭시 중 원하는 버튼을 누르세요</span>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-4" id="mainCategoryTabs">
           <!-- Tab 1: Waterproof (옥상 방수) -->
-          <button type="button" data-cat="waterproof" class="cat-tab active:scale-[0.98] group relative p-4 sm:p-5 rounded-2xl border-2 text-left transition-all border-amber-500 bg-slate-900 shadow-lg gold-border-glow">
+          <button type="button" data-cat="waterproof" class="cat-tab cat-tab-selected active:scale-[0.98] group relative p-4 sm:p-5 rounded-2xl border-2 text-left transition-all border-amber-500 bg-slate-900 shadow-lg gold-border-glow">
             <div class="flex items-center justify-between mb-1.5 sm:mb-2">
               <span class="text-2xl sm:text-3xl hidden sm:inline">💧</span>
-              <span class="cat-badge text-xs font-black bg-amber-400 text-slate-950 px-2.5 py-1 rounded-full whitespace-nowrap">✓ 선택됨</span>
+              <span class="cat-badge status-check-active text-xs font-black bg-amber-400 text-slate-950 px-3 py-1 rounded-full whitespace-nowrap">● 현재 선택됨 ✓</span>
             </div>
             <div>
-              <div class="font-black text-base sm:text-xl text-white leading-snug flex items-center gap-2">
+              <div class="cat-title font-black text-base sm:text-xl text-amber-300 leading-snug flex items-center gap-2">
                 <span class="sm:hidden text-xl">💧</span>
                 <span>1. 옥상 방수 · 외벽 발수</span>
               </div>
-              <div class="text-xs sm:text-sm text-slate-200 mt-1 leading-tight font-medium">두께 3mm 정석 우레탄 · 외벽 동시할인</div>
+              <div class="text-xs sm:text-sm text-slate-200 mt-1 leading-tight font-medium">두께 2~3mm 정석 우레탄 · 외벽 동시할인</div>
             </div>
           </button>
 
           <!-- Tab 2: Elastic Coat (베란다 탄성코트) -->
-          <button type="button" data-cat="elastic" class="cat-tab active:scale-[0.98] group relative p-4 sm:p-5 rounded-2xl border-2 text-left transition-all border-slate-800 bg-slate-900/60 hover:border-slate-700">
+          <button type="button" data-cat="elastic" class="cat-tab cat-tab-unselected active:scale-[0.98] group relative p-4 sm:p-5 rounded-2xl border-2 text-left transition-all border-slate-700 bg-slate-900/60 hover:border-amber-400">
             <div class="flex items-center justify-between mb-1.5 sm:mb-2">
               <span class="text-2xl sm:text-3xl hidden sm:inline">✨</span>
-              <span class="cat-badge hidden text-xs font-black bg-amber-400 text-slate-950 px-2.5 py-1 rounded-full whitespace-nowrap">✓ 선택됨</span>
+              <span class="cat-badge status-check-inactive text-xs font-extrabold px-3 py-1 rounded-full whitespace-nowrap">○ 터치하여 선택 →</span>
             </div>
             <div>
-              <div class="font-black text-base sm:text-xl text-white leading-snug flex items-center gap-2">
+              <div class="cat-title font-black text-base sm:text-xl text-white leading-snug flex items-center gap-2">
                 <span class="sm:hidden text-xl">✨</span>
                 <span>2. 베란다 탄성코트</span>
               </div>
-              <div class="text-xs sm:text-sm text-slate-200 mt-1 leading-tight font-medium">월드매직 공식대리점 · 1~5개소 정찰제</div>
+              <div class="text-xs sm:text-sm text-slate-300 mt-1 leading-tight font-medium">월드매직 공식대리점 · 1~5개소 정찰제</div>
             </div>
           </button>
 
           <!-- Tab 3: Epoxy (바닥 에폭시) -->
-          <button type="button" data-cat="epoxy" class="cat-tab active:scale-[0.98] group relative p-4 sm:p-5 rounded-2xl border-2 text-left transition-all border-slate-800 bg-slate-900/60 hover:border-slate-700">
+          <button type="button" data-cat="epoxy" class="cat-tab cat-tab-unselected active:scale-[0.98] group relative p-4 sm:p-5 rounded-2xl border-2 text-left transition-all border-slate-700 bg-slate-900/60 hover:border-amber-400">
             <div class="flex items-center justify-between mb-1.5 sm:mb-2">
               <span class="text-2xl sm:text-3xl hidden sm:inline">🛡️</span>
-              <span class="cat-badge hidden text-xs font-black bg-amber-400 text-slate-950 px-2.5 py-1 rounded-full whitespace-nowrap">✓ 선택됨</span>
+              <span class="cat-badge status-check-inactive text-xs font-extrabold px-3 py-1 rounded-full whitespace-nowrap">○ 터치하여 선택 →</span>
             </div>
             <div>
-              <div class="font-black text-base sm:text-xl text-white leading-snug flex items-center gap-2">
+              <div class="cat-title font-black text-base sm:text-xl text-white leading-snug flex items-center gap-2">
                 <span class="sm:hidden text-xl">🛡️</span>
                 <span>3. 바닥 에폭시 시공</span>
               </div>
-              <div class="text-xs sm:text-sm text-slate-200 mt-1 leading-tight font-medium">상가·카페·창고·수평몰탈 투트랙 직영가</div>
+              <div class="text-xs sm:text-sm text-slate-300 mt-1 leading-tight font-medium">상가·카페·창고·수평몰탈 투트랙 직영가</div>
             </div>
           </button>
+        </div>
+
+        <!-- Live Active Category Confirmation Banner -->
+        <div id="activeCategoryBanner" class="bg-amber-500/15 border-2 border-amber-400/80 rounded-xl px-4 py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div class="flex items-center gap-2 text-xs sm:text-sm font-black text-white">
+            <span class="bg-amber-400 text-slate-950 text-xs font-black px-2 py-0.5 rounded shrink-0">현재 선택된 시공</span>
+            <span id="activeCategoryBannerText" class="text-amber-300">💧 1. 옥상 우레탄 방수 · 외벽 발수 견적 계산 중</span>
+          </div>
+          <span class="text-[11px] sm:text-xs text-slate-200 font-bold">👇 바로 아래 <strong class="text-amber-300">STEP 2</strong>에서 공법과 평수(칸수)만 눌러보세요!</span>
         </div>
       </div>
 
@@ -871,59 +905,6 @@
       <!-- PANEL 1: WATERPROOFING (옥상 방수 & 외벽 발수) -->
       <!-- ========================================== -->
       <div id="panelWaterproof" class="space-y-6">
-        <!-- Garam Sangsa Waterproofing Promise Box -->
-        <div class="bg-gradient-to-r from-blue-950/80 via-slate-900 to-slate-900 border-l-4 border-amber-400 rounded-r-2xl p-4 sm:p-5 shadow-md">
-          <div class="flex items-start gap-3">
-            <span class="text-xl shrink-0 mt-0.5">💡</span>
-            <div class="space-y-2 text-xs sm:text-sm text-slate-200 leading-relaxed">
-              <div class="font-extrabold text-white text-sm sm:text-base">
-                "비싼 돈 주고 공사했는데 나중에 비 샐 때 연락 두절되면 어떡하지?"
-              </div>
-              <p class="text-slate-300">
-                매년 장마철마다 하청 업체의 무책임한 시공으로 저희 대리점을 찾아오시는 분들이 많습니다. 저희 <strong>가람상사</strong>는 외주 하청 없이 <strong>KCC·노루페인트 공식 대리점 소속 전문 시공팀</strong>이 직접 투입됩니다. 간판을 걸고 영업하는 공식 대리점인 만큼, 문제가 생겨도 절대 회피하지 않고 끝까지 확실하게 A/S를 책임집니다.
-              </p>
-              <p class="text-amber-300 font-semibold text-xs">
-                ✓ 모든 공정은 바닥 밀착을 위한 '하도(프라이머)' 칠부터 정직하게 시작하며, 꼼수 없이 정량을 정확하게 쏟아붓습니다.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- 🚨 3mm 정석시공 부실시공 주의 경보 문구 배너 -->
-        <div class="bg-gradient-to-r from-rose-950/90 via-slate-900 to-slate-950 border-2 border-rose-500 rounded-2xl p-5 sm:p-6 shadow-2xl relative overflow-hidden">
-          <div class="flex flex-wrap items-center justify-between gap-2 pb-3.5 mb-3.5 border-b border-rose-500/40">
-            <div class="flex items-center gap-2">
-              <span class="bg-rose-600 text-white text-xs sm:text-sm font-black px-3 py-1 rounded-full animate-pulse shadow-md">
-                🚨 우레탄 방수 부실시공 주의 경보!
-              </span>
-              <span class="text-rose-300 font-extrabold text-xs sm:text-sm">
-                견적 비교 전 반드시 확인하세요!
-              </span>
-            </div>
-            <span class="bg-amber-400 text-slate-950 text-xs font-black px-3 py-1 rounded-lg">
-              ★ 가람상사 두께 3mm 정석 시공 원칙
-            </span>
-          </div>
-
-          <div class="space-y-3 text-xs sm:text-sm leading-relaxed">
-            <div class="text-base sm:text-xl font-black text-white leading-snug">
-              "저희 가람상사는 무조건 <span class="text-amber-300 underline decoration-amber-400 underline-offset-4">방수층 두께 3mm 정석 시공</span>을 원칙으로 합니다!"
-            </div>
-            <p class="text-slate-100 font-medium text-sm sm:text-base leading-relaxed">
-              우레탄 방수의 수명은 <strong>'중도(방수층) 도료의 두께'</strong>가 결정합니다. 저희는 눈앞의 수주를 위해 <strong class="text-rose-300">중도 물량을 슬쩍 줄여 단가를 낮추는 얄팍한 부실시공을 절대 하지 않습니다.</strong> KCC·노루페인트 공식 대리점의 자존심을 걸고 100% 정품·정량을 아낌없이 쏟아부어 <strong>두께 3mm의 탄탄한 방수층</strong>을 만들어 드립니다.
-            </p>
-            <div class="bg-slate-950/95 border-2 border-amber-400 rounded-xl p-3.5 sm:p-4 flex items-start gap-3 shadow-md">
-              <span class="text-xl sm:text-2xl shrink-0 mt-0.5">📢</span>
-              <div class="text-xs sm:text-sm text-amber-200 font-bold leading-relaxed">
-                <strong class="text-amber-300 text-sm sm:text-base block mb-1">
-                  [고객님께 드리는 당부 말씀 — 타 업체 견적 비교 시 꼭 물어보세요!]
-                </strong>
-                다른 곳에 견적을 알아보실 때도 <strong>"혹시 중도 양을 줄이지 않고 두께 3mm 정석 시공으로 해주시나요?"</strong>라고 꼭 먼저 물어보시기 바랍니다! 중도 두께가 얇으면 1~2년도 안 되어 다시 갈라지고 비가 샙니다.
-              </div>
-            </div>
-          </div>
-        </div>
-
         <!-- Proposal 1 vs Proposal 2 Selection -->
         <div class="readable-card border border-slate-700/80 rounded-2xl p-5 sm:p-6 space-y-6">
           <div class="flex flex-wrap items-center justify-between gap-2">
@@ -932,7 +913,7 @@
               <span>옥상 방수 공법 및 평수를 선택하세요</span>
             </h3>
             <span class="text-xs font-extrabold text-amber-300 bg-amber-500/15 border border-amber-500/40 px-3 py-1 rounded-full">
-              ※ 1액형은 50평까지만 시공하며, 50평 초과 대형 평수는 가격 차이가 크지 않아 2액형(3mm 정석)으로만 시공합니다
+              ※ 1액형은 50평까지만 시공하며, 50평 초과 대형 평수는 가격 차이가 크지 않아 2액형(2~3mm 정석)으로만 시공합니다
             </span>
           </div>
 
@@ -956,10 +937,10 @@
               </div>
               <div class="wp-divider mt-4 pt-3.5 border-t border-slate-800 text-xs sm:text-sm space-y-1.5 text-slate-100">
                 <div class="wp-sub-heading text-xs font-extrabold text-blue-300 mb-1">소·중형 예상 견적 (10~50평 · A/S 2년 보장)</div>
-                <div class="flex justify-between"><span>• 10 ~ 20평:</span><strong class="wp-price-val text-white text-sm sm:text-base">80만 ~ 120만 원</strong></div>
-                <div class="flex justify-between"><span>• 20 ~ 30평:</span><strong class="wp-price-val text-white text-sm sm:text-base">120만 ~ 160만 원</strong></div>
-                <div class="flex justify-between"><span>• 30 ~ 40평:</span><strong class="wp-price-val text-white text-sm sm:text-base">160만 ~ 200만 원</strong></div>
-                <div class="flex justify-between"><span>• 40 ~ 50평 (최대 50평까지):</span><strong class="wp-price-val text-white text-sm sm:text-base">200만 ~ 240만 원</strong></div>
+                <div class="flex justify-between"><span>• 10 ~ 20평:</span><strong class="wp-price-val text-white text-sm sm:text-base">90만 ~ 130만 원</strong></div>
+                <div class="flex justify-between"><span>• 20 ~ 30평:</span><strong class="wp-price-val text-white text-sm sm:text-base">130만 ~ 170만 원</strong></div>
+                <div class="flex justify-between"><span>• 30 ~ 40평:</span><strong class="wp-price-val text-white text-sm sm:text-base">170만 ~ 210만 원</strong></div>
+                <div class="flex justify-between"><span>• 40 ~ 50평 (최대 50평까지):</span><strong class="wp-price-val text-white text-sm sm:text-base">210만 ~ 250만 원</strong></div>
                 <div class="flex justify-between pt-1 border-t border-slate-800/80"><span>• 50평 초과 (50~100평):</span><strong class="text-amber-300 text-xs sm:text-sm">2액형 전용 (가격차이 적어 2액형만 시공)</strong></div>
               </div>
             </button>
@@ -969,25 +950,25 @@
               <div>
                 <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
                   <span class="wp-top-pill pill-active text-xs px-3 py-1 rounded-full">
-                    ★ 제안 2 · 두께 3mm 정석 시공 (인기 1위)
+                    ★ 제안 2 · 두께 2~3mm 정석 시공 (인기 1위)
                   </span>
                   <div class="flex items-center gap-1.5">
                     <span class="text-xs font-extrabold text-amber-300">🛡️ A/S 2년 보장</span>
                     <span class="wp-select-badge status-check-active text-xs font-black px-2.5 py-0.5 rounded-full">✓ 선택됨</span>
                   </div>
                 </div>
-                <div class="wp-card-title text-lg sm:text-xl font-black text-amber-300">내구성 중심 두께 3mm 정석 시공 (2액형 우레탄)</div>
+                <div class="wp-card-title text-lg sm:text-xl font-black text-amber-300">내구성 중심 두께 2~3mm 정석 시공 (2액형 우레탄)</div>
                 <p class="text-xs sm:text-sm text-slate-100 mt-2 leading-relaxed">
-                  <strong>시공 특징:</strong> 중도 물량을 절대 줄이지 않고 <strong>방수층(중도) 두께 3mm를 두툼하게 확보</strong>한 뒤 자외선 코팅(상도)을 완벽히 분리하여 <strong>이틀(2일)간 정석 양생</strong>
+                  <strong>시공 특징:</strong> 중도 물량을 절대 줄이지 않고 <strong>방수층(중도) 두께 2~3mm를 두툼하게 확보</strong>한 뒤 자외선 코팅(상도)을 완벽히 분리하여 <strong>이틀(2일)간 정석 양생</strong>
                 </p>
               </div>
               <div class="wp-divider mt-4 pt-3.5 border-t border-amber-500/40 text-xs sm:text-sm space-y-1.5 text-slate-100">
-                <div class="wp-sub-heading text-xs font-extrabold text-amber-300 mb-1">평수별 정찰 견적 (두께 3mm 정석 · A/S 2년 보장)</div>
-                <div class="flex justify-between"><span>• 10 ~ 20평:</span><strong class="wp-price-val text-amber-300 text-sm sm:text-base">100만 ~ 140만 원</strong></div>
-                <div class="flex justify-between"><span>• 20 ~ 30평:</span><strong class="wp-price-val text-amber-300 text-sm sm:text-base">140만 ~ 180만 원</strong></div>
-                <div class="flex justify-between"><span>• 30 ~ 40평 (45평 270만):</span><strong class="wp-price-val text-amber-300 text-sm sm:text-base">180만 ~ 240만 원</strong></div>
-                <div class="flex justify-between pt-1 border-t border-amber-500/30"><span>• 50 ~ 60평 구간:</span><strong class="text-emerald-300 text-xs sm:text-sm">290만 ~ 348만 원</strong></div>
-                <div class="flex justify-between"><span>• 60 ~ 100평 구간:</span><strong class="text-emerald-300 text-xs sm:text-sm">364만 ~ 530만 원 (구간별 정찰 견적)</strong></div>
+                <div class="wp-sub-heading text-xs font-extrabold text-amber-300 mb-1">평수별 정찰 견적 (두께 2~3mm 정석 · A/S 2년 보장)</div>
+                <div class="flex justify-between"><span>• 10 ~ 20평:</span><strong class="wp-price-val text-amber-300 text-sm sm:text-base">110만 ~ 150만 원</strong></div>
+                <div class="flex justify-between"><span>• 20 ~ 30평:</span><strong class="wp-price-val text-amber-300 text-sm sm:text-base">150만 ~ 190만 원</strong></div>
+                <div class="flex justify-between"><span>• 30 ~ 40평 (45평 280만):</span><strong class="wp-price-val text-amber-300 text-sm sm:text-base">190만 ~ 250만 원</strong></div>
+                <div class="flex justify-between pt-1 border-t border-amber-500/30"><span>• 50 ~ 60평 구간:</span><strong class="text-emerald-300 text-xs sm:text-sm">300만 ~ 358만 원</strong></div>
+                <div class="flex justify-between"><span>• 60 ~ 100평 구간:</span><strong class="text-emerald-300 text-xs sm:text-sm">374만 ~ 540만 원 (구간별 정찰 견적)</strong></div>
               </div>
             </button>
           </div>
@@ -1019,7 +1000,7 @@
                     </label>
                   </div>
                   <p class="text-xs text-slate-300 mt-1">
-                    • <strong>10평 ~ 45평 소·중형 구간</strong>과 <strong>50평 ~ 100평 중·대형 구간(2액형 두께 3mm 정석 시공)</strong> 모두 슬라이더나 버튼을 누르면 평수별 총 예상 견적이 자동 계산됩니다.
+                    • <strong>10평 ~ 45평 소·중형 구간</strong>과 <strong>50평 ~ 100평 중·대형 구간(2액형 두께 2~3mm 정석 시공)</strong> 모두 슬라이더나 버튼을 누르면 평수별 총 예상 견적이 자동 계산됩니다.
                   </p>
                 </div>
                 <div class="bg-amber-500/15 border border-amber-500/40 px-3.5 py-2 rounded-xl text-right shrink-0">
@@ -1091,19 +1072,19 @@
               <div class="bg-slate-900/95 border border-slate-700 rounded-xl p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div class="text-xs sm:text-sm text-slate-200">
                   <span class="font-extrabold text-amber-300" id="wpLiveCalcMethodLabel">[제안 2 · 2액형 우레탄 20평 기준]</span>
-                  <span class="block sm:inline sm:ml-2 text-slate-300" id="wpLiveCalcIntervalNote">10~20평 구간 (100만~140만 원) 적용</span>
+                  <span class="block sm:inline sm:ml-2 text-slate-300" id="wpLiveCalcIntervalNote">10~20평 구간 (110만~150만 원) 적용</span>
                 </div>
                 <div class="text-right shrink-0">
                   <span class="text-xs text-slate-300 mr-1.5">기본 방수 견적:</span>
-                  <strong class="text-lg sm:text-xl font-black text-amber-400" id="wpLiveBasePriceBadge">140만 원</strong>
+                  <strong class="text-lg sm:text-xl font-black text-amber-400" id="wpLiveBasePriceBadge">150만 원</strong>
                 </div>
               </div>
 
               <!-- [BOX 2] 50평 ~ 100평 구간별 정찰 견적 & 슬라이더 (평당 단가 비노출 · 총액만 깔끔하게 표시) -->
-              <div id="wpLargeSliderBox" class="p-4 sm:p-5 rounded-2xl bg-emerald-950/30 border-2 border-emerald-500/50 space-y-4">
+              <div id="wpLargeSliderBox" class="hidden p-4 sm:p-5 rounded-2xl bg-emerald-950/30 border-2 border-emerald-500/50 space-y-4">
                 <div class="flex flex-wrap items-center justify-between gap-2 border-b border-emerald-500/30 pb-3">
                   <div>
-                    <span class="bg-emerald-400 text-slate-950 text-xs font-black px-2.5 py-0.5 rounded-md">2액형 두께 3mm 정석 시공 · 중·대형 구간</span>
+                    <span class="bg-emerald-400 text-slate-950 text-xs font-black px-2.5 py-0.5 rounded-md">2액형 두께 2~3mm 정석 시공 · 중·대형 구간</span>
                     <div class="text-sm sm:text-base font-black text-white mt-1">
                       🏢 우레탄 방수 50평 ~ 100평 구간별 예상 견적 (클릭 시 자동 계산)
                     </div>
@@ -1114,34 +1095,34 @@
                 </div>
 
                 <div class="p-3 rounded-xl bg-slate-950/90 border border-amber-500/40 text-xs sm:text-sm text-slate-200 leading-relaxed">
-                  💡 <strong class="text-amber-300">1액형은 50평까지만 시공(50평 240만 원)</strong>하며, <strong>50평 이후 구간은 1액형과 가격 차이가 크지 않아 내구성이 월등히 뛰어난 [2액형 우레탄 두께 3mm 정석 시공]으로만 진행</strong>합니다!
+                  💡 <strong class="text-amber-300">1액형은 50평까지만 시공(50평 250만 원)</strong>하며, <strong>50평 이후 구간은 1액형과 가격 차이가 크지 않아 내구성이 월등히 뛰어난 [2액형 우레탄 두께 2~3mm 정석 시공]으로만 진행</strong>합니다!
                 </div>
 
                 <!-- 5 Tier Cards for 50~100 Pyung (Unit prices hidden, total ranges shown) -->
                 <div class="grid grid-cols-2 sm:grid-cols-5 gap-2" id="wpLargeTierBtns">
                   <button type="button" data-wptier="50_60" data-defaultpyung="50" class="wp-tier-btn p-3 rounded-xl border-2 border-slate-700 bg-slate-900/90 hover:border-amber-400 text-left transition">
                     <div class="text-xs font-extrabold text-amber-300">50 ~ 60평 구간</div>
-                    <div class="text-sm sm:text-base font-black text-white mt-0.5">290만 ~ 348만 원</div>
-                    <div class="text-[11px] text-slate-300 mt-1">2액형 3mm 정석 시공</div>
+                    <div class="text-sm sm:text-base font-black text-white mt-0.5">300만 ~ 358만 원</div>
+                    <div class="text-[11px] text-slate-300 mt-1">2액형 2~3mm 정석 시공</div>
                   </button>
                   <button type="button" data-wptier="60_70" data-defaultpyung="65" class="wp-tier-btn p-3 rounded-xl border-2 border-slate-700 bg-slate-900/90 hover:border-amber-400 text-left transition">
                     <div class="text-xs font-extrabold text-amber-300">60 ~ 70평 구간</div>
-                    <div class="text-sm sm:text-base font-black text-white mt-0.5">364만 ~ 392만 원</div>
-                    <div class="text-[11px] text-slate-300 mt-1">2액형 3mm 정석 시공</div>
+                    <div class="text-sm sm:text-base font-black text-white mt-0.5">374만 ~ 402만 원</div>
+                    <div class="text-[11px] text-slate-300 mt-1">2액형 2~3mm 정석 시공</div>
                   </button>
                   <button type="button" data-wptier="70_80" data-defaultpyung="75" class="wp-tier-btn p-3 rounded-xl border-2 border-slate-700 bg-slate-900/90 hover:border-amber-400 text-left transition">
                     <div class="text-xs font-extrabold text-amber-300">70 ~ 80평 구간</div>
-                    <div class="text-sm sm:text-base font-black text-white mt-0.5">413만 ~ 440만 원</div>
-                    <div class="text-[11px] text-slate-300 mt-1">2액형 3mm 정석 시공</div>
+                    <div class="text-sm sm:text-base font-black text-white mt-0.5">423만 ~ 450만 원</div>
+                    <div class="text-[11px] text-slate-300 mt-1">2액형 2~3mm 정석 시공</div>
                   </button>
                   <button type="button" data-wptier="80_90" data-defaultpyung="85" class="wp-tier-btn p-3 rounded-xl border-2 border-slate-700 bg-slate-900/90 hover:border-amber-400 text-left transition">
                     <div class="text-xs font-extrabold text-amber-300">80 ~ 90평 구간</div>
-                    <div class="text-sm sm:text-base font-black text-white mt-0.5">459만 ~ 486만 원</div>
-                    <div class="text-[11px] text-slate-300 mt-1">2액형 3mm 정석 시공</div>
+                    <div class="text-sm sm:text-base font-black text-white mt-0.5">469만 ~ 496만 원</div>
+                    <div class="text-[11px] text-slate-300 mt-1">2액형 2~3mm 정석 시공</div>
                   </button>
                   <button type="button" data-wptier="90_100" data-defaultpyung="100" class="wp-tier-btn col-span-2 sm:col-span-1 p-3 rounded-xl border-2 border-slate-700 bg-slate-900/90 hover:border-amber-400 text-left transition">
                     <div class="text-xs font-extrabold text-emerald-300">90 ~ 100평 구간</div>
-                    <div class="text-sm sm:text-base font-black text-white mt-0.5">504만 ~ 530만 원</div>
+                    <div class="text-sm sm:text-base font-black text-white mt-0.5">514만 ~ 540만 원</div>
                     <div class="text-[11px] text-emerald-300 mt-1">대형 평수 특별 할인가</div>
                   </button>
                 </div>
@@ -1150,7 +1131,7 @@
                 <div class="pt-1">
                   <div class="flex items-center justify-between text-xs text-slate-200 font-bold mb-1.5">
                     <span>👇 50평 ~ 100평 상세 평수 슬라이더 조절 (5평 단위):</span>
-                    <span class="text-amber-300" id="wpLargeUnitPriceText">50~60평 구간 · 2액형 두께 3mm 정석 시공 적용</span>
+                    <span class="text-amber-300" id="wpLargeUnitPriceText">50~60평 구간 · 2액형 두께 2~3mm 정석 시공 적용</span>
                   </div>
                   <input type="range" id="wpLargeSlider" min="50" max="100" step="5" value="50" class="w-full accent-emerald-400 cursor-pointer">
                   <div class="flex justify-between text-[11px] text-slate-300 font-bold mt-1.5 px-0.5">
@@ -1278,30 +1259,154 @@
             </div>
           </div>
         </div>
+
+        <!-- Collapsible Detailed Waterproofing Guide & 3mm Principle (Keeps Mobile Screen Clean) -->
+        <details class="collapsible-info-box bg-slate-900/95 border-2 border-rose-500/60 rounded-2xl overflow-hidden shadow-lg">
+          <summary class="p-4 sm:p-5 flex items-center justify-between gap-3 bg-gradient-to-r from-rose-950/80 via-slate-900 to-slate-900">
+            <div class="flex items-center gap-2.5">
+              <span class="bg-rose-600 text-white text-xs font-black px-2.5 py-1 rounded-lg shrink-0">필독 안내</span>
+              <span class="text-xs sm:text-base font-black text-white">🚨 왜 가람상사는 '두께 2~3mm 정석 시공'만 고집할까요? (부실시공 주의 안내 보기)</span>
+            </div>
+            <span class="summary-arrow text-amber-300 font-black text-xs sm:text-sm shrink-0 whitespace-nowrap"><span class="when-closed">펼쳐보기 ▼</span><span class="when-open">접기 ▲</span></span>
+          </summary>
+          <div class="p-4 sm:p-5 space-y-5 border-t border-slate-800">
+            <!-- Garam Sangsa Waterproofing Promise Box -->
+        <div class="bg-gradient-to-r from-blue-950/80 via-slate-900 to-slate-900 border-l-4 border-amber-400 rounded-r-2xl p-4 sm:p-5 shadow-md">
+          <div class="flex items-start gap-3">
+            <span class="text-xl shrink-0 mt-0.5">💡</span>
+            <div class="space-y-2 text-xs sm:text-sm text-slate-200 leading-relaxed">
+              <div class="font-extrabold text-white text-sm sm:text-base">
+                "비싼 돈 주고 공사했는데 나중에 비 샐 때 연락 두절되면 어떡하지?"
+              </div>
+              <p class="text-slate-300">
+                매년 장마철마다 하청 업체의 무책임한 시공으로 저희 대리점을 찾아오시는 분들이 많습니다. 저희 <strong>가람상사</strong>는 외주 하청 없이 <strong>KCC·노루페인트 공식 대리점 소속 전문 시공팀</strong>이 직접 투입됩니다. 간판을 걸고 영업하는 공식 대리점인 만큼, 문제가 생겨도 절대 회피하지 않고 끝까지 확실하게 A/S를 책임집니다.
+              </p>
+              <p class="text-amber-300 font-semibold text-xs">
+                ✓ 모든 공정은 바닥 밀착을 위한 '하도(프라이머)' 칠부터 정직하게 시작하며, 꼼수 없이 정량을 정확하게 쏟아붓습니다.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 🚨 2~3mm 정석시공 부실시공 주의 경보 문구 배너 -->
+        <div class="bg-gradient-to-r from-rose-950/90 via-slate-900 to-slate-950 border-2 border-rose-500 rounded-2xl p-5 sm:p-6 shadow-2xl relative overflow-hidden">
+          <div class="flex flex-wrap items-center justify-between gap-2 pb-3.5 mb-3.5 border-b border-rose-500/40">
+            <div class="flex items-center gap-2">
+              <span class="bg-rose-600 text-white text-xs sm:text-sm font-black px-3 py-1 rounded-full animate-pulse shadow-md">
+                🚨 우레탄 방수 부실시공 주의 경보!
+              </span>
+              <span class="text-rose-300 font-extrabold text-xs sm:text-sm">
+                견적 비교 전 반드시 확인하세요!
+              </span>
+            </div>
+            <span class="bg-amber-400 text-slate-950 text-xs font-black px-3 py-1 rounded-lg">
+              ★ 가람상사 두께 2~3mm 정석 시공 원칙
+            </span>
+          </div>
+
+          <div class="space-y-3 text-xs sm:text-sm leading-relaxed">
+            <div class="text-base sm:text-xl font-black text-white leading-snug">
+              "저희 가람상사는 무조건 <span class="text-amber-300 underline decoration-amber-400 underline-offset-4">방수층 두께 2~3mm 정석 시공</span>을 원칙으로 합니다!"
+            </div>
+            <p class="text-slate-100 font-medium text-sm sm:text-base leading-relaxed">
+              우레탄 방수의 수명은 <strong>'중도(방수층) 도료의 두께'</strong>가 결정합니다. 저희는 눈앞의 수주를 위해 <strong class="text-rose-300">중도 물량을 슬쩍 줄여 단가를 낮추는 얄팍한 부실시공을 절대 하지 않습니다.</strong> KCC·노루페인트 공식 대리점의 자존심을 걸고 100% 정품·정량을 아낌없이 쏟아부어 <strong>두께 2~3mm의 탄탄한 방수층</strong>을 만들어 드립니다.
+            </p>
+            <div class="bg-slate-950/95 border-2 border-amber-400 rounded-xl p-3.5 sm:p-4 flex items-start gap-3 shadow-md">
+              <span class="text-xl sm:text-2xl shrink-0 mt-0.5">📢</span>
+              <div class="text-xs sm:text-sm text-amber-200 font-bold leading-relaxed">
+                <strong class="text-amber-300 text-sm sm:text-base block mb-1">
+                  [고객님께 드리는 당부 말씀 — 타 업체 견적 비교 시 꼭 물어보세요!]
+                </strong>
+                다른 곳에 견적을 알아보실 때도 <strong>"혹시 중도 양을 줄이지 않고 두께 2~3mm 정석 시공으로 해주시나요?"</strong>라고 꼭 먼저 물어보시기 바랍니다! 중도 두께가 얇으면 1~2년도 안 되어 다시 갈라지고 비가 샙니다.
+              </div>
+            </div>
+          </div>
+        </div>
+          </div>
+        </details>
       </div>
+
 
       <!-- ========================================== -->
       <!-- PANEL 2: ELASTIC COAT (베란다 탄성코트 - 월드1, 월드2 완벽 반영) -->
       <!-- ========================================== -->
       <div id="panelElastic" class="space-y-6 hidden">
-        <!-- Why Garam Sangsa Official Dealer Box (From 월드1.png) -->
-        <div class="bg-gradient-to-r from-blue-950/90 via-slate-900 to-slate-900 border-l-4 border-blue-500 rounded-r-2xl p-4 sm:p-5 shadow-md">
-          <div class="text-sm sm:text-base font-extrabold text-blue-300 mb-1.5">
-            💡 왜 일반 중개업체가 아닌 ‘공식 페인트 대리점(가람상사)’에 맡겨야 할까요?
+        <div class="readable-card border border-slate-700/80 rounded-2xl p-4 sm:p-6 space-y-6">
+          <!-- STEP 2-1: Bay Count Selection FIRST (1칸 ~ 5칸) -->
+          <div class="bg-slate-950 border-2 border-amber-500/60 rounded-2xl p-4 sm:p-5 space-y-4 shadow-lg">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+              <h3 class="text-sm sm:text-lg font-black text-white flex items-center gap-2">
+                <span class="w-7 h-7 rounded-lg bg-amber-500 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center step-pill">2-1</span>
+                <span>우리 집 베란다 칸수(1칸 ~ 5칸)를 선택하세요</span>
+              </h3>
+              <button type="button" onclick="const d=document.getElementById('elasticFloorplanDetails'); if(d){d.open=true; d.scrollIntoView({behavior:'smooth'});}" class="bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/60 text-amber-300 text-xs font-extrabold px-3 py-1.5 rounded-xl transition">
+                📐 칸수 세는 법(아파트 평면도) 보기 ↓
+              </button>
+            </div>
+            <!-- Interactive Standard Price Table & Bay Selector (1칸 ~ 5칸) -->
+            <div class="pt-2">
+              <div class="flex flex-wrap items-center justify-between gap-1 mb-2.5">
+                <span class="font-extrabold text-sm sm:text-base text-white">📊 2. 가람상사 정찰제 표준 시공 견적표 (1칸 ~ 5칸 중 원하는 개소를 터치하세요)</span>
+                <span class="text-[11px] text-amber-400 font-semibold">※ 모든 금액은 부가세(VAT) 별도 기준입니다</span>
+              </div>
+
+              <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5" id="elasticBayBtns">
+                <button type="button" data-bays="1" class="el-bay-btn selectable-card-inactive p-3.5 rounded-xl border-2 text-left transition">
+                  <div class="text-xs font-extrabold text-slate-400">1칸 (1개소)</div>
+                  <div class="text-sm font-black text-white mt-1">일반 40만 / 에어로겔 50만</div>
+                  <div class="text-[10px] text-emerald-400 font-semibold mt-1">단독 1개소 정석 시공</div>
+                </button>
+                <button type="button" data-bays="2" class="el-bay-btn selectable-card-inactive p-3.5 rounded-xl border-2 text-left transition">
+                  <div class="text-xs font-extrabold text-slate-400">2칸 (2개소)</div>
+                  <div class="text-sm font-black text-white mt-1">일반 50만 / 에어로겔 60만</div>
+                  <div class="text-[10px] text-emerald-400 font-semibold mt-1">확장형 2개소 추천</div>
+                </button>
+                <button type="button" data-bays="3" class="el-bay-btn selectable-card-active p-3.5 rounded-xl border-2 text-left transition shadow-md">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-extrabold text-amber-300">3칸 (3개소)</span>
+                    <span class="bg-amber-500 text-slate-950 text-[9px] font-black px-1.5 py-0.2 rounded">BEST</span>
+                  </div>
+                  <div class="text-sm font-black text-white mt-1">일반 60만 / 에어로겔 70만</div>
+                  <div class="text-[10px] text-amber-300 font-bold mt-1">★ 20·30평대 선택 1위</div>
+                </button>
+                <button type="button" data-bays="4" class="el-bay-btn selectable-card-inactive p-3.5 rounded-xl border-2 text-left transition">
+                  <div class="text-xs font-extrabold text-slate-400">4칸 (4개소)</div>
+                  <div class="text-sm font-black text-white mt-1">일반 80만 / 에어로겔 90만</div>
+                  <div class="text-[10px] text-emerald-400 font-semibold mt-1">중·대형 4개소 패키지</div>
+                </button>
+                <button type="button" data-bays="5" class="el-bay-btn selectable-card-inactive col-span-2 sm:col-span-1 p-3.5 rounded-xl border-2 text-left transition">
+                  <div class="text-xs font-extrabold text-slate-400">5칸 (5개소)</div>
+                  <div class="text-sm font-black text-white mt-1">일반 90만 / 에어로겔 100만</div>
+                  <div class="text-[10px] text-emerald-400 font-semibold mt-1">비확장·대형 5개소 전체</div>
+                </button>
+              </div>
+            </div>
+
+            <!-- Severe Mold / Plastering Option (+100,000 KRW from 월드2.png) -->
+            <div class="p-3.5 rounded-xl bg-rose-950/30 border border-rose-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="text-xs">
+                <div class="font-bold text-rose-300">⚠️ 현장 상태에 따른 추가금 안내</div>
+                <div class="text-slate-300 text-[11px] mt-0.5">
+                  일반 크랙 보수 및 기본 밑작업(구도막 제거·아크릴 퍼티·하도 바인더·풀커버링 보양)은 <strong>무상 포함</strong>되나, 너무 심한 곰팡이 오염 제거 또는 미장(시멘트 보수)이 필요한 경우 <strong>추가금 10만원(부가세 별도)</strong>이 추가될 수 있습니다.
+                </div>
+              </div>
+              <label class="inline-flex items-center gap-2 bg-slate-900 px-3 py-2 rounded-lg border border-slate-700 cursor-pointer shrink-0">
+                <input type="checkbox" id="elasticSevereCheck" class="w-4 h-4 accent-amber-500 rounded">
+                <span class="text-xs font-bold text-white">심한 곰팡이/미장 보수 포함 (+10만원)</span>
+              </label>
+            </div>
           </div>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            베란다 탄성코트의 수명은 <strong>정품 도료의 원액 두께</strong>와 <strong>기초 하도(바인더·퍼티) 밑작업</strong>이 결정합니다. 가람상사는 <strong>KCC·노루페인트 공식 대리점이자 월드매직 탄성코트 공식 대리점</strong>으로서 물을 섞어 묽게 쓰는 덤핑 시공 없이 검증된 정품 자재만을 아낌없이 투입하여 10년 이상 들뜸 없는 무결점 마감을 약속드립니다.
-          </p>
-        </div>
 
-        <!-- Grade Comparison & Selection (From 월드1.png) -->
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-6 space-y-5">
-          <h3 class="text-sm sm:text-base font-extrabold text-white flex items-center gap-2">
-            <span class="w-6 h-6 rounded-lg bg-amber-500 text-slate-950 font-black text-xs flex items-center justify-center">2</span>
-            <span>탄성코트 도료 등급을 선택하세요</span>
-          </h3>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="elasticGradeCards">
+          <!-- STEP 2-2: Elastic Coat Paint Grade Selection SECOND -->
+          <div class="space-y-3.5 pt-2 border-t border-slate-800">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <h3 class="text-sm sm:text-lg font-extrabold text-white flex items-center gap-2">
+                <span class="w-7 h-7 rounded-lg bg-amber-500 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center step-pill">2-2</span>
+                <span>탄성코트 도료 등급을 선택하세요 <span class="text-amber-300 text-xs sm:text-sm">(일반 세라믹 vs 제로스탑 에어로겔)</span></span>
+              </h3>
+              <span class="text-xs text-amber-300 font-bold">👇 카드를 터치하면 등급별 견적이 바로 바뀝니다</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="elasticGradeCards">
             <!-- Line 1: Bio Ceramic & World Class -->
             <button type="button" data-elgrade="bio" class="el-grade-btn selectable-card-inactive text-left p-4 sm:p-5 rounded-2xl border-2 transition-all flex flex-col justify-between">
               <div>
@@ -1346,8 +1451,28 @@
               </div>
             </button>
           </div>
+          </div>
 
-          <!-- Insulation & Humidity Performance Bar Graph (From 월드1.png) -->
+          <!-- Collapsible Floor Plan Guide & Performance Comparison (Closed on Mobile by default for Simplicity) -->
+          <details id="elasticFloorplanDetails" class="collapsible-info-box bg-slate-950 border-2 border-blue-500/50 rounded-2xl overflow-hidden shadow-lg">
+            <summary class="p-4 sm:p-5 flex items-center justify-between gap-3 bg-gradient-to-r from-blue-950/80 via-slate-900 to-slate-900">
+              <div class="flex items-center gap-2.5">
+                <span class="bg-blue-500 text-white text-xs font-black px-2.5 py-1 rounded-lg shrink-0">평면도 가이드</span>
+                <span class="text-xs sm:text-base font-black text-white">📐 우리 집 베란다 칸수(1~5개소) 그림으로 확인하기 & 등급별 단열 성능 비교</span>
+              </div>
+              <span class="summary-arrow text-amber-300 font-black text-xs sm:text-sm shrink-0 whitespace-nowrap"><span class="when-closed">펼쳐보기 ▼</span><span class="when-open">접기 ▲</span></span>
+            </summary>
+            <div class="p-4 sm:p-5 space-y-5 border-t border-slate-800">
+              <!-- Why Garam Sangsa Official Dealer Box (From 월드1.png) -->
+        <div class="bg-gradient-to-r from-blue-950/90 via-slate-900 to-slate-900 border-l-4 border-blue-500 rounded-r-2xl p-4 sm:p-5 shadow-md">
+          <div class="text-sm sm:text-base font-extrabold text-blue-300 mb-1.5">
+            💡 왜 일반 중개업체가 아닌 ‘공식 페인트 대리점(가람상사)’에 맡겨야 할까요?
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            베란다 탄성코트의 수명은 <strong>정품 도료의 원액 두께</strong>와 <strong>기초 하도(바인더·퍼티) 밑작업</strong>이 결정합니다. 가람상사는 <strong>KCC·노루페인트 공식 대리점이자 월드매직 탄성코트 공식 대리점</strong>으로서 물을 섞어 묽게 쓰는 덤핑 시공 없이 검증된 정품 자재만을 아낌없이 투입하여 10년 이상 들뜸 없는 무결점 마감을 약속드립니다.
+          </p>
+        </div>
+              <!-- Insulation & Humidity Performance Bar Graph (From 월드1.png) -->
           <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-2.5">
             <div class="flex items-center justify-between text-xs">
               <span class="font-bold text-slate-200">등급별 핵심 단열·조습 성능 비교</span>
@@ -1426,60 +1551,9 @@
                 </div>
               </div>
             </div>
-
-            <!-- Interactive Standard Price Table & Bay Selector (1칸 ~ 5칸) -->
-            <div class="pt-2">
-              <div class="flex flex-wrap items-center justify-between gap-1 mb-2.5">
-                <span class="font-extrabold text-sm sm:text-base text-white">📊 2. 가람상사 정찰제 표준 시공 견적표 (1칸 ~ 5칸 중 원하는 개소를 터치하세요)</span>
-                <span class="text-[11px] text-amber-400 font-semibold">※ 모든 금액은 부가세(VAT) 별도 기준입니다</span>
-              </div>
-
-              <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5" id="elasticBayBtns">
-                <button type="button" data-bays="1" class="el-bay-btn selectable-card-inactive p-3.5 rounded-xl border-2 text-left transition">
-                  <div class="text-xs font-extrabold text-slate-400">1칸 (1개소)</div>
-                  <div class="text-sm font-black text-white mt-1">일반 40만 / 에어로겔 50만</div>
-                  <div class="text-[10px] text-emerald-400 font-semibold mt-1">단독 1개소 정석 시공</div>
-                </button>
-                <button type="button" data-bays="2" class="el-bay-btn selectable-card-inactive p-3.5 rounded-xl border-2 text-left transition">
-                  <div class="text-xs font-extrabold text-slate-400">2칸 (2개소)</div>
-                  <div class="text-sm font-black text-white mt-1">일반 50만 / 에어로겔 60만</div>
-                  <div class="text-[10px] text-emerald-400 font-semibold mt-1">확장형 2개소 추천</div>
-                </button>
-                <button type="button" data-bays="3" class="el-bay-btn selectable-card-active p-3.5 rounded-xl border-2 text-left transition shadow-md">
-                  <div class="flex items-center justify-between">
-                    <span class="text-xs font-extrabold text-amber-300">3칸 (3개소)</span>
-                    <span class="bg-amber-500 text-slate-950 text-[9px] font-black px-1.5 py-0.2 rounded">BEST</span>
-                  </div>
-                  <div class="text-sm font-black text-white mt-1">일반 60만 / 에어로겔 70만</div>
-                  <div class="text-[10px] text-amber-300 font-bold mt-1">★ 20·30평대 선택 1위</div>
-                </button>
-                <button type="button" data-bays="4" class="el-bay-btn selectable-card-inactive p-3.5 rounded-xl border-2 text-left transition">
-                  <div class="text-xs font-extrabold text-slate-400">4칸 (4개소)</div>
-                  <div class="text-sm font-black text-white mt-1">일반 80만 / 에어로겔 90만</div>
-                  <div class="text-[10px] text-emerald-400 font-semibold mt-1">중·대형 4개소 패키지</div>
-                </button>
-                <button type="button" data-bays="5" class="el-bay-btn selectable-card-inactive col-span-2 sm:col-span-1 p-3.5 rounded-xl border-2 text-left transition">
-                  <div class="text-xs font-extrabold text-slate-400">5칸 (5개소)</div>
-                  <div class="text-sm font-black text-white mt-1">일반 90만 / 에어로겔 100만</div>
-                  <div class="text-[10px] text-emerald-400 font-semibold mt-1">비확장·대형 5개소 전체</div>
-                </button>
-              </div>
-            </div>
-
-            <!-- Severe Mold / Plastering Option (+100,000 KRW from 월드2.png) -->
-            <div class="p-3.5 rounded-xl bg-rose-950/30 border border-rose-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div class="text-xs">
-                <div class="font-bold text-rose-300">⚠️ 현장 상태에 따른 추가금 안내</div>
-                <div class="text-slate-300 text-[11px] mt-0.5">
-                  일반 크랙 보수 및 기본 밑작업(구도막 제거·아크릴 퍼티·하도 바인더·풀커버링 보양)은 <strong>무상 포함</strong>되나, 너무 심한 곰팡이 오염 제거 또는 미장(시멘트 보수)이 필요한 경우 <strong>추가금 10만원(부가세 별도)</strong>이 추가될 수 있습니다.
-                </div>
-              </div>
-              <label class="inline-flex items-center gap-2 bg-slate-900 px-3 py-2 rounded-lg border border-slate-700 cursor-pointer shrink-0">
-                <input type="checkbox" id="elasticSevereCheck" class="w-4 h-4 accent-amber-500 rounded">
-                <span class="text-xs font-bold text-white">심한 곰팡이/미장 보수 포함 (+10만원)</span>
-              </label>
-            </div>
           </div>
+            </div>
+          </details>
         </div>
       </div>
 
@@ -1487,15 +1561,6 @@
       <!-- PANEL 3: EPOXY FLOORING (바닥 에폭시 시공) -->
       <!-- ========================================== -->
       <div id="panelEpoxy" class="space-y-6 hidden">
-        <div class="bg-gradient-to-r from-emerald-950/80 via-slate-900 to-slate-900 border-l-4 border-amber-400 rounded-r-2xl p-4 sm:p-5 shadow-md">
-          <div class="text-sm sm:text-base font-extrabold text-amber-300 mb-1.5">
-            🛡️ KCC·노루페인트 공식 대리점 직영 '바닥 에폭시' 투트랙(일반하도 vs 만능하도) 정석 시공
-          </div>
-          <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
-            상가, 카페, 사무실, 대형 창고, 공장, 주차장 바닥 에폭시는 <strong>기초 바닥면 정리와 하도(프라이머) 접착력</strong>이 수명을 좌우합니다. 가람상사는 대리점 직영 자재 공급으로 유통 거품을 완전히 빼고, <strong>일반 에폭시 프라이머(실속형)</strong>와 <strong>안 벗겨지는 특수 만능 에폭시 프라이머 + 크랙 퍼티 보수(고밀착 만능형)</strong> 투트랙 맞춤 설루션을 시중가 대비 압도적인 직영 단가로 제안합니다.
-          </p>
-        </div>
-
         <div class="readable-card border border-slate-700/80 rounded-2xl p-4 sm:p-6 space-y-6">
           <!-- Step 2-1: Epoxy Finish Method -->
           <div class="space-y-3">
@@ -1800,7 +1865,7 @@
             </div>
 
             <!-- [BOX B] 50+ Pyung Two-Track Tier Cards & Live Slider Calculator (Unit prices hidden, total prices shown) -->
-            <div id="epoxyLargeSection" class="bg-slate-950/95 border-2 border-slate-700 rounded-2xl p-4 sm:p-6 space-y-5 shadow-xl transition-all">
+            <div id="epoxyLargeSection" class="hidden bg-slate-950/95 border-2 border-slate-700 rounded-2xl p-4 sm:p-6 space-y-5 shadow-xl transition-all">
               <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-800">
                 <div>
                   <span class="bg-amber-400 text-slate-950 text-[11px] font-black px-2.5 py-0.5 rounded-md">50평 이상 대량 평수 직영 투트랙 견적표</span>
@@ -2018,7 +2083,7 @@
               </div>
 
               <!-- Mortar Pyung Slider & Input -->
-              <div id="mortarCalcDetailBox" class="space-y-4 pt-2 border-t border-slate-800/80">
+              <div id="mortarCalcDetailBox" class="hidden space-y-4 pt-2 border-t border-slate-800/80">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <div>
                     <label for="mortarPyungInput" class="text-xs font-bold text-slate-200">
@@ -2089,7 +2154,29 @@
             </div>
           </div>
         </div>
+
+        <!-- Collapsible Epoxy Direct Supply & Floor Grinding Info -->
+        <details class="collapsible-info-box bg-slate-900/95 border-2 border-emerald-500/50 rounded-2xl overflow-hidden shadow-lg">
+          <summary class="p-4 sm:p-5 flex items-center justify-between gap-3 bg-gradient-to-r from-emerald-950/80 via-slate-900 to-slate-900">
+            <div class="flex items-center gap-2.5">
+              <span class="bg-emerald-400 text-slate-950 text-xs font-black px-2.5 py-1 rounded-lg shrink-0">직영 특장점</span>
+              <span class="text-xs sm:text-base font-black text-white">🛡️ 왜 가람상사 투트랙(일반하도 vs 만능하도) 에폭시가 시중보다 저렴할까요?</span>
+            </div>
+            <span class="summary-arrow text-amber-300 font-black text-xs sm:text-sm shrink-0 whitespace-nowrap"><span class="when-closed">펼쳐보기 ▼</span><span class="when-open">접기 ▲</span></span>
+          </summary>
+          <div class="p-4 sm:p-5 space-y-4 border-t border-slate-800">
+            <div class="bg-gradient-to-r from-emerald-950/80 via-slate-900 to-slate-900 border-l-4 border-amber-400 rounded-r-2xl p-4 sm:p-5 shadow-md">
+          <div class="text-sm sm:text-base font-extrabold text-amber-300 mb-1.5">
+            🛡️ KCC·노루페인트 공식 대리점 직영 '바닥 에폭시' 투트랙(일반하도 vs 만능하도) 정석 시공
+          </div>
+          <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+            상가, 카페, 사무실, 대형 창고, 공장, 주차장 바닥 에폭시는 <strong>기초 바닥면 정리와 하도(프라이머) 접착력</strong>이 수명을 좌우합니다. 가람상사는 대리점 직영 자재 공급으로 유통 거품을 완전히 빼고, <strong>일반 에폭시 프라이머(실속형)</strong>와 <strong>안 벗겨지는 특수 만능 에폭시 프라이머 + 크랙 퍼티 보수(고밀착 만능형)</strong> 투트랙 맞춤 설루션을 시중가 대비 압도적인 직영 단가로 제안합니다.
+          </p>
+        </div>
+          </div>
+        </details>
       </div>
+
 
       <!-- ========================================== -->
       <!-- STEP 3: LIVE ESTIMATE RESULT & CART BAR    -->
@@ -2112,7 +2199,7 @@
             </div>
             <div class="flex flex-wrap items-baseline gap-2.5 mt-1.5">
               <span id="livePriceText" class="text-3xl sm:text-4xl md:text-5xl font-black text-amber-400 tracking-tight">
-                140만 ~ 180만 원
+                150만 ~ 190만 원
               </span>
               <span class="text-xs sm:text-sm text-slate-200 font-semibold">(VAT 별도 · 현장 방문 시 최종 확정)</span>
             </div>
@@ -2153,192 +2240,53 @@
       </div>
     </section>
 
-    <!-- Section 3: Step 04 - Send Order / Estimate Notification to Owner (Email + Webhook + SMS) -->
-    
-            <!-- ========================================================================= -->
-    <!-- ADDRESS-BASED FREE AREA & BUILDING DIAGNOSTIC ESTIMATOR (OKPICK STYLE)    -->
-    <!-- ========================================================================= -->
-    <section id="addressAutoEstimateSection" class="readable-card border-2 border-emerald-400/80 rounded-2xl p-4 sm:p-6 shadow-2xl relative overflow-hidden space-y-5">
-      <!-- Top Header -->
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3.5 border-b border-slate-800">
+    <!-- Section 1: Hooje Style FIRST ORDER 4-Step Guide (Collapsible on Mobile for Fast Calculator Access) -->
+    <section id="guideSection" class="readable-card border border-slate-700/80 rounded-2xl p-4 sm:p-6 shadow-xl">
+      <div class="flex items-center justify-between gap-2">
         <div>
-          <span class="bg-emerald-400 text-slate-950 text-xs font-black px-2.5 py-0.5 rounded-md">
-            📍 무료 건물 면적 · 견적 자동 산출 프로그램
-          </span>
-          <h3 class="text-lg sm:text-2xl font-black text-white mt-1.5 leading-snug">
-            주소를 검색해서 클릭하세요! <span class="text-emerald-300">건물 면적으로 즉시 견적을 내드립니다</span>
-          </h3>
-          <p class="text-xs sm:text-sm text-slate-300 mt-0.5">
-            도로명·동 이름·지번을 입력하고 <strong>검색된 주소 목록에서 내 건물 주소를 클릭(선택)</strong>하면 면적과 예상 견적이 바로 산출됩니다.
-          </p>
+          <span class="text-[11px] sm:text-xs font-extrabold tracking-widest text-amber-400 uppercase">EASY ESTIMATE GUIDE · 1분 간편 견적</span>
+          <h2 class="text-base sm:text-xl font-black text-white mt-0.5">품목과 평수(칸수)만 터치하면 즉시 견적이 계산됩니다</h2>
         </div>
+        <button type="button" id="toggleMobileGuideBtn" class="md:hidden bg-slate-800 border border-slate-600 text-amber-300 font-extrabold text-xs px-3 py-1.5 rounded-xl shrink-0">
+          안내 접기 ▲
+        </button>
       </div>
 
-      <!-- STEP 1: Address Search & Click-to-Select List -->
-      <div class="bg-slate-950 border-2 border-slate-800 rounded-2xl p-4 sm:p-5 space-y-3.5">
-        <div class="flex flex-wrap items-center justify-between gap-2">
-          <label for="addrSearchInput" class="text-sm sm:text-base font-black text-white flex items-center gap-2">
-            <span class="w-6 h-6 rounded-full bg-emerald-400 text-slate-950 text-xs font-black flex items-center justify-center">1</span>
-            <span>시공할 건물 주소 검색 및 선택</span>
-          </label>
-          <span class="text-xs text-amber-300 font-bold">👇 주소를 입력하고 [주소 검색]을 누른 뒤 아래 목록에서 클릭하세요</span>
+      <div id="guideStepsGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3.5 mt-3.5 pt-3.5 border-t border-slate-800">
+        <div class="bg-slate-950/90 border border-slate-700/80 rounded-xl p-3.5 sm:p-4 relative">
+          <div class="flex items-center gap-2">
+            <span class="text-[11px] font-black text-amber-400 bg-amber-500/15 border border-amber-500/40 px-2 py-0.5 rounded-md">STEP 01</span>
+            <span class="font-extrabold text-sm sm:text-base text-white">시공 품목 선택</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1.5 leading-relaxed">옥상 방수, 베란다 탄성코트, 바닥 에폭시 중 원하는 시공 탭을 터치하세요.</p>
         </div>
-
-        <!-- Search Input & Buttons Row -->
-        <div class="flex flex-col sm:flex-row gap-2">
-          <div class="relative flex-1">
-            <input type="text" id="addrSearchInput" autocomplete="off" placeholder="주소를 입력해주세요 (예: 주안로 105, 부평대로 88, 화곡동 890, 남동대로 240)" class="w-full bg-slate-900 border-2 border-slate-700 focus:border-emerald-400 rounded-xl px-4 py-3 text-sm sm:text-base text-white font-bold outline-none transition">
+        <div class="bg-slate-950/90 border border-slate-700/80 rounded-xl p-3.5 sm:p-4 relative">
+          <div class="flex items-center gap-2">
+            <span class="text-[11px] font-black text-amber-400 bg-amber-500/15 border border-amber-500/40 px-2 py-0.5 rounded-md">STEP 02</span>
+            <span class="font-extrabold text-sm sm:text-base text-white">평수·칸수 및 공법 선택</span>
           </div>
-          <div class="flex gap-2">
-            <button type="button" id="btnSearchAddrList" class="flex-1 sm:flex-initial bg-gradient-to-r from-emerald-400 to-teal-300 hover:from-emerald-300 hover:to-teal-200 text-slate-950 font-black px-5 py-3 rounded-xl text-xs sm:text-sm shadow-lg transition whitespace-nowrap">
-              🔍 주소 검색
-            </button>
-            <button type="button" id="btnResetAddr" class="bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-600 font-bold px-3.5 py-3 rounded-xl text-xs transition whitespace-nowrap hidden">
-              초기화
-            </button>
-          </div>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1.5 leading-relaxed">옥상/바닥 평수 또는 베란다 칸수(1~5칸)와 정품 도료 등급을 선택하세요.</p>
         </div>
-
-        <!-- Inline Clickable Address Search Results Box (100% Working in All Browsers & Previews) -->
-        <div id="addrCandidateListBox" class="hidden bg-slate-900 border-2 border-emerald-400 rounded-xl overflow-hidden shadow-2xl">
-          <div class="bg-slate-950 px-3.5 py-2.5 border-b border-slate-800 flex items-center justify-between">
-            <span class="text-xs font-extrabold text-emerald-300" id="addrSearchResultHeader">
-              👇 검색된 주소 목록입니다 — 주소를 클릭(터치)하시면 즉시 선택됩니다!
-            </span>
-            <button type="button" id="closeAddrListBtn" class="text-xs text-slate-400 hover:text-white font-bold px-2.5 py-1 rounded bg-slate-800">
-              닫기 ✕
-            </button>
+        <div class="bg-slate-950/90 border border-slate-700/80 rounded-xl p-3.5 sm:p-4 relative">
+          <div class="flex items-center gap-2">
+            <span class="text-[11px] font-black text-amber-400 bg-amber-500/15 border border-amber-500/40 px-2 py-0.5 rounded-md">STEP 03</span>
+            <span class="font-extrabold text-sm sm:text-base text-white">실시간 정찰 견적 확인</span>
           </div>
-          <div id="addrCandidateItems" class="divide-y divide-slate-800 max-h-72 overflow-y-auto">
-            <!-- Dynamically populated clickable address buttons -->
-          </div>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1.5 leading-relaxed">상단 고정바와 하단 결과창에서 실시간 총 견적과 동시시공 할인을 확인하세요.</p>
         </div>
-
-        <!-- Selected Address Status Bar (Initially Unselected -> "주소를 입력해주세요") -->
-        <div id="selectedAddrConfirmBar" class="bg-slate-900/90 border-2 border-slate-700 rounded-xl p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 transition-all">
-          <div class="flex items-start sm:items-center gap-2.5">
-            <span class="bg-slate-700 text-slate-300 text-xs font-black px-2.5 py-1 rounded shrink-0" id="selectedAddrStatusBadge">주소 미선택</span>
-            <span class="text-xs sm:text-sm font-bold text-slate-400" id="selectedAddrText">주소를 입력해주세요 (위 검색창에 주소를 입력하고 목록에서 클릭하면 선택됩니다)</span>
+        <div class="bg-amber-500/15 border-2 border-amber-500/60 rounded-xl p-3.5 sm:p-4 relative">
+          <div class="flex items-center gap-2">
+            <span class="text-[11px] font-black text-slate-950 bg-amber-400 px-2 py-0.5 rounded-md">STEP 04 필수</span>
+            <span class="font-extrabold text-sm sm:text-base text-amber-300">무료 방문견적 · 알림 신청</span>
           </div>
-          <span class="text-[11px] text-amber-300 font-bold shrink-0" id="addrReportTimestamp">주소 검색 대기중</span>
-        </div>
-      </div>
-
-      <!-- STEP 2: Area Confirmation & Instant Estimate Program -->
-      <div id="addrDiagnosticResultBox" class="bg-gradient-to-br from-slate-900 via-navy-900 to-slate-950 border-2 border-amber-500/70 rounded-2xl p-4 sm:p-6 space-y-5 shadow-xl">
-        <!-- Building Summary 3-Card Strip (Simple & Clean) -->
-        <div>
-          <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
-            <div class="flex items-center gap-2">
-              <span class="w-6 h-6 rounded-full bg-amber-400 text-slate-950 text-xs font-black flex items-center justify-center">2</span>
-              <span class="text-sm sm:text-base font-black text-white">조회된 건물 면적 확인 및 실시간 견적 산출</span>
-            </div>
-            <span class="text-xs text-amber-300 font-bold">✓ 주소 선택 후 평수를 한 번 더 확인·조절하시면 즉시 견적이 계산됩니다</span>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3">
-            <div class="bg-slate-950/90 border border-slate-800 rounded-xl p-3.5">
-              <div class="text-[11px] text-slate-400 font-bold">① 선택된 건물 정보</div>
-              <div class="text-sm sm:text-base font-black text-white mt-1" id="diagStructure">주소를 먼저 선택해주세요</div>
-              <div class="text-[11px] text-amber-300 font-bold mt-1" id="diagBuildYear">건축물대장 기반 자동 분석</div>
-            </div>
-
-            <div class="bg-slate-950/90 border border-slate-800 rounded-xl p-3.5">
-              <div class="text-[11px] text-slate-400 font-bold">② 건축물대장 바닥면적</div>
-              <div class="text-sm sm:text-base font-black text-sky-300 mt-1" id="diagFlatArea">주소 선택 시 자동 산출</div>
-              <div class="text-[11px] text-slate-400 mt-1" id="diagRoofNote">표제부 기준 바닥 전용면적</div>
-            </div>
-
-            <div class="bg-emerald-950/40 border-2 border-emerald-400/70 rounded-xl p-3.5">
-              <div class="text-[11px] text-emerald-300 font-extrabold">③ 실제 시공 견적 면적 (평수)</div>
-              <div class="text-lg sm:text-xl font-black text-amber-400 mt-1" id="diagActualPyung">25평 (약 83㎡)</div>
-              <div class="text-[11px] text-emerald-200 font-bold mt-1" id="diagFactorNote">✓ 아래에서 평수를 직접 조절할 수 있습니다</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Simple & Direct Area (Pyung) + Service Selector Control Box -->
-        <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-4">
-          <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-3 border-b border-slate-800">
-            <div class="text-xs sm:text-sm font-extrabold text-white">
-              🛠️ 시공 품목 선택 및 면적(평수) 간편 체크
-            </div>
-            <div class="flex gap-2 shrink-0" id="diagServiceSwitchBtns">
-              <button type="button" data-diagsvc="waterproof" class="diag-svc-btn pill-active px-3.5 py-2 rounded-xl text-xs font-black transition">
-                💧 옥상 우레탄 방수
-              </button>
-              <button type="button" data-diagsvc="epoxy" class="diag-svc-btn pill-inactive-blue px-3.5 py-2 rounded-xl text-xs font-black transition">
-                🛡️ 바닥 에폭시 시공
-              </button>
-            </div>
-          </div>
-
-          <!-- Pyung Direct Number Input + +/- Step Buttons + Slider -->
-          <div class="space-y-2.5">
-            <div class="flex flex-wrap items-center justify-between gap-2">
-              <label for="diagPyungNumberInput" class="text-xs sm:text-sm text-slate-200 font-bold">
-                📐 산출 면적(평수) 확인 및 조절 <span class="text-amber-300 font-normal">(주소 선택 시 자동 입력되며, 직접 수정도 가능합니다)</span>
-              </label>
-              <div class="flex items-center gap-1.5">
-                <button type="button" id="diagPyungMinusBtn" class="bg-slate-800 hover:bg-slate-700 active:scale-95 text-white font-black px-3 py-1.5 rounded-lg text-xs border border-slate-600">-5평</button>
-                <input type="number" id="diagPyungNumberInput" min="10" max="300" step="1" value="25" class="w-20 bg-slate-900 border-2 border-amber-400 rounded-lg px-2 py-1 text-center text-base font-black text-amber-400 outline-none">
-                <span class="text-xs sm:text-sm font-black text-white">평 (<span id="diagSqmInlineText">83</span>㎡)</span>
-                <button type="button" id="diagPyungPlusBtn" class="bg-slate-800 hover:bg-slate-700 active:scale-95 text-white font-black px-3 py-1.5 rounded-lg text-xs border border-slate-600">+5평</button>
-              </div>
-            </div>
-
-            <input type="range" id="diagPyungSlider" min="10" max="240" step="5" value="25" class="w-full accent-amber-500 cursor-pointer">
-            <div class="flex justify-between text-[11px] text-slate-400 font-bold">
-              <span>10평</span>
-              <span>30평</span>
-              <span>50평</span>
-              <span>100평</span>
-              <span>150평</span>
-              <span>200평</span>
-              <span class="text-emerald-300">240평</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- STEP 3: Final Calculated Estimate Result Box -->
-        <div class="bg-gradient-to-r from-amber-500/15 via-slate-900 to-slate-950 border-2 border-amber-400 rounded-2xl p-4 sm:p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4 shadow-lg">
-          <div class="space-y-1.5">
-            <div class="flex flex-wrap items-center gap-2">
-              <span class="bg-amber-400 text-slate-950 text-xs font-black px-2.5 py-0.5 rounded" id="diagEstimateTag">
-                면적 기반 즉시 산출 견적
-              </span>
-              <span class="text-xs sm:text-sm font-black text-white" id="diagEstimateTitle">
-                [주소 미선택 · 25평 기준] 옥상 우레탄 방수 예상 견적
-              </span>
-            </div>
-            <div class="text-xs sm:text-sm text-slate-100 leading-relaxed" id="diagEstimateDesc">
-              • <strong>1액형 신속 시공(1일):</strong> <span class="text-white font-bold">140만 원</span> &nbsp;|&nbsp; ★ <strong>2액형 두께 3mm 정석 시공(2일·인기 1위):</strong> <strong class="text-amber-300">160만 원</strong>
-            </div>
-            <div class="text-xs text-emerald-300 font-bold" id="diagBonusTip">
-              ✓ 쿨루프 차열페인트 추가 시 +20만 원 · 외벽 발수 또는 물고임 구배 작업 동시 진행 시 특별 할인!
-            </div>
-          </div>
-
-          <div class="lg:text-right pt-3 lg:pt-0 border-t lg:border-t-0 border-amber-500/30 shrink-0">
-            <div class="text-[11px] text-amber-200 font-bold" id="diagFinalSubLabel">2액형 두께 3mm 정석 시공 기준</div>
-            <div class="text-2xl sm:text-3xl font-black text-amber-400 mt-0.5" id="diagFinalTotalText">
-              160만 원 <span class="text-xs font-semibold text-slate-300">(VAT별도)</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Action Buttons -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-          <button type="button" id="applyDiagToMainCalcBtn" class="bg-slate-800 hover:bg-slate-700 text-amber-300 border-2 border-amber-500/50 font-black py-3.5 px-4 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-2 shadow-md">
-            <span>🔄 이 면적을 위 상세 옵션 계산기에 적용하기 ↑</span>
-          </button>
-          <button type="button" id="applyDiagToOrderFormBtn" class="bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black py-3.5 px-5 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-2 shadow-lg">
-            <span>🔔 이 주소·면적으로 무료 방문실측 신청하기 ↓</span>
-          </button>
+          <p class="text-xs sm:text-sm text-slate-100 mt-1.5 leading-relaxed">하단의 <strong>[견적 알림 보내기]</strong>를 누르면 사장님께 즉시 알림이 전송됩니다!</p>
         </div>
       </div>
     </section>
 
+    <!-- Section 2: Main Interactive Estimator -->
+    
+    <!-- Section 3: Step 04 - Send Order / Estimate Notification to Owner (Email + Webhook + SMS) -->
     <section id="notifySection" class="bg-slate-900 border-2 border-amber-500/60 rounded-2xl p-5 sm:p-7 shadow-xl">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 mb-5 border-b border-slate-800">
         <div>
@@ -2874,10 +2822,10 @@
 
         const isTwo = state.waterproof.method === 'two_part';
         const methodTitle = isTwo
-          ? '제안 2. 두께 3mm 내구성 정석 시공 (2액형 우레탄)'
+          ? '제안 2. 두께 2~3mm 내구성 정석 시공 (2액형 우레탄)'
           : '제안 1. 가성비 신속 시공 (1액형 우레탄 · 50평 이하)';
-        const shortMethod = isTwo ? '제안 2 · 2액형 우레탄(두께 3mm 정석)' : '제안 1 · 1액형 우레탄(~50평)';
-        guarantee = '🛡️ 두께 3mm 정석 시공 · A/S 2년 책임 보장';
+        const shortMethod = isTwo ? '제안 2 · 2액형 우레탄(두께 2~3mm 정석)' : '제안 1 · 1액형 우레탄(~50평)';
+        guarantee = '🛡️ 두께 2~3mm 정석 시공 · A/S 2년 책임 보장';
 
         // 차열페인트 추가금 계산: 10~20평 +10만원, 21~40평 +20만원, 41~60평 +30만원 (20평마다 +10만원)
         const heatExtraMan = Math.ceil(effectivePyung / 20) * 10;
@@ -2893,8 +2841,8 @@
 
         // 평수별 우레탄 방수 기본 견적 계산
         // 1) 10~45평 소·중형 구간: 기존 단가 그대로 유지!
-        //    - 제안 1 (1액형, 50평까지 가능): 10~20평(80~120만), 20~30평(120~160만), 30~40평(160~200만), 40~50평(45평=220만, 50평=240만)
-        //    - 제안 2 (2액형, 전 구간): 10~20평(100~140만), 20~30평(140~180만), 30~40평(180~240만), 45평=270만
+        //    - 제안 1 (1액형, 50평까지 가능): 10~20평(90~130만), 20~30평(130~170만), 30~40평(170~210만), 40~50평(45평=230만, 50평=250만)
+        //    - 제안 2 (2액형, 전 구간): 10~20평(110~150만), 20~30평(150~190만), 30~40평(190~250만), 45평=280만
         // 2) 50~100평 중·대형 구간 (2액형 평당 단가):
         //    - 50~60평 구간: 평당 58,000원 (50평 290만 ~ 60평 348만)
         //    - 60~70평 구간: 평당 56,000원 (65평 364만 ~ 70평 392만)
@@ -2907,50 +2855,50 @@
         let activeTierKey = '';
 
         if (p <= 20) {
-          baseMan = isTwo ? (100 + (p - 10) * 4) : (80 + (p - 10) * 4);
-          intervalNote = isTwo ? '10~20평 구간 (100만~140만 원 기준)' : '10~20평 구간 (80만~120만 원 기준)';
+          baseMan = isTwo ? (110 + (p - 10) * 4) : (90 + (p - 10) * 4);
+          intervalNote = isTwo ? '10~20평 구간 (110만~150만 원 기준)' : '10~20평 구간 (90만~130만 원 기준)';
         } else if (p <= 30) {
-          baseMan = isTwo ? (140 + (p - 20) * 4) : (120 + (p - 20) * 4);
-          intervalNote = isTwo ? '20~30평 구간 (140만~180만 원 기준)' : '20~30평 구간 (120만~160만 원 기준)';
+          baseMan = isTwo ? (150 + (p - 20) * 4) : (130 + (p - 20) * 4);
+          intervalNote = isTwo ? '20~30평 구간 (150만~190만 원 기준)' : '20~30평 구간 (130만~170만 원 기준)';
         } else if (p <= 40) {
-          baseMan = isTwo ? (180 + (p - 30) * 6) : (160 + (p - 30) * 4);
-          intervalNote = isTwo ? '30~40평 구간 (180만~240만 원 기준)' : '30~40평 구간 (160만~200만 원 기준)';
+          baseMan = isTwo ? (190 + (p - 30) * 6) : (170 + (p - 30) * 4);
+          intervalNote = isTwo ? '30~40평 구간 (190만~250만 원 기준)' : '30~40평 구간 (170만~210만 원 기준)';
         } else if (p < 50) {
           // 45평
-          baseMan = isTwo ? (240 + (p - 40) * 6) : (200 + (p - 40) * 4);
-          intervalNote = isTwo ? '40~50평 구간 (45평 270만 원 기준)' : '40~50평 구간 (45평 220만 원 기준)';
+          baseMan = isTwo ? (250 + (p - 40) * 6) : (210 + (p - 40) * 4);
+          intervalNote = isTwo ? '40~50평 구간 (45평 280만 원 기준)' : '40~50평 구간 (45평 230만 원 기준)';
         } else {
           // p === 50 (50~100평 구간)
           if (!isTwo && effectivePyung === 50) {
-            // 1액형 50평 마지노선 선택 시 (240만 원)
-            baseMan = 240;
+            // 1액형 50평 마지노선 선택 시 (250만 원)
+            baseMan = 250;
             intervalNote = '1액형 최대 시공 평수 50평 기준 (50평 초과 시 2액형 전용)';
             activeTierKey = '50_60';
             activeUnitPrice = 58000;
           } else {
-            // 2액형 50~100평 구간별 평당 단가 계산
+            // 2액형 50~100평 구간별 평당 단가 계산 (+10만 원 일괄 인상 반영)
             if (effectivePyung <= 60) {
               activeUnitPrice = 58000;
               activeTierKey = '50_60';
-              intervalNote = '50~60평 구간 (2액형 두께 3mm 정석 시공)';
+              intervalNote = '50~60평 구간 (2액형 두께 2~3mm 정석 시공)';
             } else if (effectivePyung <= 70) {
               activeUnitPrice = 56000;
               activeTierKey = '60_70';
-              intervalNote = '60~70평 구간 (2액형 두께 3mm 정석 시공)';
+              intervalNote = '60~70평 구간 (2액형 두께 2~3mm 정석 시공)';
             } else if (effectivePyung <= 80) {
               activeUnitPrice = 55000;
               activeTierKey = '70_80';
-              intervalNote = '70~80평 구간 (2액형 두께 3mm 정석 시공)';
+              intervalNote = '70~80평 구간 (2액형 두께 2~3mm 정석 시공)';
             } else if (effectivePyung <= 90) {
               activeUnitPrice = 54000;
               activeTierKey = '80_90';
-              intervalNote = '80~90평 구간 (2액형 두께 3mm 정석 시공)';
+              intervalNote = '80~90평 구간 (2액형 두께 2~3mm 정석 시공)';
             } else {
               activeUnitPrice = 53000;
               activeTierKey = '90_100';
-              intervalNote = '90~100평 구간 (2액형 두께 3mm 정석 시공)';
+              intervalNote = '90~100평 구간 (2액형 두께 2~3mm 정석 시공)';
             }
-            baseMan = Math.round((effectivePyung * activeUnitPrice) / 10000);
+            baseMan = Math.round((effectivePyung * activeUnitPrice) / 10000) + 10;
           }
         }
 
@@ -2965,11 +2913,11 @@
         const unitTxtEl = document.getElementById('wpLargeUnitPriceText');
         if (unitTxtEl) {
           if (p >= 50 && isTwo) {
-            unitTxtEl.textContent = `${effectivePyung}평 선택 · 예상 견적 ${baseMan.toLocaleString('ko-KR')}만 원 (2액형 두께 3mm 정석)`;
+            unitTxtEl.textContent = `${effectivePyung}평 선택 · 예상 견적 ${baseMan.toLocaleString('ko-KR')}만 원 (2액형 두께 2~3mm 정석)`;
           } else if (p >= 50 && !isTwo) {
-            unitTxtEl.textContent = `1액형 50평 상한 (240만 원) · 55평 이상은 2액형(두께 3mm 정석) 전용`;
+            unitTxtEl.textContent = `1액형 50평 상한 (250만 원) · 55평 이상은 2액형(두께 2~3mm 정석) 전용`;
           } else {
-            unitTxtEl.textContent = `50평 ~ 100평 구간 선택 시 2액형 두께 3mm 정석 견적이 자동 산출됩니다`;
+            unitTxtEl.textContent = `50평 ~ 100평 구간 선택 시 2액형 두께 2~3mm 정석 견적이 자동 산출됩니다`;
           }
         }
 
@@ -2989,14 +2937,14 @@
         }
 
         material = isTwo
-          ? 'KCC·노루 정품 하도(프라이머) + 2액형 우레탄 중도(두께 3mm 정량 방수층) + 상도(자외선 코팅)'
+          ? 'KCC·노루 정품 하도(프라이머) + 2액형 우레탄 중도(두께 2~3mm 정량 방수층) + 상도(자외선 코팅)'
           : 'KCC·노루 정품 하도(프라이머) + 1액형 우레탄 방수·코팅 겸용 (50평 이하 전용)';
         if (state.waterproof.optHeat) {
           material += ` + ☀️ 고기능성 옥상 차열페인트 코팅`;
         }
 
         subDesc = isTwo
-          ? '✓ 중도 물량을 줄이지 않는 두께 3mm 정석 방수층 + 상도 코팅 완벽 분리 이틀(2일) 양생 (타 업체에도 두께 3mm 시공인지 꼭 물어보세요!)'
+          ? '✓ 중도 물량을 줄이지 않는 두께 2~3mm 정석 방수층 + 상도 코팅 완벽 분리 이틀(2일) 양생 (타 업체에도 두께 2~3mm 시공인지 꼭 물어보세요!)'
           : '✓ 하도 밀착 도포 후 1액형 우레탄 하루(1일) 신속 시공 (1액형은 50평까지만 운영 · 50평 초과 시 2액형 정석 시공)';
 
         const rangeLabel = `${effectivePyung}평 (약 ${sqm}㎡)`;
@@ -3019,7 +2967,7 @@
           addonsList.push('🎁 물고임 구배(물매) 작업 별도 견적 & 동시 시공 할인 신청');
           extraTags.push('구배작업 별도견적·할인');
         }
-        addonsList.push('두께 3mm 정석 시공 보증 (중도 물량 축소 부실시공 절대 금지)');
+        addonsList.push('두께 2~3mm 정석 시공 보증 (중도 물량 축소 부실시공 절대 금지)');
 
         title = `[옥상 방수] ${methodTitle} · ${rangeLabel}` + (extraTags.length > 0 ? ` + [${extraTags.join(' · ')}]` : '');
 
@@ -3372,28 +3320,76 @@
       }
     }
 
-    // Switch Category Tab
-    function switchCategory(cat) {
+    // Switch Category Tab (Unmistakable visual state on both Main Cards, Banner, and Mobile Sticky Bar)
+    function switchCategory(cat, fromUserTap = false) {
       state.category = cat;
       document.querySelectorAll('.cat-tab').forEach(btn => {
         const isCurrent = btn.getAttribute('data-cat') === cat;
         const badge = btn.querySelector('.cat-badge');
+        const titleEl = btn.querySelector('.cat-title');
+        btn.classList.toggle('cat-tab-selected', isCurrent);
+        btn.classList.toggle('cat-tab-unselected', !isCurrent);
         if (isCurrent) {
           btn.classList.add('border-amber-500', 'bg-slate-900', 'shadow-lg', 'gold-border-glow');
-          btn.classList.remove('border-slate-800', 'bg-slate-900/60');
-          if (badge) badge.classList.remove('hidden');
+          btn.classList.remove('border-slate-700', 'border-slate-800', 'bg-slate-900/60');
+          if (badge) {
+            badge.classList.remove('hidden', 'status-check-inactive');
+            badge.classList.add('status-check-active');
+            badge.textContent = '● 현재 선택됨 ✓';
+          }
+          if (titleEl) {
+            titleEl.classList.add('text-amber-300');
+            titleEl.classList.remove('text-white');
+          }
         } else {
           btn.classList.remove('border-amber-500', 'bg-slate-900', 'shadow-lg', 'gold-border-glow');
-          btn.classList.add('border-slate-800', 'bg-slate-900/60');
-          if (badge) badge.classList.add('hidden');
+          btn.classList.add('border-slate-700', 'bg-slate-900/60');
+          if (badge) {
+            badge.classList.remove('hidden', 'status-check-active');
+            badge.classList.add('status-check-inactive');
+            badge.textContent = '○ 터치하여 선택 →';
+          }
+          if (titleEl) {
+            titleEl.classList.remove('text-amber-300');
+            titleEl.classList.add('text-white');
+          }
         }
       });
+
+      // Sync Mobile Quick Category Switcher Bar
+      document.querySelectorAll('.mob-cat-btn').forEach(mb => {
+        const isCurrent = mb.getAttribute('data-mobcat') === cat;
+        mb.classList.toggle('mob-quick-cat-active', isCurrent);
+        mb.classList.toggle('mob-quick-cat-inactive', !isCurrent);
+        const chk = mb.querySelector('.mob-cat-check');
+        if (chk) chk.classList.toggle('hidden', !isCurrent);
+      });
+
+      // Sync Active Category Banner Text
+      const bannerTxt = document.getElementById('activeCategoryBannerText');
+      const catNames = {
+        waterproof: '💧 1. 옥상 우레탄 방수 · 외벽 발수 견적 계산 중',
+        elastic: '✨ 2. 베란다 탄성코트 (1~5칸 정찰제) 견적 계산 중',
+        epoxy: '🛡️ 3. 바닥 에폭시 시공 (상가·창고·수평몰탈) 견적 계산 중'
+      };
+      if (bannerTxt && catNames[cat]) {
+        bannerTxt.textContent = catNames[cat];
+      }
 
       document.getElementById('panelWaterproof').classList.toggle('hidden', cat !== 'waterproof');
       document.getElementById('panelElastic').classList.toggle('hidden', cat !== 'elastic');
       document.getElementById('panelEpoxy').classList.toggle('hidden', cat !== 'epoxy');
 
       updateCalculation();
+
+      if (fromUserTap) {
+        const labelMap = {
+          waterproof: '💧 옥상 우레탄 방수',
+          elastic: '✨ 베란다 탄성코트',
+          epoxy: '🛡️ 바닥 에폭시 시공'
+        };
+        showToast(`[${labelMap[cat]}] 품목이 선택되었습니다! 아래에서 옵션을 선택하세요.`, '✓');
+      }
     }
 
     // Render Cart Modal
@@ -3550,9 +3546,17 @@
       const cleanPhone = state.adminConfig.ownerPhone.replace(/[^0-9]/g, '');
       document.getElementById('topPhoneLink').href = `tel:${cleanPhone}`;
 
-      // Category Tabs
+      // Category Tabs (Main + Mobile Sticky Quick Switcher)
       document.querySelectorAll('.cat-tab').forEach(btn => {
-        btn.addEventListener('click', () => switchCategory(btn.getAttribute('data-cat')));
+        btn.addEventListener('click', () => switchCategory(btn.getAttribute('data-cat'), true));
+      });
+      document.querySelectorAll('.mob-cat-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const targetCat = btn.getAttribute('data-mobcat');
+          switchCategory(targetCat, true);
+          const estSec = document.getElementById('estimatorSection');
+          if (estSec) estSec.scrollIntoView({ behavior: 'smooth' });
+        });
       });
 
       // Waterproof Method (Full visual sync: card border/bg, top pill, title, price text, divider, and ✓ 선택됨 badge)
@@ -3678,6 +3682,7 @@
 
         const largeBox = document.getElementById('wpLargeSliderBox');
         if (largeBox) {
+          largeBox.classList.toggle('hidden', pyungVal < 50);
           largeBox.style.borderColor = pyungVal >= 50 ? '#fbbf24' : 'rgba(16, 185, 129, 0.45)';
           largeBox.style.boxShadow = pyungVal >= 50 ? '0 0 25px -5px rgba(245, 158, 11, 0.3)' : 'none';
         }
@@ -3708,7 +3713,7 @@
           state.waterproof.pyung = 50;
           if (val > 50 && state.waterproof.method === 'one_part') {
             syncWpMethodUI('two_part');
-            showToast('50평 초과 구간은 가격 차이가 크지 않아 2액형(두께 3mm 정석)으로만 시공합니다.', '🛡️');
+            showToast('50평 초과 구간은 가격 차이가 크지 않아 2액형(두께 2~3mm 정석)으로만 시공합니다.', '🛡️');
           }
           document.getElementById('wpLargePyungText').textContent = `선택 평수: ${val}평 (약 ${Math.round(val * 3.3)}㎡)`;
           syncWpPyungUI(50);
@@ -3947,6 +3952,10 @@
 
       function syncEpoxyRangeUI(rangeVal) {
         state.epoxy.range = rangeVal;
+        const smallSec = document.getElementById('epoxySmallMidSection');
+        const largeSec = document.getElementById('epoxyLargeSection');
+        if (smallSec) smallSec.classList.toggle('hidden', rangeVal === '50_plus');
+        if (largeSec) largeSec.classList.toggle('hidden', rangeVal !== '50_plus');
         document.querySelectorAll('.ep-range-btn').forEach(b => {
           const isSel = b.getAttribute('data-eprange') === rangeVal;
           b.classList.toggle('selectable-card-active', isSel);
@@ -4022,7 +4031,7 @@
           if (rVal === '10_20') syncEpoxySmallPyungUI(10);
           else if (rVal === '20_30') syncEpoxySmallPyungUI(25);
           else if (rVal === '30_50') syncEpoxySmallPyungUI(40);
-          else syncEpoxySmallPyungUI(state.epoxy.smallPyung);
+          else syncEpoxyTierAndPyungUI(state.epoxy.tier || '50_100', state.epoxy.largePyung || 100);
         });
       });
 
@@ -4156,6 +4165,8 @@
       // Mortar Thickness Buttons (Full visual sync)
       function syncMortarThickUI(thickVal) {
         state.epoxy.mortarThickness = thickVal;
+        const mBox = document.getElementById('mortarCalcDetailBox');
+        if (mBox) mBox.classList.toggle('hidden', thickVal === 0);
         document.querySelectorAll('.mortar-thick-btn').forEach(b => {
           const isSel = parseInt(b.getAttribute('data-mthick'), 10) === thickVal;
           b.classList.toggle('selectable-card-active', isSel);
@@ -4460,472 +4471,7 @@
       document.getElementById('closeSuccessModalBtn').addEventListener('click', () => {
         document.getElementById('successModal').classList.add('hidden');
       });
-      // =========================================================================
-      // ADDRESS SEARCH, CLICK-TO-SELECT & AREA ESTIMATE ENGINE (100% WORKING)
-      // =========================================================================
-      const addrDatabase = [
-        { road: '인천광역시 미추홀구 주안로 105', jibun: '인천 미추홀구 주안동 123-45', bldg: '주안 다가구주택 (4층)', year: 2007, struct: '철근콘크리트 · 평지붕(슬라브)', flatSqm: 69, pyung: 25, svc: 'waterproof' },
-        { road: '인천광역시 미추홀구 경인로 382', jibun: '인천 미추홀구 주안동 912-10', bldg: '경인 근린상가빌딩 (5층)', year: 2003, struct: '철근콘크리트 · 평지붕(상가옥상)', flatSqm: 118, pyung: 40, svc: 'waterproof' },
-        { road: '인천광역시 부평구 부평대로 88', jibun: '인천 부평구 부평동 542-8', bldg: '부평 중앙상가 (4층)', year: 2004, struct: '철근콘크리트 · 평지붕(상가옥상)', flatSqm: 110, pyung: 40, svc: 'waterproof' },
-        { road: '인천광역시 남동구 남동대로 240', jibun: '인천 남동구 논현동 450-3', bldg: '남동공단 물류창고·공장 A동', year: 2012, struct: '일반철골·콘크리트 · 공장/창고 바닥', flatSqm: 495, pyung: 150, svc: 'epoxy' },
-        { road: '인천광역시 연수구 센트럴로 160', jibun: '인천 연수구 송도동 24-5', bldg: '송도 테크노 상가 (1층 매장)', year: 2018, struct: '철근콘크리트 · 상가 바닥', flatSqm: 99, pyung: 30, svc: 'epoxy' },
-        { road: '인천광역시 서구 청라커낼로 252', jibun: '인천 서구 청라동 162-2', bldg: '청라 근린상가주택 (4층)', year: 2014, struct: '철근콘크리트 · 평지붕(슬라브)', flatSqm: 82, pyung: 30, svc: 'waterproof' },
-        { road: '서울특별시 강서구 화곡로 194', jibun: '서울 강서구 화곡동 890-12', bldg: '화곡 업무용 빌딩 (6층)', year: 1999, struct: '철근콘크리트 · 대형 평지붕', flatSqm: 193, pyung: 70, svc: 'waterproof' },
-        { road: '서울특별시 강남구 테헤란로 212', jibun: '서울 강남구 역삼동 718-5', bldg: '역삼 오피스 빌딩 (5층)', year: 2002, struct: '철근콘크리트 · 평지붕(빌딩옥상)', flatSqm: 165, pyung: 60, svc: 'waterproof' },
-        { road: '서울특별시 마포구 양화로 125', jibun: '서울 마포구 서교동 353-1', bldg: '홍대 카페·스튜디오 매장', year: 2009, struct: '철근콘크리트 · 상가 매장 바닥', flatSqm: 83, pyung: 25, svc: 'epoxy' },
-        { road: '경기도 부천시 길주로 210', jibun: '경기 부천시 중동 1142-3', bldg: '중동 근린상가 (4층)', year: 2005, struct: '철근콘크리트 · 평지붕(슬라브)', flatSqm: 96, pyung: 35, svc: 'waterproof' },
-        { road: '경기도 시흥시 공단1대로 204', jibun: '경기 시흥시 정왕동 1250-1', bldg: '시화공단 제조공장 바닥', year: 2010, struct: '일반철골·콘크리트 · 대형 공장 바닥', flatSqm: 660, pyung: 200, svc: 'epoxy' },
-        { road: '경기도 수원시 팔달구 인계로 124', jibun: '경기 수원시 팔달구 인계동 1032-6', bldg: '인계 다세대·상가주택 (4층)', year: 2006, struct: '철근콘크리트 · 평지붕(슬라브)', flatSqm: 69, pyung: 25, svc: 'waterproof' }
-      ];
-
-      const diagState = {
-        isAddressSelected: false,
-        addr: '',
-        buildYear: '건축물대장 기반 자동 분석',
-        structure: '주소를 먼저 선택해주세요',
-        roofNote: '표제부 기준 바닥 전용면적',
-        flatSqm: 69,
-        actualPyung: 25,
-        service: 'waterproof',
-        computedSummaryTitle: '',
-        computedPriceSummary: ''
-      };
-
-      function calcWaterproofPriceByPyung(p) {
-        const heatMan = Math.ceil(p / 20) * 10;
-        let onePartMan = null;
-        let twoPartMan = 0;
-
-        if (p <= 20) {
-          onePartMan = Math.round(80 + (p - 10) * 4);
-          twoPartMan = Math.round(100 + (p - 10) * 4);
-        } else if (p <= 30) {
-          onePartMan = Math.round(120 + (p - 20) * 4);
-          twoPartMan = Math.round(140 + (p - 20) * 4);
-        } else if (p <= 40) {
-          onePartMan = Math.round(160 + (p - 30) * 4);
-          twoPartMan = Math.round(180 + (p - 30) * 6);
-        } else if (p <= 50) {
-          onePartMan = Math.round(200 + (p - 40) * 4);
-          if (p < 50) {
-            twoPartMan = Math.round(240 + (p - 40) * 6);
-          } else {
-            twoPartMan = Math.round((50 * 58000) / 10000);
           }
-        } else {
-          let unit = 53000;
-          if (p <= 60) unit = 58000;
-          else if (p <= 70) unit = 56000;
-          else if (p <= 80) unit = 55000;
-          else if (p <= 90) unit = 54000;
-          else unit = 53000;
-          twoPartMan = Math.round((p * unit) / 10000);
-        }
-        return { onePartMan, twoPartMan, heatMan };
-      }
-
-      function calcEpoxyPriceByPyung(p) {
-        let stdMan = 0;
-        let univMan = 0;
-        if (p <= 50) {
-          if (p <= 20) stdMan = Math.round(90 + (p - 10) * 2);
-          else if (p <= 40) stdMan = Math.round(110 + (p - 20) * 4);
-          else stdMan = Math.round(190 + (p - 40) * 3.5);
-          univMan = stdMan + 10;
-        } else if (p <= 100) {
-          stdMan = Math.round(225 + ((p - 50) / 50) * (260 - 225));
-          univMan = Math.round(235 + ((p - 50) / 50) * (290 - 235));
-        } else if (p < 120) {
-          stdMan = Math.round(260 + ((p - 100) / 20) * (276 - 260));
-          univMan = Math.round(290 + ((p - 100) / 20) * (312 - 290));
-        } else if (p <= 150) {
-          stdMan = Math.round((p * 23000) / 10000);
-          univMan = Math.round((p * 26000) / 10000);
-        } else if (p <= 200) {
-          stdMan = Math.round(345 + ((p - 150) / 50) * (420 - 345));
-          univMan = Math.round(390 + ((p - 150) / 50) * (480 - 390));
-        } else if (p < 240) {
-          stdMan = Math.round(420 + ((p - 200) / 40) * (480 - 420));
-          univMan = Math.round(480 + ((p - 200) / 40) * (552 - 480));
-        } else {
-          stdMan = Math.round((p * 20000) / 10000);
-          univMan = Math.round((p * 23000) / 10000);
-        }
-        return { stdMan, univMan };
-      }
-
-      function renderAddressDiagnostic() {
-        const p = Math.max(10, Math.min(300, parseInt(diagState.actualPyung, 10) || 25));
-        diagState.actualPyung = p;
-        const actualSqm = Math.round(p * 3.3);
-        const flatPyung = Math.max(8, Math.round(p / 1.2));
-        const flatSqm = Math.round(flatPyung * 3.3);
-
-        const confirmBar = document.getElementById('selectedAddrConfirmBar');
-        const statusBadge = document.getElementById('selectedAddrStatusBadge');
-        const addrTextEl = document.getElementById('selectedAddrText');
-        const tsEl = document.getElementById('addrReportTimestamp');
-        const resetBtn = document.getElementById('btnResetAddr');
-
-        if (diagState.isAddressSelected && diagState.addr) {
-          confirmBar.className = 'bg-emerald-950/40 border-2 border-emerald-500/70 rounded-xl p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 transition-all';
-          statusBadge.className = 'bg-emerald-400 text-slate-950 text-xs font-black px-2.5 py-1 rounded shrink-0';
-          statusBadge.textContent = '✓ 선택된 주소';
-          addrTextEl.className = 'text-xs sm:text-sm font-black text-white';
-          addrTextEl.textContent = diagState.addr;
-          tsEl.className = 'text-[11px] text-emerald-300 font-bold shrink-0';
-          tsEl.textContent = `✓ ${p}평 면적·견적 산출 완료`;
-          if (resetBtn) resetBtn.classList.remove('hidden');
-
-          document.getElementById('diagStructure').textContent = diagState.structure;
-          document.getElementById('diagBuildYear').textContent = diagState.buildYear;
-          if (diagState.service === 'waterproof') {
-            document.getElementById('diagFlatArea').textContent = `약 ${flatSqm}㎡ (바닥 ${flatPyung}평)`;
-            document.getElementById('diagFactorNote').textContent = `✓ 바닥(${flatPyung}평) + 난간 벽면(${Math.max(2, p - flatPyung)}평) 합산`;
-          } else {
-            document.getElementById('diagFlatArea').textContent = `약 ${actualSqm}㎡ (대장 ${p}평)`;
-            document.getElementById('diagFactorNote').textContent = `✓ 실제 에폭시 바닥 도장 면적(${p}평)`;
-          }
-        } else {
-          confirmBar.className = 'bg-slate-900/90 border-2 border-slate-700 rounded-xl p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 transition-all';
-          statusBadge.className = 'bg-slate-700 text-slate-300 text-xs font-black px-2.5 py-1 rounded shrink-0';
-          statusBadge.textContent = '주소 미선택';
-          addrTextEl.className = 'text-xs sm:text-sm font-bold text-slate-400';
-          addrTextEl.textContent = '주소를 입력해주세요 (위 검색창에 주소를 입력하고 목록에서 클릭하면 선택됩니다)';
-          tsEl.className = 'text-[11px] text-amber-300 font-bold shrink-0';
-          tsEl.textContent = '주소를 선택하면 건물 면적이 자동 입력됩니다';
-          if (resetBtn) resetBtn.classList.add('hidden');
-
-          document.getElementById('diagStructure').textContent = '위에서 주소를 먼저 선택해주세요';
-          document.getElementById('diagBuildYear').textContent = '주소 선택 시 준공연도·구조 자동 표시';
-          document.getElementById('diagFlatArea').textContent = `현재 ${p}평 기준 미리보기 중`;
-          document.getElementById('diagFactorNote').textContent = '✓ 주소 선택 또는 아래 평수 조절 시 즉시 계산';
-        }
-
-        document.getElementById('diagActualPyung').textContent = `${p}평 (약 ${actualSqm}㎡)`;
-
-        const sliderEl = document.getElementById('diagPyungSlider');
-        if (sliderEl) sliderEl.value = Math.min(240, Math.max(10, p));
-        const numInputEl = document.getElementById('diagPyungNumberInput');
-        if (numInputEl && parseInt(numInputEl.value, 10) !== p) numInputEl.value = p;
-        const sqmInlineEl = document.getElementById('diagSqmInlineText');
-        if (sqmInlineEl) sqmInlineEl.textContent = actualSqm.toLocaleString('ko-KR');
-
-        document.querySelectorAll('.diag-svc-btn').forEach(btn => {
-          const isSel = btn.getAttribute('data-diagsvc') === diagState.service;
-          btn.classList.toggle('pill-active', isSel);
-          btn.classList.toggle('pill-inactive-blue', !isSel);
-        });
-
-        const addrPrefix = (diagState.isAddressSelected && diagState.addr)
-          ? (diagState.addr.length > 26 ? diagState.addr.slice(0, 26) + '...' : diagState.addr)
-          : '주소 미선택 · 면적 직접 산출';
-
-        if (diagState.service === 'waterproof') {
-          const wp = calcWaterproofPriceByPyung(p);
-          const titleStr = `[${addrPrefix}] 옥상 우레탄 방수 ${p}평 기준`;
-          document.getElementById('diagEstimateTitle').textContent = titleStr;
-          document.getElementById('diagFinalSubLabel').textContent = '2액형 두께 3mm 정석 시공 기준';
-
-          if (wp.onePartMan !== null) {
-            document.getElementById('diagEstimateDesc').innerHTML =
-              `• <strong>1액형 신속 시공(1일):</strong> <span class="text-white font-bold">${wp.onePartMan.toLocaleString('ko-KR')}만 원</span> &nbsp;|&nbsp; ★ <strong>2액형 두께 3mm 정석 시공(2일·인기 1위):</strong> <strong class="text-amber-300">${wp.twoPartMan.toLocaleString('ko-KR')}만 원</strong>`;
-          } else {
-            document.getElementById('diagEstimateDesc').innerHTML =
-              `• ★ <strong>2액형 두께 3mm 정석 시공(중·대형 전용):</strong> <strong class="text-amber-300">${wp.twoPartMan.toLocaleString('ko-KR')}만 원</strong> <span class="text-slate-300">(50평 초과 대형 현장은 2액형 3mm 정석으로만 시공)</span>`;
-          }
-          document.getElementById('diagBonusTip').textContent =
-            `✓ 쿨루프 차열페인트 추가 시 +${wp.heatMan}만 원 · 외벽 발수 또는 물고임 구배 작업 동시 진행 시 특별 할인!`;
-          document.getElementById('diagFinalTotalText').innerHTML =
-            `${wp.twoPartMan.toLocaleString('ko-KR')}만 원 <span class="text-xs font-semibold text-slate-300">(VAT별도)</span>`;
-
-          diagState.computedSummaryTitle = titleStr;
-          diagState.computedPriceSummary = `옥상 우레탄 방수(2액형 3mm 정석) ${p}평 예상견적 ${wp.twoPartMan.toLocaleString('ko-KR')}만 원`;
-        } else {
-          const ep = calcEpoxyPriceByPyung(p);
-          const titleStr = `[${addrPrefix}] 바닥 에폭시 시공 ${p}평 기준`;
-          document.getElementById('diagEstimateTitle').textContent = titleStr;
-          document.getElementById('diagFinalSubLabel').textContent = '에폭시 기본하도 ~ 특수 만능하도+퍼티 기준';
-          document.getElementById('diagEstimateDesc').innerHTML =
-            `• <strong>에폭시 프라이머(기본하도):</strong> <span class="text-white font-bold">${ep.stdMan.toLocaleString('ko-KR')}만 원</span> &nbsp;|&nbsp; ★ <strong>특수 만능 프라이머 + 크랙 퍼티 포함:</strong> <strong class="text-amber-300">${ep.univMan.toLocaleString('ko-KR')}만 원</strong>`;
-          document.getElementById('diagBonusTip').textContent =
-            `✓ KCC·노루페인트 공식 대리점 직영 자재 공급으로 유통 거품을 완전히 뺀 정찰 견적입니다!`;
-          document.getElementById('diagFinalTotalText').innerHTML =
-            `${ep.stdMan.toLocaleString('ko-KR')}만 ~ ${ep.univMan.toLocaleString('ko-KR')}만 원 <span class="text-xs font-semibold text-slate-300">(VAT별도)</span>`;
-
-          diagState.computedSummaryTitle = titleStr;
-          diagState.computedPriceSummary = `바닥 에폭시 ${p}평 예상견적 일반하도 ${ep.stdMan.toLocaleString('ko-KR')}만 원 / 만능하도+퍼티 ${ep.univMan.toLocaleString('ko-KR')}만 원`;
-        }
-      }
-
-      // Generate Candidate Address List for Any Search Query (100% Clickable & Selectable)
-      function buildCandidateAddresses(rawQuery) {
-        const q = rawQuery.trim();
-        if (!q) {
-          return addrDatabase.slice(0, 6);
-        }
-
-        const matched = addrDatabase.filter(item =>
-          item.road.includes(q) || item.jibun.includes(q) || item.bldg.includes(q)
-        );
-
-        let hash = 0;
-        for (let i = 0; i < q.length; i++) {
-          hash = (hash * 31 + q.charCodeAt(i)) % 1000;
-        }
-        const pyung1 = 20 + (hash % 4) * 5; // 20, 25, 30, 35평
-        const pyung2 = 40 + (hash % 4) * 10; // 40, 50, 60, 70평
-        const pyung3 = 100 + (hash % 3) * 50; // 100, 150, 200평
-
-        const customCandidates = [
-          {
-            road: `${q} (단독·다가구·빌라 주택)`,
-            jibun: `${q} 일반주택 옥상 기준`,
-            bldg: '주택/빌라 옥상 방수',
-            year: 2006 - (hash % 8),
-            struct: '철근콘크리트 · 평지붕(슬라브)',
-            flatSqm: Math.round((pyung1 / 1.2) * 3.3),
-            pyung: pyung1,
-            svc: 'waterproof'
-          },
-          {
-            road: `${q} (근린상가·중형 빌딩)`,
-            jibun: `${q} 상가/빌딩 옥상 기준`,
-            bldg: '근린상가/빌딩 옥상 방수',
-            year: 2002 - (hash % 6),
-            struct: '철근콘크리트 · 평지붕(상가/빌딩)',
-            flatSqm: Math.round((pyung2 / 1.2) * 3.3),
-            pyung: pyung2,
-            svc: 'waterproof'
-          },
-          {
-            road: `${q} (상가 매장 · 사무실 · 창고)`,
-            jibun: `${q} 1층 상가/창고 바닥 기준`,
-            bldg: '상가/창고/공장 바닥 에폭시',
-            year: 2012 - (hash % 5),
-            struct: '철근콘크리트·철골 · 상가/창고 바닥',
-            flatSqm: Math.round(pyung3 * 3.3),
-            pyung: pyung3,
-            svc: 'epoxy'
-          }
-        ];
-
-        return [...matched, ...customCandidates].slice(0, 6);
-      }
-
-      // Click handler for selecting an address item from the candidate list
-      window.selectAddressCandidate = function(idx) {
-        const list = window._currentAddrCandidates || [];
-        const item = list[idx];
-        if (!item) return;
-
-        const fullLabel = `${item.road} [${item.bldg}]`;
-        const inputEl = document.getElementById('addrSearchInput');
-        if (inputEl) inputEl.value = item.road;
-
-        const age = 2026 - item.year;
-        diagState.isAddressSelected = true;
-        diagState.addr = fullLabel;
-        diagState.buildYear = `${item.year}년 준공 (${age}년 차) · ${item.bldg}`;
-        diagState.structure = item.struct;
-        diagState.flatSqm = item.flatSqm;
-        diagState.actualPyung = item.pyung;
-        diagState.service = item.svc;
-
-        document.getElementById('addrCandidateListBox').classList.add('hidden');
-        renderAddressDiagnostic();
-        showToast(`주소 선택 완료! [${item.pyung}평] 기준으로 견적이 산출되었습니다.`, '✓');
-      };
-
-      function openAddressCandidateList(queryStr) {
-        const candidates = buildCandidateAddresses(queryStr);
-        window._currentAddrCandidates = candidates;
-        const container = document.getElementById('addrCandidateItems');
-        const box = document.getElementById('addrCandidateListBox');
-        const header = document.getElementById('addrSearchResultHeader');
-
-        if (header) {
-          header.textContent = queryStr.trim()
-            ? `👇 '${queryStr.trim()}' 검색 결과입니다 — 아래 목록에서 주소를 클릭(터치)하세요!`
-            : `👇 주소를 클릭(터치)하시면 즉시 선택되어 면적과 견적이 계산됩니다!`;
-        }
-
-        container.innerHTML = candidates.map((c, idx) => `
-          <button type="button" data-addr-idx="${idx}" class="addr-candidate-row w-full text-left px-4 py-3.5 hover:bg-emerald-950/60 active:bg-emerald-900/80 transition flex flex-col sm:flex-row sm:items-center justify-between gap-2 group cursor-pointer">
-            <div class="space-y-0.5 pointer-events-none">
-              <div class="flex items-center gap-2">
-                <span class="bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-[10px] font-black px-2 py-0.5 rounded">주소선택</span>
-                <span class="text-xs sm:text-sm font-black text-white group-hover:text-amber-300 transition">${c.road}</span>
-              </div>
-              <div class="text-[11px] text-slate-400 pl-1">
-                지번/유형: ${c.jibun} · <strong class="text-slate-200">${c.bldg}</strong> (${c.year}년 준공)
-              </div>
-            </div>
-            <div class="flex items-center gap-2 shrink-0 pointer-events-none">
-              <span class="bg-slate-950 border border-amber-500/50 text-amber-300 text-xs font-extrabold px-2.5 py-1 rounded-lg">
-                산출 면적 ${c.pyung}평
-              </span>
-              <span class="bg-amber-400 group-hover:bg-amber-300 text-slate-950 text-xs font-black px-3 py-1.5 rounded-lg shadow">
-                선택하기 →
-              </span>
-            </div>
-          </button>
-        `).join('');
-
-        // Attach direct click listeners to every candidate button so it never fails
-        container.querySelectorAll('.addr-candidate-row').forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            const idx = parseInt(btn.getAttribute('data-addr-idx'), 10);
-            window.selectAddressCandidate(idx);
-          });
-        });
-
-        box.classList.remove('hidden');
-      }
-
-      const addrInputEl = document.getElementById('addrSearchInput');
-      const btnSearchAddrList = document.getElementById('btnSearchAddrList');
-      const closeAddrListBtn = document.getElementById('closeAddrListBtn');
-      const btnResetAddr = document.getElementById('btnResetAddr');
-
-      if (btnSearchAddrList && addrInputEl) {
-        btnSearchAddrList.addEventListener('click', () => {
-          openAddressCandidateList(addrInputEl.value);
-        });
-        addrInputEl.addEventListener('focus', () => {
-          openAddressCandidateList(addrInputEl.value);
-        });
-        addrInputEl.addEventListener('input', (e) => {
-          openAddressCandidateList(e.target.value);
-        });
-        addrInputEl.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter') {
-            e.preventDefault();
-            openAddressCandidateList(addrInputEl.value);
-            if (window._currentAddrCandidates && window._currentAddrCandidates.length > 0 && addrInputEl.value.trim()) {
-              window.selectAddressCandidate(0);
-            }
-          }
-        });
-      }
-
-      if (btnResetAddr) {
-        btnResetAddr.addEventListener('click', () => {
-          diagState.isAddressSelected = false;
-          diagState.addr = '';
-          if (addrInputEl) addrInputEl.value = '';
-          document.getElementById('addrCandidateListBox').classList.add('hidden');
-          renderAddressDiagnostic();
-          showToast('주소 선택이 초기화되었습니다. 새 주소를 검색해주세요.', '🔄');
-        });
-      }
-
-      if (closeAddrListBtn) {
-        closeAddrListBtn.addEventListener('click', () => {
-          document.getElementById('addrCandidateListBox').classList.add('hidden');
-        });
-      }
-
-      // Service Switch inside Diagnostic Card
-      document.querySelectorAll('.diag-svc-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          diagState.service = btn.getAttribute('data-diagsvc');
-          renderAddressDiagnostic();
-        });
-      });
-
-      // Pyung Slider, Number Input, and +/- 5 Pyung Step Buttons
-      const diagSliderEl = document.getElementById('diagPyungSlider');
-      const diagNumInputEl = document.getElementById('diagPyungNumberInput');
-      const diagMinusBtn = document.getElementById('diagPyungMinusBtn');
-      const diagPlusBtn = document.getElementById('diagPyungPlusBtn');
-
-      if (diagSliderEl) {
-        diagSliderEl.addEventListener('input', (e) => {
-          diagState.actualPyung = parseInt(e.target.value, 10) || 25;
-          renderAddressDiagnostic();
-        });
-      }
-      if (diagNumInputEl) {
-        diagNumInputEl.addEventListener('input', (e) => {
-          const val = parseInt(e.target.value, 10);
-          if (!isNaN(val) && val >= 5) {
-            diagState.actualPyung = Math.min(300, val);
-            renderAddressDiagnostic();
-          }
-        });
-      }
-      if (diagMinusBtn) {
-        diagMinusBtn.addEventListener('click', () => {
-          diagState.actualPyung = Math.max(10, (parseInt(diagState.actualPyung, 10) || 25) - 5);
-          renderAddressDiagnostic();
-        });
-      }
-      if (diagPlusBtn) {
-        diagPlusBtn.addEventListener('click', () => {
-          diagState.actualPyung = Math.min(300, (parseInt(diagState.actualPyung, 10) || 25) + 5);
-          renderAddressDiagnostic();
-        });
-      }
-
-      // Action 1: Apply Diagnosed Area to Main Estimator Above
-      const applyMainBtn = document.getElementById('applyDiagToMainCalcBtn');
-      if (applyMainBtn) {
-        applyMainBtn.addEventListener('click', () => {
-          const p = diagState.actualPyung;
-          if (diagState.service === 'waterproof') {
-            switchCategory('waterproof');
-            syncWpMethodUI('two_part');
-            if (p < 50) {
-              const snapped = Math.max(10, Math.min(45, Math.round(p / 5) * 5));
-              syncWpPyungUI(snapped);
-            } else {
-              const snappedLarge = Math.max(50, Math.min(100, Math.round(p / 5) * 5));
-              state.waterproof.largePyung = snappedLarge;
-              const lSlider = document.getElementById('wpLargeSlider');
-              if (lSlider) lSlider.value = snappedLarge;
-              document.getElementById('wpLargePyungText').textContent = `선택 평수: ${snappedLarge}평 (약 ${Math.round(snappedLarge * 3.3)}㎡)`;
-              syncWpPyungUI(50);
-            }
-          } else {
-            switchCategory('epoxy');
-            if (p <= 50) {
-              const snapped = Math.max(10, Math.min(50, Math.round(p / 5) * 5));
-              syncEpoxySmallPyungUI(snapped);
-            } else {
-              const tKey = p === 200 ? '150_200' : getTierForPyung(p);
-              syncEpoxyTierAndPyungUI(tKey, p);
-            }
-          }
-          document.getElementById('estimatorSection').scrollIntoView({ behavior: 'smooth' });
-          showToast(`산출된 ${p}평 면적이 위 상세 계산기에 그대로 반영되었습니다!`, '🔄');
-        });
-      }
-
-      // Action 2: Pre-fill Step 04 Consultation Form with Selected Address & Scroll Down
-      const applyOrderBtn = document.getElementById('applyDiagToOrderFormBtn');
-      if (applyOrderBtn) {
-        applyOrderBtn.addEventListener('click', () => {
-          const addrField = document.getElementById('custAddr');
-          const memoField = document.getElementById('custMemo');
-          if (addrField && diagState.isAddressSelected && diagState.addr) {
-            addrField.value = diagState.addr;
-          }
-          if (memoField) {
-            const addrInfo = (diagState.isAddressSelected && diagState.addr) ? diagState.addr : '면적 직접 산출';
-            memoField.value = `[주소/면적 조회: ${addrInfo} · ${diagState.actualPyung}평] ${diagState.computedPriceSummary} 기준으로 무료 방문실측 신청합니다.`;
-          }
-          document.getElementById('notifySection').scrollIntoView({ behavior: 'smooth' });
-          setTimeout(() => document.getElementById('custName').focus(), 450);
-          showToast('산출된 면적과 견적이 아래 상담 신청란에 자동 입력되었습니다!', '🔔');
-        });
-      }
-
-      // Initialize Address Diagnostic Card on startup (Unselected clean state)
-      renderAddressDiagnostic();
-    }
 
     window.addEventListener('DOMContentLoaded', initApp);
   </script>
