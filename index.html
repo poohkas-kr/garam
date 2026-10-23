@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
@@ -493,197 +493,542 @@
     .bg-gradient-to-br { background-image: linear-gradient(to bottom right, #0b1426, #0f172a, #060b16); }
 
   
-    /* === MOBILE-FIRST UX & READABILITY OPTIMIZATION === */
-    @media (max-width: 639px) {
-      html {
-        font-size: 15.5px;
-      }
-      body {
-        line-height: 1.55;
-      }
-      /* Prevent 3-column / 7-column squishing on narrow mobile screens */
-      #mainCategoryTabs {
-        grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
-        gap: 0.625rem !important;
-      }
-      #mainCategoryTabs .cat-tab {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        padding: 0.875rem 1rem !important;
-        border-radius: 0.875rem !important;
-      }
-      #mainCategoryTabs .cat-tab > div:first-child {
-        margin-bottom: 0 !important;
-        order: 2;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-      /* Make 5-tier cards & 5-bay cards 1-column horizontal rows on mobile for crystal-clear reading */
-      #wpLargeTierBtns,
-      #elasticBayBtns {
-        grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
-        gap: 0.5rem !important;
-      }
-      #wpLargeTierBtns .wp-tier-btn,
-      #elasticBayBtns .el-bay-btn {
-        grid-column: span 1 / span 1 !important;
-        display: flex !important;
-        flex-wrap: wrap !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        padding: 0.75rem 1rem !important;
-        gap: 0.25rem 0.5rem !important;
-      }
-      /* Fix 7-column quick pyung buttons on mobile -> 3 columns */
-      #epoxyQuickPyungBtns {
-        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-        gap: 0.5rem !important;
-      }
-      #epoxyQuickPyungBtns .ep-quick-btn {
-        padding: 0.625rem 0.375rem !important;
-        font-size: 0.8125rem !important;
-        min-height: 44px !important;
-      }
-      /* Fix 4-step guide on mobile -> 1-column compact cards */
-      #guideSection .grid-cols-2 {
-        grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
-        gap: 0.5rem !important;
-      }
-      #guideSection .grid-cols-2 > div {
-        padding: 0.75rem 0.875rem !important;
-      }
-      /* Fix epoxy 2x2 range buttons on mobile -> 1-column or clean 2-column with better padding */
-      #epoxyRangeBtns {
-        grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
-        gap: 0.5rem !important;
-      }
-      #epoxyRangeBtns .ep-range-btn {
-        padding: 0.75rem 1rem !important;
-      }
-      /* Larger touch targets for 3x3 pyung buttons */
-      #wpRangeBtns,
-      #epoxySmallPyungBtns {
-        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-        gap: 0.5rem !important;
-      }
-      .wp-range-btn,
-      .ep-small-btn {
-        min-height: 52px !important;
-        padding: 0.5rem 0.25rem !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-      }
-      /* Hide crowded intermediate slider tick labels on narrow screens */
-      .mobile-tick-hide {
-        display: none !important;
-      }
-      /* Compact header on mobile so calculator appears higher */
-      header .py-6 {
-        padding-top: 1rem !important;
-        padding-bottom: 1rem !important;
-      }
-      header img.w-24 {
-        width: 4.25rem !important;
-        height: 4.25rem !important;
-      }
-      header h1 {
-        font-size: 1.65rem !important;
-      }
-      /* Make card paddings comfortable without wasting horizontal space */
-      main.px-4 {
-        padding-left: 0.75rem !important;
-        padding-right: 0.75rem !important;
-      }
-      .p-5, .p-6 {
-        padding: 1rem !important;
-      }
-      /* Price breakdown rows inside cards: keep on single line with clear spacing */
-      .wp-divider .flex.justify-between,
-      .ep-primer-divider .flex.justify-between {
-        align-items: center !important;
-        gap: 0.5rem !important;
-        padding-top: 0.15rem !important;
-        padding-bottom: 0.15rem !important;
-      }
-      /* Live price result text sizing on mobile */
-      #livePriceText {
-        font-size: 1.75rem !important;
-        line-height: 1.25 !important;
-      }
+    
+    
+    
+    /* ===================================================================== */
+    /* CURATED BOTANICAL-ARCHITECTURAL PALETTE (User Reference Image)        */
+    /* 배경색: #F7FAF7 | 본문색: #233B30 (대비 11.48:1)                      */
+    /* 주조색: #4C685C | 보조색: #DCE8DF | 포인트색: #E58B47 (대비 6.20:1)   */
+    /* ===================================================================== */
+
+    :root {
+      --bg-canvas: #f7faf7;        /* 추천 배경색 */
+      --bg-surface: #ffffff;       /* 카드 표면 */
+      --bg-subtle: #f7faf7;        /* 내부 서브 배경색 */
+      --bg-secondary: #dce8df;     /* 추천 보조색 */
+      --bg-selected: #dce8df;      /* 선택된 카드 배경 (보조색) */
+      --brand-primary: #4c685c;    /* 추천 주조색 */
+      --brand-dark: #233b30;       /* 추천 본문색 */
+      --text-primary: #233b30;     /* 추천 본문색 (11.48:1 AAA 대비) */
+      --text-secondary: #3d554a;   /* 본문 보조색 */
+      --text-tertiary: #4c685c;    /* 주조색 기반 캡션 */
+      --accent-point: #e58b47;     /* 추천 포인트색 */
+      --accent-point-hover: #d67a35;
+      --accent-price: #c4621a;     /* 밝은 배경 위 고대비 포인트 금액색 */
+      --border-hairline: #dce8df;  /* 추천 보조색 테두리 */
+      --border-strong: #b8ccc0;    /* 구분감 있는 보조 테두리 */
+      --shadow-card: 0 4px 20px -2px rgba(35, 59, 48, 0.06), 0 1px 3px 0 rgba(35, 59, 48, 0.04);
+      --shadow-selected: 0 6px 18px -3px rgba(76, 104, 92, 0.18);
     }
 
-    /* Custom Thumb-Friendly Range Sliders for Mobile & Touch */
-    input[type="range"] {
-      -webkit-appearance: none;
-      appearance: none;
-      height: 10px;
-      background: #1e293b;
-      border: 1px solid #475569;
+    html[data-theme="dark"] {
+      --bg-canvas: #14221b;
+      --bg-surface: #1c2e26;
+      --bg-subtle: #233b30;
+      --bg-secondary: #2e4a3d;
+      --bg-selected: rgba(229, 139, 71, 0.16);
+      --brand-primary: #4c685c;
+      --brand-dark: #14221b;
+      --text-primary: #f7faf7;
+      --text-secondary: #dce8df;
+      --text-tertiary: #9cb3a8;
+      --accent-point: #e58b47;
+      --accent-point-hover: #f09c5c;
+      --accent-price: #f4a261;
+      --border-hairline: #2e4a3d;
+      --border-strong: #4c685c;
+      --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.4);
+      --shadow-selected: 0 6px 20px rgba(229, 139, 71, 0.25);
+    }
+
+    /* 1. Base Smoothness & Typography */
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      font-variant-numeric: tabular-nums;
+    }
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', system-ui, sans-serif;
+      background-color: var(--bg-canvas) !important;
+      color: var(--text-primary) !important;
+      letter-spacing: -0.02em;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #4c685c;
       border-radius: 999px;
-      outline: none;
     }
-    input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: #fbbf24;
-      border: 3px solid #020617;
-      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.6);
-      cursor: pointer;
-    }
-    input[type="range"].accent-emerald-400::-webkit-slider-thumb {
-      background: #34d399;
-      box-shadow: 0 2px 8px rgba(52, 211, 153, 0.6);
-    }
-    /* Mobile collapsible guide summary styling */
-    details.mobile-details > summary {
-      list-style: none;
-      cursor: pointer;
-    }
-    details.mobile-details > summary::-webkit-details-marker {
-      display: none;
+    ::-webkit-scrollbar-track {
+      background: #dce8df;
     }
 
-  
-    /* === SIMPLIFIED MOBILE & CATEGORY SELECTION ENHANCEMENTS === */
-    .cat-tab-selected {
-      border-color: #fbbf24 !important;
-      border-width: 3px !important;
-      background: linear-gradient(180deg, rgba(245, 158, 11, 0.28) 0%, rgba(15, 23, 42, 0.98) 100%) !important;
-      box-shadow: 0 0 28px -2px rgba(251, 191, 36, 0.45), inset 0 0 0 1px rgba(251, 191, 36, 0.5) !important;
-      transform: translateY(-1px);
+    .font-black { font-weight: 800 !important; }
+    .font-extrabold { font-weight: 700 !important; }
+    .animate-ping, .animate-pulse { animation: none !important; }
+
+    /* Neutralize dark Tailwind gradient stops in Light Mode */
+    html[data-theme="light"] .via-slate-900,
+    html[data-theme="light"] .via-slate-950,
+    html[data-theme="light"] .to-slate-900,
+    html[data-theme="light"] .to-slate-950,
+    html[data-theme="light"] .to-navy-950 {
+      background-image: none !important;
     }
-    .cat-tab-unselected {
-      border-color: #475569 !important;
-      border-width: 2px !important;
-      background: rgba(15, 23, 42, 0.78) !important;
-      box-shadow: none !important;
-      opacity: 0.94;
+
+    /* 2. Top Sticky Navigation Bar: 주조색 (#4C685C) Header Bar (Matches Reference Preview!) */
+    .bg-navy-950\/95 {
+      background-color: #4c685c !important;
+      border-bottom: 1px solid #3d554a !important;
+      box-shadow: 0 2px 10px rgba(35, 59, 48, 0.12) !important;
     }
-    .cat-tab-unselected:hover {
-      border-color: #94a3b8 !important;
-      opacity: 1;
+    html[data-theme="dark"] .bg-navy-950\/95 {
+      background-color: #1c2e26 !important;
+      border-bottom: 1px solid #2e4a3d !important;
     }
-    .mob-quick-cat-active {
-      background-color: #fbbf24 !important;
-      color: #020617 !important;
-      border-color: #fbbf24 !important;
-      font-weight: 900 !important;
-      box-shadow: 0 2px 10px rgba(251, 191, 36, 0.4) !important;
-    }
-    .mob-quick-cat-inactive {
-      background-color: #1e293b !important;
-      color: #cbd5e1 !important;
-      border-color: #475569 !important;
+    .bg-navy-950\/95 .bg-emerald-500\/10 {
+      background-color: rgba(247, 250, 247, 0.16) !important;
+      border: 1px solid rgba(220, 232, 223, 0.35) !important;
+      color: #f7faf7 !important;
       font-weight: 700 !important;
     }
+    .bg-navy-950\/95 .bg-emerald-400 {
+      background-color: #e58b47 !important;
+    }
+    .bg-navy-950\/95 span.text-slate-400 {
+      color: #dce8df !important;
+    }
+    #themeToggleBtn,
+    #openCartDrawerBtn,
+    #openMyOrdersBtn {
+      background-color: rgba(35, 59, 48, 0.35) !important;
+      color: #f7faf7 !important;
+      border: 1px solid rgba(220, 232, 223, 0.35) !important;
+      font-weight: 600 !important;
+      border-radius: 0.55rem !important;
+      box-shadow: none !important;
+    }
+    #themeToggleBtn:hover,
+    #openCartDrawerBtn:hover,
+    #openMyOrdersBtn:hover {
+      background-color: rgba(35, 59, 48, 0.55) !important;
+    }
+    #cartCountBadge,
+    #myOrderCountBadge {
+      background-color: #e58b47 !important;
+      color: #233b30 !important;
+      font-weight: 800 !important;
+    }
+    .bg-navy-950\/95 a[href^="tel:"] {
+      background-color: #e58b47 !important;
+      border: 1px solid #e58b47 !important;
+      color: #233b30 !important;
+      border-radius: 0.55rem !important;
+      font-weight: 800 !important;
+    }
+
+    /* 3. Mobile Sticky Bar: 보조색 (#DCE8DF) Segmented Control + 본문색 (#233B30) Summary Strip */
+    #mobileStickyBar {
+      background-color: #f7faf7 !important;
+      border-top: 1px solid #dce8df !important;
+      padding: 0.45rem 0.65rem 0.5rem !important;
+    }
+    html[data-theme="dark"] #mobileStickyBar {
+      background-color: #1c2e26 !important;
+      border-top: 1px solid #2e4a3d !important;
+    }
+    #mobileQuickCatBar {
+      background-color: #dce8df !important;
+      padding: 0.22rem !important;
+      border-radius: 0.75rem !important;
+      gap: 0.2rem !important;
+    }
+    html[data-theme="dark"] #mobileQuickCatBar {
+      background-color: #14221b !important;
+    }
+    .mob-quick-cat-active {
+      background-color: #233b30 !important;
+      color: #f7faf7 !important;
+      border: 1px solid #233b30 !important;
+      font-weight: 800 !important;
+      border-radius: 0.55rem !important;
+      box-shadow: 0 2px 6px rgba(35, 59, 48, 0.18) !important;
+    }
+    .mob-quick-cat-active .mob-cat-check {
+      color: #e58b47 !important;
+    }
+    .mob-quick-cat-inactive {
+      background-color: transparent !important;
+      color: #233b30 !important;
+      border: 1px solid transparent !important;
+      font-weight: 600 !important;
+      border-radius: 0.55rem !important;
+      box-shadow: none !important;
+    }
+    html[data-theme="dark"] .mob-quick-cat-inactive {
+      color: #dce8df !important;
+    }
+    #mobileStickyBar > div:last-child {
+      background-color: #233b30 !important;
+      border-radius: 0.75rem !important;
+      padding: 0.5rem 0.75rem !important;
+      border: 1px solid #4c685c !important;
+      margin-top: 0.35rem !important;
+    }
+    #mobLiveTitle {
+      color: #dce8df !important;
+      font-weight: 600 !important;
+    }
+    #mobLivePrice {
+      color: #ffffff !important;
+      font-weight: 800 !important;
+    }
+    #mobLiveSubBadge {
+      color: #e58b47 !important;
+    }
+    #mobCallBtn {
+      background-color: #4c685c !important;
+      color: #f7faf7 !important;
+      border: 1px solid rgba(220, 232, 223, 0.3) !important;
+      border-radius: 0.6rem !important;
+    }
+    #mobJumpNotifyBtn {
+      background: #e58b47 !important;
+      color: #233b30 !important;
+      font-weight: 800 !important;
+      border: none !important;
+      border-radius: 0.6rem !important;
+      box-shadow: 0 2px 8px rgba(229, 139, 71, 0.3) !important;
+    }
+
+    /* 4. Hero Banner: Matches Preview Card in User's Image (#F7FAF7 + #233B30 + #DCE8DF) */
+    header.bg-gradient-to-b {
+      background: linear-gradient(180deg, #ffffff 0%, #f7faf7 100%) !important;
+      border-bottom: 1px solid var(--border-hairline) !important;
+      box-shadow: none !important;
+    }
+    html[data-theme="dark"] header.bg-gradient-to-b {
+      background: #1c2e26 !important;
+    }
+    header .blur-3xl {
+      display: none !important;
+    }
+    header img.border-amber-400 {
+      border: 2px solid #dce8df !important;
+      box-shadow: 0 4px 12px rgba(35, 59, 48, 0.06) !important;
+    }
+    header h1 {
+      color: var(--text-primary) !important;
+      letter-spacing: -0.03em !important;
+    }
+    header .text-amber-400 {
+      background-color: #dce8df !important;
+      color: #233b30 !important;
+      padding: 0.25rem 0.7rem !important;
+      border-radius: 9999px !important;
+      border: 1px solid #b8ccc0 !important;
+      font-weight: 700 !important;
+    }
+    header p.text-slate-100 {
+      color: var(--text-secondary) !important;
+    }
+    header p strong.text-amber-300 {
+      color: #233b30 !important;
+      background-color: #dce8df !important;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 700 !important;
+    }
+    header .gold-border-glow {
+      background: #dce8df !important;
+      border: 1px solid #b8ccc0 !important;
+      box-shadow: none !important;
+    }
+    html[data-theme="dark"] header .gold-border-glow {
+      background: #233b30 !important;
+      border-color: #4c685c !important;
+    }
+    header .gold-border-glow .text-amber-400 {
+      background: transparent !important;
+      border: none !important;
+      padding: 0 !important;
+      color: var(--text-primary) !important;
+    }
+    header .gold-border-glow .text-white {
+      color: var(--text-secondary) !important;
+    }
+    header .gold-border-glow .border-slate-800 {
+      border-color: #b8ccc0 !important;
+    }
+    header #topPhoneLink {
+      color: var(--text-primary) !important;
+      text-decoration: none !important;
+    }
+    header #topQuickGuideBtn {
+      color: var(--text-tertiary) !important;
+      text-decoration: none !important;
+    }
+
+    /* 5. Main Section Cards & Step Badges */
+    .readable-card,
+    #notifySection {
+      background: var(--bg-surface) !important;
+      border: 1.5px solid var(--border-hairline) !important;
+      border-radius: 1.25rem !important;
+      box-shadow: var(--shadow-card) !important;
+    }
+    .gold-border-glow {
+      box-shadow: none !important;
+    }
+    /* Step Pill Badges: 포인트색 (#E58B47) with 본문색 (#233B30) 6.20:1 contrast */
+    .step-pill {
+      background-color: #e58b47 !important;
+      color: #233b30 !important;
+      box-shadow: none !important;
+      border-radius: 0.45rem !important;
+      font-weight: 800 !important;
+    }
+
+    /* 6. STEP 1 Category Selector Cards */
+    .cat-tab-selected {
+      background: var(--bg-selected) !important;
+      border: 2.5px solid #4c685c !important;
+      box-shadow: var(--shadow-selected) !important;
+      transform: translateY(-1px) !important;
+    }
+    html[data-theme="dark"] .cat-tab-selected {
+      border-color: #e58b47 !important;
+    }
+    .cat-tab-selected .cat-title,
+    .cat-tab-selected .cat-title span {
+      color: var(--text-primary) !important;
+    }
+    .cat-tab-selected div.text-slate-200 {
+      color: var(--text-secondary) !important;
+    }
+    .cat-tab-selected .cat-badge {
+      background-color: #e58b47 !important;
+      color: #233b30 !important;
+      border-color: #e58b47 !important;
+      font-weight: 800 !important;
+    }
+    .cat-tab-unselected {
+      background: var(--bg-surface) !important;
+      border: 1.5px solid var(--border-strong) !important;
+      box-shadow: none !important;
+      opacity: 1 !important;
+    }
+    .cat-tab-unselected:hover {
+      background: var(--bg-subtle) !important;
+      border-color: #4c685c !important;
+    }
+    .cat-tab-unselected .cat-title,
+    .cat-tab-unselected .cat-title span {
+      color: var(--text-primary) !important;
+    }
+    .cat-tab-unselected div.text-slate-300 {
+      color: var(--text-tertiary) !important;
+    }
+    #activeCategoryBanner {
+      background-color: var(--bg-subtle) !important;
+      border: 1px solid var(--border-strong) !important;
+      border-left: 4px solid #4c685c !important;
+      border-radius: 0.75rem !important;
+    }
+    #activeCategoryBanner span.bg-amber-400 {
+      background-color: #4c685c !important;
+      color: #ffffff !important;
+    }
+    #activeCategoryBannerText {
+      color: var(--text-primary) !important;
+      font-weight: 800 !important;
+    }
+
+    /* 7. Inner Containers & Borders */
+    .bg-slate-950,
+    .bg-slate-950\/95,
+    .bg-slate-950\/90,
+    .bg-slate-950\/80,
+    .bg-slate-950\/70,
+    .bg-slate-950\/60 {
+      background-color: var(--bg-subtle) !important;
+    }
+    .bg-slate-900,
+    .bg-slate-900\/95,
+    .bg-slate-900\/90,
+    .bg-slate-900\/60 {
+      background-color: var(--bg-surface) !important;
+    }
+    .bg-slate-800 {
+      background-color: var(--bg-secondary) !important;
+      color: var(--text-primary) !important;
+    }
+    .border-slate-800,
+    .border-slate-800\/80,
+    .border-slate-700,
+    .border-slate-700\/80,
+    .border-slate-600,
+    .border-amber-500\/30,
+    .border-amber-500\/40,
+    .border-amber-500\/50,
+    .border-amber-500\/60,
+    .border-amber-500\/70,
+    .border-amber-500\/80,
+    .border-emerald-500\/30,
+    .border-emerald-500\/40,
+    .border-emerald-500\/50,
+    .border-sky-400\/40,
+    .border-sky-400\/50,
+    .border-sky-400\/60,
+    .border-sky-500\/30,
+    .border-rose-500\/30,
+    .border-rose-500\/50,
+    .border-blue-500\/30,
+    .border-blue-500\/40,
+    .border-blue-500\/50 {
+      border-color: var(--border-hairline) !important;
+    }
+
+    /* 8. Harmonious Typographic Hierarchy (#233B30 / #4C685C / #C4621A) */
+    .text-white {
+      color: var(--text-primary) !important;
+    }
+    .text-slate-100,
+    .text-slate-200,
+    .text-slate-300 {
+      color: var(--text-secondary) !important;
+    }
+    .text-slate-400,
+    .text-slate-500 {
+      color: var(--text-tertiary) !important;
+    }
+    .text-amber-200,
+    .text-amber-300,
+    .text-amber-400 {
+      color: var(--accent-price) !important;
+    }
+    .text-emerald-300,
+    .text-emerald-400,
+    .text-sky-300,
+    .text-blue-300,
+    .text-blue-400 {
+      color: var(--brand-primary) !important;
+    }
+    html[data-theme="dark"] .text-emerald-300,
+    html[data-theme="dark"] .text-emerald-400,
+    html[data-theme="dark"] .text-sky-300,
+    html[data-theme="dark"] .text-blue-300 {
+      color: #dce8df !important;
+    }
+    .text-rose-200,
+    .text-rose-300,
+    .text-rose-400 {
+      color: var(--text-primary) !important;
+    }
+    .decoration-rose-500,
+    .decoration-amber-400 {
+      text-decoration-color: #e58b47 !important;
+    }
+
+    /* 9. Selectable Option Cards & Pyung Buttons */
+    .selectable-card-active {
+      border-color: #4c685c !important;
+      border-width: 2px !important;
+      background: var(--bg-selected) !important;
+      box-shadow: var(--shadow-selected) !important;
+    }
+    html[data-theme="dark"] .selectable-card-active {
+      border-color: #e58b47 !important;
+    }
+    .selectable-card-inactive {
+      border-color: var(--border-strong) !important;
+      border-width: 1px !important;
+      background-color: var(--bg-surface) !important;
+      box-shadow: none !important;
+      opacity: 1 !important;
+    }
+    .selectable-card-inactive:hover {
+      border-color: #4c685c !important;
+      background-color: var(--bg-subtle) !important;
+    }
+
+    /* Tactile Pyung / Bay Grid Buttons: Active uses 포인트색 (#E58B47) + 본문색 (#233B30) */
+    .wp-range-btn,
+    .ep-small-btn,
+    .ep-quick-btn {
+      background-color: var(--bg-surface) !important;
+      border: 1px solid var(--border-strong) !important;
+      border-radius: 0.65rem !important;
+      box-shadow: none !important;
+    }
+    .wp-range-btn.selectable-card-active,
+    .ep-small-btn.selectable-card-active,
+    .ep-quick-btn.selectable-card-active {
+      background-color: #e58b47 !important;
+      border: 2px solid #233b30 !important;
+      box-shadow: 0 3px 10px rgba(229, 139, 71, 0.28) !important;
+    }
+    .wp-range-btn.selectable-card-active div,
+    .ep-small-btn.selectable-card-active div,
+    .ep-quick-btn.selectable-card-active {
+      color: #233b30 !important;
+      font-weight: 800 !important;
+    }
+
+    /* Pills & Status Badges inside Cards */
+    .pill-active {
+      background-color: #233b30 !important;
+      color: #f7faf7 !important;
+      border-color: #233b30 !important;
+      font-weight: 700 !important;
+    }
+    .status-check-active {
+      background-color: #e58b47 !important;
+      color: #233b30 !important;
+      border-color: #e58b47 !important;
+      font-weight: 800 !important;
+    }
+    .pill-inactive-blue,
+    .status-check-inactive {
+      background-color: var(--bg-subtle) !important;
+      color: var(--text-tertiary) !important;
+      border: 1px solid var(--border-strong) !important;
+      font-weight: 600 !important;
+    }
+    .checkbox-card-active-sky,
+    .checkbox-card-active-amber {
+      border-color: #4c685c !important;
+      background-color: var(--bg-selected) !important;
+      box-shadow: none !important;
+    }
+
+    /* 10. Info & Option Callout Surfaces */
+    .bg-rose-950\/40,
+    .bg-rose-950\/30,
+    .from-rose-950\/80,
+    .from-rose-950\/90,
+    .bg-emerald-950\/30,
+    .bg-emerald-950\/40,
+    .from-emerald-950\/80,
+    .from-sky-950\/70,
+    .from-blue-950\/80,
+    .from-blue-950\/90,
+    .from-amber-500\/15 {
+      background: var(--bg-subtle) !important;
+      border: 1px solid var(--border-strong) !important;
+      border-left: 4px solid #4c685c !important;
+      box-shadow: none !important;
+    }
+    details.collapsible-info-box {
+      background: var(--bg-surface) !important;
+      border: 1px solid var(--border-strong) !important;
+      border-radius: 1rem !important;
+      box-shadow: none !important;
+    }
     details.collapsible-info-box > summary {
+      background: var(--bg-secondary) !important;
       list-style: none;
       cursor: pointer;
       user-select: none;
@@ -700,21 +1045,617 @@
     details.collapsible-info-box[open] > summary .when-open {
       display: inline;
     }
+
+    .bg-amber-500\/10,
+    .bg-amber-500\/15,
+    .bg-amber-500\/20,
+    .bg-emerald-500\/10,
+    .bg-emerald-500\/20,
+    .bg-sky-500\/20,
+    .bg-blue-500\/20 {
+      background-color: var(--bg-secondary) !important;
+      border-color: var(--border-strong) !important;
+      color: var(--text-primary) !important;
+    }
+
+    .bg-amber-400,
+    .bg-amber-500 {
+      background-color: #e58b47 !important;
+      color: #233b30 !important;
+      font-weight: 800 !important;
+    }
+    .bg-emerald-400,
+    .bg-sky-400,
+    .bg-blue-500,
+    .bg-blue-600,
+    .bg-rose-600 {
+      background-color: #4c685c !important;
+      color: #ffffff !important;
+    }
+
+    /* Key Price Readouts */
+    #wpPyungDisplayBadge,
+    #wpLiveBasePriceBadge,
+    #epSmallPyungBadge,
+    #epSmallLivePriceBadge,
+    #epCalcTotalText,
+    #mortarTotalCostText {
+      color: var(--accent-price) !important;
+      font-weight: 800 !important;
+    }
+
+    /* Primary CTA Buttons: 포인트색 (#E58B47) + 본문색 (#233B30) 6.20:1 Contrast (Exact Match to Reference Image!) */
+    #boxJumpNotifyBtn,
+    #sendOrderAlertBtn,
+    #cartToOrderBtn,
+    #modalSmsLink {
+      background: #e58b47 !important;
+      color: #233b30 !important;
+      border: 1px solid #d67a35 !important;
+      border-radius: 0.75rem !important;
+      box-shadow: 0 4px 14px rgba(229, 139, 71, 0.28) !important;
+      font-weight: 800 !important;
+    }
+    #boxJumpNotifyBtn:hover,
+    #sendOrderAlertBtn:hover {
+      background: #d67a35 !important;
+    }
+
+    /* 11. STEP 3 Official Estimate Result Card: 본문색 (#233B30) Deep Forest Anchor Card */
+    .bg-gradient-to-br.from-navy-900 {
+      background: linear-gradient(135deg, #233b30 0%, #2f4d3f 100%) !important;
+      border: 1.5px solid #4c685c !important;
+      border-radius: 1.25rem !important;
+      box-shadow: 0 14px 32px -6px rgba(35, 59, 48, 0.22) !important;
+    }
+    .bg-gradient-to-br.from-navy-900 .border-slate-800 {
+      border-color: rgba(220, 232, 223, 0.16) !important;
+    }
+    .bg-gradient-to-br.from-navy-900 .text-amber-400 {
+      color: #e58b47 !important;
+    }
+    .bg-gradient-to-br.from-navy-900 .bg-amber-400 {
+      background-color: #e58b47 !important;
+    }
+    .bg-gradient-to-br.from-navy-900 #liveGuaranteeBadge {
+      background-color: rgba(220, 232, 223, 0.14) !important;
+      color: #dce8df !important;
+      border-color: rgba(220, 232, 223, 0.3) !important;
+    }
+    .bg-gradient-to-br.from-navy-900 #liveSelectedTitle {
+      color: #dce8df !important;
+      font-weight: 600 !important;
+    }
+    .bg-gradient-to-br.from-navy-900 #livePriceText {
+      color: #ffffff !important;
+      font-weight: 800 !important;
+    }
+    .bg-gradient-to-br.from-navy-900 .text-slate-200,
+    .bg-gradient-to-br.from-navy-900 #liveSubDesc {
+      color: #dce8df !important;
+      opacity: 0.9;
+    }
+    .bg-gradient-to-br.from-navy-900 #addToCartBtn,
+    .bg-gradient-to-br.from-navy-900 #copyCurrentEstimateBtn {
+      background-color: rgba(247, 250, 247, 0.1) !important;
+      color: #f7faf7 !important;
+      border: 1px solid rgba(220, 232, 223, 0.25) !important;
+      border-radius: 0.75rem !important;
+    }
+    .bg-gradient-to-br.from-navy-900 #addToCartBtn:hover,
+    .bg-gradient-to-br.from-navy-900 #copyCurrentEstimateBtn:hover {
+      background-color: rgba(247, 250, 247, 0.18) !important;
+    }
+    .bg-gradient-to-br.from-navy-900 #liveProcessSummary {
+      background-color: rgba(20, 34, 27, 0.45) !important;
+      border: 1px solid rgba(220, 232, 223, 0.15) !important;
+    }
+    .bg-gradient-to-br.from-navy-900 #liveProcessSummary .text-slate-300 {
+      color: #dce8df !important;
+    }
+    .bg-gradient-to-br.from-navy-900 #liveProcessSummary .text-white {
+      color: #ffffff !important;
+    }
+    .bg-gradient-to-br.from-navy-900 #liveMaterialText {
+      color: #f4a261 !important;
+    }
+    .bg-gradient-to-br.from-navy-900 #liveAddonText {
+      color: #dce8df !important;
+    }
+
+    /* 12. Range Sliders & Form Controls */
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      height: 7px !important;
+      background: #dce8df !important;
+      border-radius: 999px !important;
+      border: 1px solid #b8ccc0 !important;
+      outline: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 24px !important;
+      height: 24px !important;
+      border-radius: 50% !important;
+      background: #e58b47 !important;
+      border: 3px solid #233b30 !important;
+      box-shadow: 0 2px 6px rgba(35, 59, 48, 0.25) !important;
+      cursor: pointer;
+    }
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    input[type="number"],
+    input[type="password"],
+    input[type="url"],
+    select {
+      background-color: var(--bg-subtle) !important;
+      border: 1px solid var(--border-strong) !important;
+      color: var(--text-primary) !important;
+      border-radius: 0.65rem !important;
+    }
+    input:focus,
+    select:focus {
+      background-color: var(--bg-surface) !important;
+      border-color: #4c685c !important;
+      box-shadow: 0 0 0 3px rgba(76, 104, 92, 0.18) !important;
+    }
+
+    /* Craftsman Quote & Footer */
+    section .bg-gradient-to-b.from-navy-900 {
+      background: var(--bg-secondary) !important;
+      border: 1px solid var(--border-strong) !important;
+    }
+    footer.bg-navy-950 {
+      background-color: #233b30 !important;
+      border-top: 1px solid #4c685c !important;
+      color: #dce8df !important;
+    }
+    footer.bg-navy-950 .text-white {
+      color: #f7faf7 !important;
+    }
+    footer.bg-navy-950 .text-slate-400,
+    footer.bg-navy-950 .text-slate-500 {
+      color: #b8ccc0 !important;
+    }
+    footer.bg-navy-950 .text-amber-400 {
+      color: #e58b47 !important;
+    }
+
+    /* ===================================================================== */
+    /* 13. MOBILE-FIRST RESPONSIVE ARCHITECTURE (< 640px)                    */
+    /* ===================================================================== */
     @media (max-width: 639px) {
-      /* Hide multi-row static price tables inside selection cards on mobile (live calculator below shows exact price) */
-      .wp-divider,
-      .ep-primer-divider,
-      .el-grade-btn p.text-xs.mt-2 {
-        display: none !important;
+      html {
+        font-size: 15px;
+      }
+      header .py-6 {
+        padding-top: 0.75rem !important;
+        padding-bottom: 0.75rem !important;
+      }
+      header .flex-col.sm\:flex-row.items-center.justify-between {
+        gap: 0.5rem !important;
+      }
+      header .flex-col.sm\:flex-row.items-center.gap-4 {
+        flex-direction: row !important;
+        text-align: left !important;
+        align-items: center !important;
+        gap: 0.75rem !important;
+      }
+      header .inline-flex.flex-wrap.items-center.justify-center {
+        justify-content: flex-start !important;
+        margin-bottom: 0.15rem !important;
+      }
+      header img.w-24 {
+        width: 3rem !important;
+        height: 3rem !important;
+        border-radius: 0.65rem !important;
+      }
+      header h1 {
+        font-size: 1.25rem !important;
+        line-height: 1.2 !important;
       }
       header p.text-slate-100 {
-        font-size: 0.8125rem !important;
-        line-height: 1.45 !important;
-        margin-top: 0.35rem !important;
+        display: none !important;
       }
-      /* Keep category tabs super clear and easy to tap on mobile */
+      header .gold-border-glow {
+        padding: 0.45rem 0.7rem !important;
+        border-radius: 0.65rem !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        text-align: left !important;
+      }
+      header .gold-border-glow > div:nth-child(2) {
+        display: none !important;
+      }
+      header .gold-border-glow > div:last-child {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        border-top: none !important;
+      }
+
+      main.px-4 {
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+        padding-top: 0.65rem !important;
+        padding-bottom: 1.5rem !important;
+      }
+      main.space-y-8 > :not([hidden]) ~ :not([hidden]),
+      #estimatorSection.space-y-6 > :not([hidden]) ~ :not([hidden]),
+      #panelWaterproof.space-y-6 > :not([hidden]) ~ :not([hidden]),
+      #panelElastic.space-y-6 > :not([hidden]) ~ :not([hidden]),
+      #panelEpoxy.space-y-6 > :not([hidden]) ~ :not([hidden]) {
+        margin-top: 0.75rem !important;
+      }
+      .readable-card,
+      #notifySection {
+        padding: 0.95rem !important;
+        border-radius: 1rem !important;
+      }
+
+      #mainCategoryTabs {
+        grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+        gap: 0.45rem !important;
+      }
       #mainCategoryTabs .cat-tab {
-        padding: 0.85rem 1rem !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding: 0.75rem 0.9rem !important;
+        border-radius: 0.75rem !important;
+      }
+      #mainCategoryTabs .cat-tab > div:first-child {
+        margin-bottom: 0 !important;
+        order: 2;
+        flex-shrink: 0;
+      }
+      #mainCategoryTabs .cat-tab .cat-badge {
+        font-size: 0.7rem !important;
+        padding: 0.2rem 0.55rem !important;
+      }
+      #activeCategoryBanner {
+        padding: 0.55rem 0.75rem !important;
+      }
+      #activeCategoryBanner > span:last-child {
+        display: none !important;
+      }
+
+      .wp-divider,
+      .ep-primer-divider {
+        margin-top: 0.65rem !important;
+        padding-top: 0.65rem !important;
+        font-size: 0.75rem !important;
+      }
+      .wp-method-btn,
+      .el-grade-btn,
+      .ep-primer-btn,
+      .ep-type-btn {
+        padding: 0.85rem !important;
+        border-radius: 0.85rem !important;
+      }
+
+      #wpLargeTierBtns,
+      #elasticBayBtns {
+        grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+        gap: 0.4rem !important;
+      }
+      #wpLargeTierBtns .wp-tier-btn,
+      #elasticBayBtns .el-bay-btn {
+        grid-column: span 1 / span 1 !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding: 0.65rem 0.85rem !important;
+        border-radius: 0.7rem !important;
+        gap: 0.2rem 0.5rem !important;
+      }
+      #elasticBayBtns .el-bay-btn > div:last-child,
+      #wpLargeTierBtns .wp-tier-btn > div:last-child {
+        display: none !important;
+      }
+      #elasticBayBtns .el-bay-btn > div:nth-child(2),
+      #wpLargeTierBtns .wp-tier-btn > div:nth-child(2) {
+        margin-top: 0 !important;
+      }
+
+      #wpRangeBtns,
+      #epoxySmallPyungBtns {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 0.4rem !important;
+      }
+      .wp-range-btn,
+      .ep-small-btn {
+        min-height: 46px !important;
+        padding: 0.35rem 0.2rem !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+
+      #epoxyRangeBtns {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 0.4rem !important;
+      }
+      #epoxyRangeBtns .ep-range-btn {
+        padding: 0.6rem 0.65rem !important;
+      }
+      #epoxyRangeBtns .ep-range-btn .ep-range-sub {
+        font-size: 0.68rem !important;
+      }
+      #epoxyRangeBtns .ep-range-btn .ep-range-title {
+        font-size: 0.85rem !important;
+      }
+      #epoxyRangeBtns .ep-range-btn > div:last-child {
+        font-size: 0.68rem !important;
+      }
+
+      #epoxyQuickPyungBtns {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 0.4rem !important;
+      }
+      #epoxyQuickPyungBtns .ep-quick-btn {
+        padding: 0.5rem 0.25rem !important;
+        font-size: 0.75rem !important;
+        min-height: 38px !important;
+      }
+
+      .mobile-tick-hide {
+        display: none !important;
+      }
+
+      #livePriceText {
+        font-size: 1.6rem !important;
+        line-height: 1.25 !important;
+      }
+      #guideSection .grid-cols-2 {
+        grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+        gap: 0.4rem !important;
+      }
+    }
+
+  
+    /* === FIX 1: Header Logo Frame & Refined Contact Box === */
+    .garam-logo-frame {
+      width: 5.5rem;
+      height: 5.5rem;
+      background-color: #ffffff !important;
+      border: 1.5px solid #b8ccc0 !important;
+      border-radius: 1rem !important;
+      padding: 0.3rem !important;
+      box-shadow: 0 4px 12px rgba(35, 59, 48, 0.08) !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .garam-logo-img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      display: block !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+    .garam-dealer-badge {
+      background-color: #dce8df !important;
+      color: #233b30 !important;
+      border: 1px solid #b8ccc0 !important;
+    }
+    html[data-theme="dark"] .garam-dealer-badge {
+      background-color: #2e4a3d !important;
+      color: #f7faf7 !important;
+      border-color: #4c685c !important;
+    }
+    .garam-contact-card {
+      background-color: #ffffff !important;
+      border: 1.5px solid #b8ccc0 !important;
+      box-shadow: 0 4px 14px rgba(35, 59, 48, 0.06) !important;
+    }
+    html[data-theme="dark"] .garam-contact-card {
+      background-color: #233b30 !important;
+      border-color: #4c685c !important;
+    }
+    .garam-trust-pill {
+      background-color: #dce8df !important;
+      color: #233b30 !important;
+      border: 1px solid #b8ccc0 !important;
+    }
+    html[data-theme="dark"] .garam-trust-pill {
+      background-color: #1c2e26 !important;
+      color: #dce8df !important;
+      border-color: #4c685c !important;
+    }
+    /* Crisp, well-proportioned phone button in Header */
+    #topPhoneLink.garam-phone-btn {
+      background-color: #233b30 !important;
+      color: #f7faf7 !important;
+      border: 1px solid #233b30 !important;
+      border-radius: 0.7rem !important;
+      padding: 0.55rem 0.95rem !important;
+      text-decoration: none !important;
+      box-shadow: 0 2px 6px rgba(35, 59, 48, 0.15) !important;
+    }
+    #topPhoneLink.garam-phone-btn:hover {
+      background-color: #3d554a !important;
+    }
+    html[data-theme="dark"] #topPhoneLink.garam-phone-btn {
+      background-color: #e58b47 !important;
+      color: #233b30 !important;
+      border-color: #e58b47 !important;
+    }
+    #topQuickGuideBtn.garam-guide-btn {
+      background-color: #f7faf7 !important;
+      color: #233b30 !important;
+      border: 1px solid #b8ccc0 !important;
+      border-radius: 0.7rem !important;
+      padding: 0.55rem 0.85rem !important;
+      text-decoration: none !important;
+    }
+    #topQuickGuideBtn.garam-guide-btn:hover {
+      background-color: #dce8df !important;
+    }
+    html[data-theme="dark"] #topQuickGuideBtn.garam-guide-btn {
+      background-color: #1c2e26 !important;
+      color: #dce8df !important;
+      border-color: #4c685c !important;
+    }
+
+    /* === FIX 2: 1액형 vs 2액형 Comparison Guide Box === */
+    .wp-compare-guide-box {
+      background-color: var(--bg-subtle) !important;
+      border: 1.5px solid var(--border-strong) !important;
+    }
+    .wp-explain-card {
+      background-color: var(--bg-surface) !important;
+      border: 1px solid var(--border-strong) !important;
+    }
+    .wp-explain-card-highlight {
+      border: 2px solid #4c685c !important;
+      box-shadow: 0 4px 12px rgba(76, 104, 92, 0.1) !important;
+    }
+    html[data-theme="dark"] .wp-explain-card-highlight {
+      border-color: #e58b47 !important;
+    }
+    .wp-process-chip-sub {
+      background-color: #dce8df !important;
+      color: #233b30 !important;
+      border: 1px solid #b8ccc0 !important;
+    }
+    html[data-theme="dark"] .wp-process-chip-sub {
+      background-color: #2e4a3d !important;
+      color: #f7faf7 !important;
+      border-color: #4c685c !important;
+    }
+    .wp-flow-strip {
+      background-color: #f7faf7 !important;
+      color: #233b30 !important;
+      border: 1px solid #b8ccc0 !important;
+    }
+    .wp-flow-strip-strong {
+      background-color: #dce8df !important;
+      color: #233b30 !important;
+      border: 1px solid #4c685c !important;
+    }
+    html[data-theme="dark"] .wp-flow-strip,
+    html[data-theme="dark"] .wp-flow-strip-strong {
+      background-color: #14221b !important;
+      color: #f7faf7 !important;
+      border-color: #4c685c !important;
+    }
+
+    /* === FIX 3: STEP 3 Result Card (#step3ResultCard) Ultra-High Contrast in Light & Dark Mode === */
+    html[data-theme="light"] #step3ResultCard {
+      background: #ffffff !important;
+      background-image: none !important;
+      border: 2.5px solid #4c685c !important;
+      border-radius: 1.25rem !important;
+      box-shadow: 0 10px 28px -6px rgba(35, 59, 48, 0.14) !important;
+    }
+    html[data-theme="light"] #step3ResultCard .border-slate-800 {
+      border-color: #dce8df !important;
+    }
+    html[data-theme="light"] #step3ResultCard .text-amber-400 {
+      color: #c4621a !important;
+    }
+    html[data-theme="light"] #step3ResultCard .bg-amber-400 {
+      background-color: #e58b47 !important;
+    }
+    html[data-theme="light"] #step3ResultCard #liveGuaranteeBadge {
+      background-color: #dce8df !important;
+      color: #233b30 !important;
+      border: 1px solid #4c685c !important;
+      font-weight: 800 !important;
+    }
+    html[data-theme="light"] #step3ResultCard #liveSelectedTitle {
+      color: #233b30 !important;
+      font-weight: 800 !important;
+    }
+    html[data-theme="light"] #step3ResultCard #livePriceText {
+      color: #c4621a !important;
+      font-weight: 900 !important;
+    }
+    html[data-theme="light"] #step3ResultCard .text-slate-200 {
+      color: #3d554a !important;
+      font-weight: 700 !important;
+      opacity: 1 !important;
+    }
+    html[data-theme="light"] #step3ResultCard #liveSubDesc {
+      color: #233b30 !important;
+      background-color: #dce8df !important;
+      border-left: 4px solid #4c685c !important;
+      padding: 0.55rem 0.8rem !important;
+      border-radius: 0.5rem !important;
+      font-weight: 700 !important;
+      opacity: 1 !important;
+    }
+    html[data-theme="light"] #step3ResultCard #addToCartBtn,
+    html[data-theme="light"] #step3ResultCard #copyCurrentEstimateBtn {
+      background-color: #f7faf7 !important;
+      color: #233b30 !important;
+      border: 1.5px solid #4c685c !important;
+      border-radius: 0.75rem !important;
+      font-weight: 800 !important;
+      box-shadow: 0 1px 3px rgba(35, 59, 48, 0.08) !important;
+    }
+    html[data-theme="light"] #step3ResultCard #addToCartBtn:hover,
+    html[data-theme="light"] #step3ResultCard #copyCurrentEstimateBtn:hover {
+      background-color: #dce8df !important;
+    }
+    html[data-theme="light"] #step3ResultCard #liveProcessSummary {
+      background-color: #f7faf7 !important;
+      border: 1.5px solid #b8ccc0 !important;
+    }
+    html[data-theme="light"] #step3ResultCard #liveProcessSummary .text-slate-300 {
+      color: #3d554a !important;
+      font-weight: 700 !important;
+    }
+    html[data-theme="light"] #step3ResultCard #liveProcessSummary .text-white {
+      color: #233b30 !important;
+      font-weight: 800 !important;
+    }
+    html[data-theme="light"] #step3ResultCard #liveMaterialText {
+      color: #c4621a !important;
+      font-weight: 800 !important;
+    }
+    html[data-theme="light"] #step3ResultCard #liveAddonText {
+      color: #233b30 !important;
+      font-weight: 800 !important;
+    }
+
+    /* Dark Mode STEP 3 Result Card */
+    html[data-theme="dark"] #step3ResultCard {
+      background: linear-gradient(135deg, #233b30 0%, #1c2e26 100%) !important;
+      border: 2px solid #e58b47 !important;
+      border-radius: 1.25rem !important;
+    }
+    html[data-theme="dark"] #step3ResultCard #livePriceText {
+      color: #f4a261 !important;
+    }
+
+    @media (max-width: 639px) {
+      .garam-logo-frame {
+        width: 4.4rem !important;
+        height: 4.4rem !important;
+        border-radius: 0.85rem !important;
+        padding: 0.25rem !important;
+      }
+      header h1 {
+        font-size: 1.45rem !important;
+      }
+      header p.text-slate-100 {
+        display: block !important;
+        font-size: 0.75rem !important;
+        line-height: 1.4 !important;
+        margin-top: 0.2rem !important;
+      }
+      .garam-contact-card {
+        padding: 0.65rem 0.8rem !important;
+        border-radius: 0.9rem !important;
       }
     }
 
@@ -736,7 +1677,11 @@
         </span>
       </div>
 
-      <div class="flex items-center gap-1.5 sm:gap-2 ml-auto">
+      <div class="flex items-center gap-1 sm:gap-2 ml-auto flex-wrap justify-end">
+        <button type="button" id="themeToggleBtn" class="inline-flex items-center gap-1 bg-slate-900 hover:bg-slate-800 text-white border-2 border-slate-700 px-2.5 py-1 rounded-lg text-[11px] font-black shadow-sm transition" title="화이트모드 / 다크모드 전환">
+          <span id="themeToggleIcon">🌙</span>
+          <span id="themeToggleText">다크모드</span>
+        </button>
         <button type="button" id="openCartDrawerBtn" class="inline-flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 px-2.5 py-1 rounded-lg text-[11px] font-semibold transition">
           <span>🛒 견적함</span>
           <span id="cartCountBadge" class="bg-amber-500 text-slate-950 font-extrabold px-1.5 py-0.2 rounded-full text-[10px]">0</span>
@@ -746,7 +1691,7 @@
           <span id="myOrderCountBadge" class="bg-blue-500 text-white font-extrabold px-1.5 py-0.2 rounded-full text-[10px]">0</span>
         </button>
         <a href="tel:0324277749" class="inline-flex items-center gap-1 bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 text-amber-300 px-2.5 py-1 rounded-lg text-[11px] font-semibold transition">
-          <span>📞 전화문의</span>
+          <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>전화문의</span>
         </a>
       </div>
     </div>
@@ -781,49 +1726,57 @@
         </div>
         <div class="flex items-center gap-1.5 shrink-0">
           <a href="tel:0324277749" id="mobCallBtn" class="bg-slate-800 active:bg-slate-700 text-amber-300 border border-amber-500/40 font-extrabold px-2.5 py-2 rounded-xl text-xs flex items-center gap-1 whitespace-nowrap">
-            <span>📞 전화</span>
+            <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>전화</span>
           </a>
           <button type="button" id="mobJumpNotifyBtn" class="bg-gradient-to-r from-amber-500 to-amber-400 active:scale-95 text-slate-950 font-black px-3 py-2 rounded-xl text-xs shadow-md flex items-center gap-1 whitespace-nowrap">
-            <span>🔔 견적알림 신청</span>
+            <span>상담신청</span>
           </button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Main Header / Hero Banner (Garam Sangsa Identity + Hooje Craftsmanship Vibe) -->
-  <header class="bg-gradient-to-b from-navy-900 to-slate-950 border-b-2 border-amber-500/80 relative overflow-hidden">
-    <div class="absolute -right-20 -top-20 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute -left-20 bottom-0 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-    <div class="max-w-5xl mx-auto px-4 py-6 sm:py-8 relative z-10">
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-5">
-        <!-- Logo & Title -->
-        <div class="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
-          <img src="data:image/webp;base64,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" alt="가람상사 KCC 노루페인트 공식 대리점 로고" class="w-24 h-24 sm:w-28 sm:h-28 object-contain rounded-2xl shadow-lg border-2 border-amber-400 bg-white p-0.5 shrink-0">
-          <div>
-            <div class="inline-flex flex-wrap items-center justify-center sm:justify-start gap-1.5 mb-1.5">
-              <span class="text-amber-400 font-bold text-xs sm:text-sm tracking-wide">
-                KCC·노루페인트 공식 대리점 & 월드매직 탄성코트 공식 대리점
+  <!-- Main Header / Hero Banner (Garam Sangsa Identity + Refined Mobile-First Layout) -->
+  <header class="bg-gradient-to-b from-navy-900 to-slate-950 border-b border-slate-800 relative overflow-hidden">
+    <div class="max-w-5xl mx-auto px-3.5 sm:px-6 py-4 sm:py-7 relative z-10">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6">
+        <!-- Brand Logo & Title -->
+        <div class="flex items-center gap-3.5 sm:gap-5 text-left">
+          <div class="garam-logo-frame shrink-0">
+            <img src="data:image/png;base64,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" alt="가람상사 KCC 노루페인트 공식 대리점 로고" class="garam-logo-img">
+          </div>
+          <div class="min-w-0 flex-1">
+            <div class="inline-flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="garam-dealer-badge text-[11px] sm:text-xs font-extrabold px-2.5 py-0.5 rounded-full">
+                KCC·노루페인트 & 월드매직 탄성코트 공식 대리점
               </span>
             </div>
-            <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight">
+            <h1 class="text-2xl sm:text-4xl font-black text-white tracking-tight leading-tight">
               가람상사
             </h1>
-            <p class="text-slate-100 text-sm sm:text-base mt-2 max-w-xl leading-relaxed font-medium">
-              외주 하청 없이 대리점 소속 전문 시공팀이 <strong class="text-amber-300">100% 정품·정량 원액</strong>으로 직접 투입됩니다. 간판을 걸고 영업하는 공식 대리점인 만큼 끝까지 확실하게 A/S를 책임집니다.
+            <p class="text-slate-100 text-xs sm:text-sm mt-1 sm:mt-1.5 max-w-xl leading-relaxed font-medium">
+              외주 하청 없이 대리점 소속 직영 시공팀이 <strong class="text-amber-300">100% 정품·정량 원액</strong>으로 직접 시공하며 끝까지 확실하게 A/S를 책임집니다.
             </p>
           </div>
         </div>
 
-        <!-- Guarantee Box -->
-        <div class="w-full sm:w-auto border-2 border-amber-500/80 bg-navy-950/95 px-5 py-4 rounded-2xl text-center shrink-0 shadow-xl gold-border-glow">
-          <div class="text-amber-400 font-black text-sm sm:text-base tracking-wide">가람상사 직영 책임시공</div>
-          <div class="text-white font-extrabold text-xs sm:text-sm mt-1">정품 · 정량 · 확실한 A/S 보증</div>
-          <div class="mt-2.5 pt-2.5 border-t border-slate-800 flex items-center justify-center gap-2.5 text-xs sm:text-sm text-slate-200">
-            <a href="tel:0324277749" id="topPhoneLink" class="hover:text-amber-400 underline font-extrabold text-amber-300">📞 032-427-7749</a>
-            <span>·</span>
-            <button type="button" id="topQuickGuideBtn" class="hover:text-amber-400 underline font-bold">이용가이드</button>
+        <!-- Refined Direct Contact & Trust Card -->
+        <div class="garam-contact-card w-full md:w-auto shrink-0 rounded-2xl p-3.5 sm:p-4">
+          <div class="flex items-center justify-between md:justify-start gap-2 pb-2.5 mb-2.5 border-b border-slate-800">
+            <div>
+              <div class="text-xs sm:text-sm font-black text-white leading-snug">가람상사 직영 책임시공</div>
+              <div class="text-[11px] sm:text-xs text-slate-300 font-semibold mt-0.5">정품 · 정량 · 확실한 A/S 보증</div>
+            </div>
+            <span class="garam-trust-pill text-[11px] font-extrabold px-2.5 py-1 rounded-lg shrink-0">공식인증 대리점</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <a href="tel:0324277749" id="topPhoneLink" class="garam-phone-btn flex-1 inline-flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold transition whitespace-nowrap">
+              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span>032-427-7749</span>
+            </a>
+            <button type="button" id="topQuickGuideBtn" class="garam-guide-btn inline-flex items-center justify-center px-3 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition whitespace-nowrap">
+              이용가이드
+            </button>
           </div>
         </div>
       </div>
@@ -839,9 +1792,9 @@
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 border-b border-slate-800 pb-3">
           <h2 class="text-base sm:text-xl font-black text-white flex items-center gap-2.5">
             <span class="bg-amber-400 text-slate-950 font-black text-xs sm:text-sm px-2.5 py-1 rounded-lg step-pill shrink-0">STEP 1</span>
-            <span>어떤 시공 견적을 보시겠어요? <span class="text-amber-300">(3가지 중 1곳 터치)</span></span>
+            <span>시공 품목 선택</span>
           </h2>
-          <span class="text-xs text-slate-300 font-semibold">👇 우레탄 방수 · 탄성코트 · 바닥 에폭시 중 원하는 버튼을 누르세요</span>
+          <span class="text-xs text-slate-300 font-semibold">원하시는 시공 분야를 선택해 주세요</span>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-4" id="mainCategoryTabs">
@@ -849,7 +1802,7 @@
           <button type="button" data-cat="waterproof" class="cat-tab cat-tab-selected active:scale-[0.98] group relative p-4 sm:p-5 rounded-2xl border-2 text-left transition-all border-amber-500 bg-slate-900 shadow-lg gold-border-glow">
             <div class="flex items-center justify-between mb-1.5 sm:mb-2">
               <span class="text-2xl sm:text-3xl hidden sm:inline">💧</span>
-              <span class="cat-badge status-check-active text-xs font-black bg-amber-400 text-slate-950 px-3 py-1 rounded-full whitespace-nowrap">● 현재 선택됨 ✓</span>
+              <span class="cat-badge status-check-active text-xs font-black bg-amber-400 text-slate-950 px-3 py-1 rounded-full whitespace-nowrap">선택됨</span>
             </div>
             <div>
               <div class="cat-title font-black text-base sm:text-xl text-amber-300 leading-snug flex items-center gap-2">
@@ -864,7 +1817,7 @@
           <button type="button" data-cat="elastic" class="cat-tab cat-tab-unselected active:scale-[0.98] group relative p-4 sm:p-5 rounded-2xl border-2 text-left transition-all border-slate-700 bg-slate-900/60 hover:border-amber-400">
             <div class="flex items-center justify-between mb-1.5 sm:mb-2">
               <span class="text-2xl sm:text-3xl hidden sm:inline">✨</span>
-              <span class="cat-badge status-check-inactive text-xs font-extrabold px-3 py-1 rounded-full whitespace-nowrap">○ 터치하여 선택 →</span>
+              <span class="cat-badge status-check-inactive text-xs font-extrabold px-3 py-1 rounded-full whitespace-nowrap">선택</span>
             </div>
             <div>
               <div class="cat-title font-black text-base sm:text-xl text-white leading-snug flex items-center gap-2">
@@ -879,7 +1832,7 @@
           <button type="button" data-cat="epoxy" class="cat-tab cat-tab-unselected active:scale-[0.98] group relative p-4 sm:p-5 rounded-2xl border-2 text-left transition-all border-slate-700 bg-slate-900/60 hover:border-amber-400">
             <div class="flex items-center justify-between mb-1.5 sm:mb-2">
               <span class="text-2xl sm:text-3xl hidden sm:inline">🛡️</span>
-              <span class="cat-badge status-check-inactive text-xs font-extrabold px-3 py-1 rounded-full whitespace-nowrap">○ 터치하여 선택 →</span>
+              <span class="cat-badge status-check-inactive text-xs font-extrabold px-3 py-1 rounded-full whitespace-nowrap">선택</span>
             </div>
             <div>
               <div class="cat-title font-black text-base sm:text-xl text-white leading-snug flex items-center gap-2">
@@ -895,9 +1848,9 @@
         <div id="activeCategoryBanner" class="bg-amber-500/15 border-2 border-amber-400/80 rounded-xl px-4 py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div class="flex items-center gap-2 text-xs sm:text-sm font-black text-white">
             <span class="bg-amber-400 text-slate-950 text-xs font-black px-2 py-0.5 rounded shrink-0">현재 선택된 시공</span>
-            <span id="activeCategoryBannerText" class="text-amber-300">💧 1. 옥상 우레탄 방수 · 외벽 발수 견적 계산 중</span>
+            <span id="activeCategoryBannerText" class="text-amber-300">옥상 우레탄 방수 · 외벽 발수</span>
           </div>
-          <span class="text-[11px] sm:text-xs text-slate-200 font-bold">👇 바로 아래 <strong class="text-amber-300">STEP 2</strong>에서 공법과 평수(칸수)만 눌러보세요!</span>
+          <span class="text-[11px] sm:text-xs text-slate-200 font-bold">아래 STEP 2에서 세부 공법과 면적을 선택하면 실시간 견적이 산출됩니다.</span>
         </div>
       </div>
 
@@ -917,26 +1870,77 @@
             </span>
           </div>
 
+          <!-- 1액형 vs 2액형 쉬운 비교 & 작업 방법 가이드 박스 (제품명 미표기 · 공정 및 특성 상세 안내) -->
+          <div class="wp-compare-guide-box rounded-2xl p-4 sm:p-5 space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+              <div class="flex items-center gap-2">
+                <span class="step-pill text-xs font-black px-2.5 py-1 rounded-lg">공법 핵심 비교</span>
+                <h4 class="text-sm sm:text-base font-black text-white">
+                  "1액형과 2액형, 무엇이 다르고 어떻게 시공하나요?"
+                </h4>
+              </div>
+              <span class="text-xs font-bold text-slate-300">아래 두 가지 공법의 차이를 확인하신 후 선택해 보세요</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 text-xs sm:text-sm">
+              <!-- 1액형 설명 -->
+              <div class="wp-explain-card rounded-xl p-3.5 sm:p-4 space-y-2.5">
+                <div class="flex flex-wrap items-center justify-between gap-1.5">
+                  <span class="font-black text-sm sm:text-base text-white">① 1액형 탄성 방수 (하루 1일 시공)</span>
+                  <span class="wp-process-chip-sub text-[11px] font-extrabold px-2.5 py-0.5 rounded-full">하도 + [중도·상도 일체형]</span>
+                </div>
+                <div class="wp-flow-strip rounded-lg p-2.5 text-xs font-extrabold flex items-center justify-center gap-1.5 flex-wrap text-center">
+                  <span>1단계: 하도(프라이머)</span>
+                  <span>➔</span>
+                  <span class="underline">2단계: 중도+상도 일체형 탄성 방수재 (당일 마감)</span>
+                </div>
+                <ul class="space-y-1.5 text-xs sm:text-sm text-slate-200 leading-relaxed list-none">
+                  <li>• <strong>어떤 자재인가요?</strong> 별도의 경화제를 섞지 않는 완제품 원액으로, <strong>방수층(중도)과 보호코팅(상도) 기능이 한 통에 함께 들어있는 일체형 탄성 방수재</strong>입니다.</li>
+                  <li>• <strong>특성 및 장점:</strong> 냄새가 적은 친환경 수성 탄성 도막으로 건조가 빠르고, 자체 탄성(늘어나는 성질)과 자외선 저항성이 있어 미세한 실금을 덮어주며 <strong>하루(1일) 만에 경제적으로 시공</strong>할 수 있습니다.</li>
+                  <li>• <strong>작업 방법:</strong> 바닥 기초 청소 후 <strong>하도(프라이머)</strong>를 칠해 접착력을 높인 뒤, 중도·상도가 합쳐진 1액형 원액을 롤러·붓으로 꼼꼼히 도포해 당일 완성합니다. (※ 50평 이하 소·중형 전용)</li>
+                </ul>
+              </div>
+
+              <!-- 2액형 설명 -->
+              <div class="wp-explain-card wp-explain-card-highlight rounded-xl p-3.5 sm:p-4 space-y-2.5">
+                <div class="flex flex-wrap items-center justify-between gap-1.5">
+                  <span class="font-black text-sm sm:text-base text-white">② 2액형 우레탄 방수 (이틀 2일 정석 시공)</span>
+                  <span class="step-pill text-[11px] font-extrabold px-2.5 py-0.5 rounded-full">하도 ➔ 중도(2~3mm) ➔ 상도</span>
+                </div>
+                <div class="wp-flow-strip wp-flow-strip-strong rounded-lg p-2.5 text-xs font-extrabold flex items-center justify-center gap-1.5 flex-wrap text-center">
+                  <span>1일차: 하도 ➔ 중도(두께 2~3mm 양생)</span>
+                  <span>➔</span>
+                  <span class="underline">2일차: 상도(자외선 코팅 마감)</span>
+                </div>
+                <ul class="space-y-1.5 text-xs sm:text-sm text-slate-200 leading-relaxed list-none">
+                  <li>• <strong>어떤 자재인가요?</strong> 우리가 옥상 방수에 가장 표준적으로 흔히 쓰는 정석 우레탄 방수재입니다. 주제(방수 원액)와 경화제 두 가지 액체(2액)를 현장에서 교반기로 배합해 화학 반응으로 단단히 굳히는 방식입니다.</li>
+                  <li>• <strong>특성 및 장점:</strong> <strong>하도 - 중도 - 상도 3단계 도료를 각각 완전히 분리하여 시공</strong>하며, 중도 원액을 아낌없이 부어 <strong>두께 2~3mm의 두툼한 고무질 방수층</strong>을 형성하므로 내구성과 수명이 압도적으로 뛰어납니다.</li>
+                  <li>• <strong>작업 방법:</strong> [1일차] 바닥 정리 및 <strong>하도</strong> 도포 후, 2액형 <strong>중도</strong>를 레기(고무헤라)·롤러로 두툼하게(2~3mm) 펴 바르고 하루 동안 굳힙니다(양생). [2일차] 완전히 굳은 중도 위에 자외선 차단 <strong>상도</strong> 코팅을 입혀 <strong>이틀(2일)간 정석 완성</strong>합니다.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="wpMethodCards">
             <!-- Proposal 1: 1액형 우레탄 (50평까지만 운영) -->
             <button type="button" data-wpmethod="one_part" class="wp-method-btn selectable-card-inactive text-left p-5 rounded-2xl border-2 transition-all flex flex-col justify-between relative">
               <div>
                 <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
                   <span class="wp-top-pill pill-inactive-blue text-xs px-3 py-1 rounded-full">
-                    💡 제안 1 · 하루(1일) 신속 시공 (50평 이하 전용)
+                    제안 01 · 1액형 탄성 방수 (1일 시공 · ~50평)
                   </span>
                   <div class="flex items-center gap-1.5">
                     <span class="text-xs font-extrabold text-amber-300">🛡️ A/S 2년 보장</span>
                     <span class="wp-select-badge status-check-inactive text-xs font-black px-2.5 py-0.5 rounded-full">클릭하여 선택</span>
                   </div>
                 </div>
-                <div class="wp-card-title text-lg sm:text-xl font-black text-white">가성비 신속 시공 (1액형 우레탄 · ~50평까지)</div>
+                <div class="wp-card-title text-lg sm:text-xl font-black text-white">가성비 신속 시공 (1액형 · 하도 + 중도·상도 일체형)</div>
                 <p class="text-xs sm:text-sm text-slate-200 mt-2 leading-relaxed">
-                  <strong>시공 특징:</strong> 하도(프라이머) 밀착 도포 후 방수와 코팅 기능을 겸한 1액형 제품으로 <strong>하루(1일) 신속 시공</strong> (※ <strong>50평까지만 시공</strong>하며, 그 다음 평수는 가격 차이가 크지 않아 2액형 정석 시공으로 진행합니다)
+                  <strong>공정 및 특징:</strong> <strong>[하도(프라이머) ➔ 중도·상도가 함께 들어있는 1액형 탄성 방수재]</strong>로 <strong>하루(1일) 만에 신속 마감</strong>하는 실속형 공법입니다. (※ <strong>50평까지만 시공</strong>하며, 50평 초과 시 가격 차이가 크지 않아 2액형 정석 시공으로 진행합니다)
                 </p>
               </div>
               <div class="wp-divider mt-4 pt-3.5 border-t border-slate-800 text-xs sm:text-sm space-y-1.5 text-slate-100">
-                <div class="wp-sub-heading text-xs font-extrabold text-blue-300 mb-1">소·중형 예상 견적 (10~50평 · A/S 2년 보장)</div>
+                <div class="wp-sub-heading text-xs font-extrabold text-blue-300 mb-1">소·중형 예상 견적 (10~50평 · 1일 시공 · A/S 2년 보장)</div>
                 <div class="flex justify-between"><span>• 10 ~ 20평:</span><strong class="wp-price-val text-white text-sm sm:text-base">90만 ~ 130만 원</strong></div>
                 <div class="flex justify-between"><span>• 20 ~ 30평:</span><strong class="wp-price-val text-white text-sm sm:text-base">130만 ~ 170만 원</strong></div>
                 <div class="flex justify-between"><span>• 30 ~ 40평:</span><strong class="wp-price-val text-white text-sm sm:text-base">170만 ~ 210만 원</strong></div>
@@ -950,20 +1954,20 @@
               <div>
                 <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
                   <span class="wp-top-pill pill-active text-xs px-3 py-1 rounded-full">
-                    ★ 제안 2 · 두께 2~3mm 정석 시공 (인기 1위)
+                    제안 02 · 2액형 두께 2~3mm 정석 시공 (2일 · 추천)
                   </span>
                   <div class="flex items-center gap-1.5">
                     <span class="text-xs font-extrabold text-amber-300">🛡️ A/S 2년 보장</span>
                     <span class="wp-select-badge status-check-active text-xs font-black px-2.5 py-0.5 rounded-full">✓ 선택됨</span>
                   </div>
                 </div>
-                <div class="wp-card-title text-lg sm:text-xl font-black text-amber-300">내구성 중심 두께 2~3mm 정석 시공 (2액형 우레탄)</div>
+                <div class="wp-card-title text-lg sm:text-xl font-black text-amber-300">내구성 정석 시공 (2액형 · 하도 - 중도 - 상도 분리)</div>
                 <p class="text-xs sm:text-sm text-slate-100 mt-2 leading-relaxed">
-                  <strong>시공 특징:</strong> 중도 물량을 절대 줄이지 않고 <strong>방수층(중도) 두께 2~3mm를 두툼하게 확보</strong>한 뒤 자외선 코팅(상도)을 완벽히 분리하여 <strong>이틀(2일)간 정석 양생</strong>
+                  <strong>공정 및 특징:</strong> 우리가 가장 흔히 쓰는 정석 우레탄 공법으로, <strong>[1일차: 하도 ➔ 중도 두께 2~3mm 두툼한 방수층 양생 / 2일차: 상도 자외선 보호코팅]</strong>을 완벽히 분리하여 <strong>이틀(2일)간 정석 시공</strong>합니다.
                 </p>
               </div>
               <div class="wp-divider mt-4 pt-3.5 border-t border-amber-500/40 text-xs sm:text-sm space-y-1.5 text-slate-100">
-                <div class="wp-sub-heading text-xs font-extrabold text-amber-300 mb-1">평수별 정찰 견적 (두께 2~3mm 정석 · A/S 2년 보장)</div>
+                <div class="wp-sub-heading text-xs font-extrabold text-amber-300 mb-1">평수별 정찰 견적 (두께 2~3mm · 2일 정석 시공 · A/S 2년 보장)</div>
                 <div class="flex justify-between"><span>• 10 ~ 20평:</span><strong class="wp-price-val text-amber-300 text-sm sm:text-base">110만 ~ 150만 원</strong></div>
                 <div class="flex justify-between"><span>• 20 ~ 30평:</span><strong class="wp-price-val text-amber-300 text-sm sm:text-base">150만 ~ 190만 원</strong></div>
                 <div class="flex justify-between"><span>• 30 ~ 40평 (45평 280만):</span><strong class="wp-price-val text-amber-300 text-sm sm:text-base">190만 ~ 250만 원</strong></div>
@@ -1027,7 +2031,7 @@
 
               <!-- Quick-Tap Pyung Buttons (Synchronized with Slider) -->
               <div>
-                <div class="text-xs text-slate-300 font-semibold mb-2">👇 10평~45평 소·중형 구간 또는 50~100평 구간을 터치하세요:</div>
+                <div class="text-xs text-slate-300 font-semibold mb-2">평수 구간 빠른 선택</div>
                 <div class="grid grid-cols-3 sm:grid-cols-9 gap-1.5" id="wpRangeBtns">
                   <button type="button" data-wppyung="10" class="wp-range-btn py-2 px-1 rounded-xl border text-center transition border-slate-700 bg-slate-900 hover:border-slate-500">
                     <div class="text-xs sm:text-sm font-extrabold text-white">10평</div>
@@ -1086,7 +2090,7 @@
                   <div>
                     <span class="bg-emerald-400 text-slate-950 text-xs font-black px-2.5 py-0.5 rounded-md">2액형 두께 2~3mm 정석 시공 · 중·대형 구간</span>
                     <div class="text-sm sm:text-base font-black text-white mt-1">
-                      🏢 우레탄 방수 50평 ~ 100평 구간별 예상 견적 (클릭 시 자동 계산)
+                      중·대형 평수(50~100평) 구간별 정찰 견적
                     </div>
                   </div>
                   <span id="wpLargePyungText" class="text-xs sm:text-sm font-extrabold bg-emerald-500/20 text-emerald-300 px-3 py-1.5 rounded-full border border-emerald-500/40">
@@ -1130,7 +2134,7 @@
                 <!-- 50 ~ 100 Pyung Slider -->
                 <div class="pt-1">
                   <div class="flex items-center justify-between text-xs text-slate-200 font-bold mb-1.5">
-                    <span>👇 50평 ~ 100평 상세 평수 슬라이더 조절 (5평 단위):</span>
+                    <span>상세 평수 슬라이더 조절 (5평 단위)</span>
                     <span class="text-amber-300" id="wpLargeUnitPriceText">50~60평 구간 · 2액형 두께 2~3mm 정석 시공 적용</span>
                   </div>
                   <input type="range" id="wpLargeSlider" min="50" max="100" step="5" value="50" class="w-full accent-emerald-400 cursor-pointer">
@@ -1340,13 +2344,13 @@
                 <span>우리 집 베란다 칸수(1칸 ~ 5칸)를 선택하세요</span>
               </h3>
               <button type="button" onclick="const d=document.getElementById('elasticFloorplanDetails'); if(d){d.open=true; d.scrollIntoView({behavior:'smooth'});}" class="bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/60 text-amber-300 text-xs font-extrabold px-3 py-1.5 rounded-xl transition">
-                📐 칸수 세는 법(아파트 평면도) 보기 ↓
+                평면도로 칸수 확인하기 ↓
               </button>
             </div>
             <!-- Interactive Standard Price Table & Bay Selector (1칸 ~ 5칸) -->
             <div class="pt-2">
               <div class="flex flex-wrap items-center justify-between gap-1 mb-2.5">
-                <span class="font-extrabold text-sm sm:text-base text-white">📊 2. 가람상사 정찰제 표준 시공 견적표 (1칸 ~ 5칸 중 원하는 개소를 터치하세요)</span>
+                <span class="font-extrabold text-sm sm:text-base text-white">발코니 시공 개소 선택 (1~5개소 정찰제)</span>
                 <span class="text-[11px] text-amber-400 font-semibold">※ 모든 금액은 부가세(VAT) 별도 기준입니다</span>
               </div>
 
@@ -1404,7 +2408,7 @@
                 <span class="w-7 h-7 rounded-lg bg-amber-500 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center step-pill">2-2</span>
                 <span>탄성코트 도료 등급을 선택하세요 <span class="text-amber-300 text-xs sm:text-sm">(일반 세라믹 vs 제로스탑 에어로겔)</span></span>
               </h3>
-              <span class="text-xs text-amber-300 font-bold">👇 카드를 터치하면 등급별 견적이 바로 바뀝니다</span>
+              <span class="text-xs text-amber-300 font-bold">도료 등급 비교 및 선택</span>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="elasticGradeCards">
             <!-- Line 1: Bio Ceramic & World Class -->
@@ -1434,7 +2438,7 @@
               <div>
                 <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
                   <span class="el-top-pill pill-active text-xs px-3 py-1 rounded-full">
-                    ★ 최고급형 / 고객 선택률 1위
+                    프리미엄 · 선택률 1위
                   </span>
                   <span class="el-select-badge status-check-active text-xs font-black px-2.5 py-0.5 rounded-full">✓ 선택됨</span>
                 </div>
@@ -1573,7 +2577,7 @@
               <button type="button" data-eptype="coating" class="ep-type-btn selectable-card-active text-left p-4 rounded-2xl border-2 transition flex flex-col justify-between">
                 <div>
                   <div class="flex items-center justify-between gap-1.5 mb-2">
-                    <span class="ep-type-pill pill-active text-[11px] font-black px-2.5 py-0.5 rounded-full">★ 주력 · 대량평수 특가</span>
+                    <span class="ep-type-pill pill-active text-[11px] font-black px-2.5 py-0.5 rounded-full">주력 시공 · 직영 특가</span>
                     <span class="ep-type-badge status-check-active text-[11px] px-2 py-0.5 rounded-full">✓ 선택됨</span>
                   </div>
                   <div class="ep-type-title text-base font-black text-amber-300">박막형 컬러/투명 에폭시 코팅</div>
@@ -1625,7 +2629,7 @@
                 <span>하도(프라이머) 투트랙 등급을 선택하세요 <span class="text-amber-300 text-xs sm:text-sm font-extrabold">(일반 프라이머 vs 만능 에폭시 프라이머)</span></span>
               </h3>
               <span class="text-xs font-extrabold text-amber-300 bg-amber-500/15 border border-amber-500/40 px-3 py-1 rounded-full">
-                💡 왼쪽/오른쪽 카드를 클릭해 견적을 즉시 비교해 보세요
+                일반 하도 vs 특수 만능하도+퍼티 비교
               </span>
             </div>
 
@@ -1650,7 +2654,7 @@
                 <div>
                   <div class="flex items-center justify-between gap-2 mb-2.5">
                     <span class="ep-primer-pill pill-active text-xs font-black px-3 py-1 rounded-full transition-all">
-                      💡 트랙 1 · 에폭시 프라이머 (기본 하도)
+                      트랙 01 · 표준 에폭시 프라이머
                     </span>
                     <div class="flex items-center gap-1.5">
                       <span class="ep-primer-badge status-check-active text-xs px-2.5 py-0.5 rounded-full transition-all">✓ 선택됨</span>
@@ -1676,7 +2680,7 @@
                 <div>
                   <div class="flex items-center justify-between gap-2 mb-2.5">
                     <span class="ep-primer-pill pill-inactive-blue text-xs font-black px-3 py-1 rounded-full transition-all">
-                      ★ 트랙 2 · 특수 만능하도+퍼티 (소·중형 +10만 옵션)
+                      트랙 02 · 특수 만능 프라이머 + 크랙 퍼티
                     </span>
                     <div class="flex items-center gap-1.5">
                       <span class="ep-primer-badge status-check-inactive text-xs px-2.5 py-0.5 rounded-full transition-all">클릭하여 선택</span>
@@ -1714,7 +2718,7 @@
                 <span class="w-7 h-7 rounded-lg bg-amber-500 text-slate-950 font-black text-sm flex items-center justify-center step-pill">2-3</span>
                 <span>바닥 시공 평수 구간 선택 <span class="text-amber-300 text-xs sm:text-sm font-extrabold">(10~50평 구간 & 50평 이상 대량 평수 구간)</span></span>
               </h3>
-              <span class="text-xs text-emerald-300 font-extrabold">★ 10~50평 구간과 50평 이상 구간 중 원하시는 평수를 터치하거나 슬라이더로 조절하세요!</span>
+              <span class="text-xs text-emerald-300 font-extrabold">시공 면적 구간을 선택하세요</span>
             </div>
 
             <!-- 4 Interval Range Buttons: 10~20평 / 20~30평 / 30~50평 / 50평 이상~ -->
@@ -1794,7 +2798,7 @@
 
               <!-- Quick-Tap 10~50 Pyung Buttons -->
               <div>
-                <div class="text-xs text-slate-300 font-semibold mb-2">👇 10평 ~ 50평 구간 평수를 바로 터치하셔도 됩니다 (에폭시 프라이머 기본가 표시):</div>
+                <div class="text-xs text-slate-300 font-semibold mb-2">소·중형 평수 빠른 선택 (기본 하도 기준)</div>
                 <div class="grid grid-cols-3 sm:grid-cols-9 gap-1.5" id="epoxySmallPyungBtns">
                   <button type="button" data-epsmall="10" class="ep-small-btn py-2 px-1 rounded-xl border-2 text-center transition border-amber-500 bg-amber-500/20 shadow-md">
                     <div class="text-xs sm:text-sm font-black text-amber-300">✓ 10평</div>
@@ -1873,7 +2877,7 @@
                     🎯 50평 이상 중·대형 현장: 대리점 직영 4단계 투트랙 특별 견적
                   </h4>
                 </div>
-                <span class="text-xs text-amber-300 font-bold">👇 50평(225만 스타트)~100평(260만/290만)~240평+ 구간을 터치하거나 슬라이더로 조절하세요</span>
+                <span class="text-xs text-amber-300 font-bold">대형 평수 구간별 투트랙 견적 비교</span>
               </div>
 
               <!-- 4 Tier Cards (Unit prices hidden) -->
@@ -2181,7 +3185,7 @@
       <!-- ========================================== -->
       <!-- STEP 3: LIVE ESTIMATE RESULT & CART BAR    -->
       <!-- ========================================== -->
-      <div class="bg-gradient-to-br from-navy-900 via-slate-900 to-navy-950 border-2 border-amber-500/80 rounded-2xl p-5 sm:p-6 shadow-2xl gold-border-glow relative overflow-hidden">
+      <div id="step3ResultCard" class="bg-gradient-to-br from-navy-900 via-slate-900 to-navy-950 border-2 border-amber-500/80 rounded-2xl p-5 sm:p-6 shadow-2xl gold-border-glow relative overflow-hidden">
         <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-800">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></span>
@@ -2217,7 +3221,7 @@
               <span>📋 견적 복사</span>
             </button>
             <button type="button" id="boxJumpNotifyBtn" class="col-span-2 sm:col-span-1 bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black text-xs sm:text-sm px-4 py-3 rounded-xl shadow-md transition flex items-center justify-center gap-1">
-              <span>🔔 이 견적으로 상담신청 ↓</span>
+              <span>이 견적으로 상담 신청하기</span>
             </button>
           </div>
         </div>
@@ -2248,11 +3252,11 @@
           <h2 class="text-base sm:text-xl font-black text-white mt-0.5">품목과 평수(칸수)만 터치하면 즉시 견적이 계산됩니다</h2>
         </div>
         <button type="button" id="toggleMobileGuideBtn" class="md:hidden bg-slate-800 border border-slate-600 text-amber-300 font-extrabold text-xs px-3 py-1.5 rounded-xl shrink-0">
-          안내 접기 ▲
+          안내 펼치기 ▼
         </button>
       </div>
 
-      <div id="guideStepsGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3.5 mt-3.5 pt-3.5 border-t border-slate-800">
+      <div id="guideStepsGrid" class="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3.5 mt-3.5 pt-3.5 border-t border-slate-800">
         <div class="bg-slate-950/90 border border-slate-700/80 rounded-xl p-3.5 sm:p-4 relative">
           <div class="flex items-center gap-2">
             <span class="text-[11px] font-black text-amber-400 bg-amber-500/15 border border-amber-500/40 px-2 py-0.5 rounded-md">STEP 01</span>
@@ -2335,7 +3339,7 @@
 
         <div class="flex flex-col sm:flex-row gap-3 pt-2">
           <button type="submit" id="sendOrderAlertBtn" class="flex-1 bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black py-3.5 px-5 rounded-xl shadow-lg text-sm sm:text-base transition flex items-center justify-center gap-2">
-            <span>🔔 가람상사에 실시간 견적 알림 보내기</span>
+            <span>실시간 견적 및 방문실측 신청하기</span>
           </button>
           <a href="tel:0324277749" class="bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/40 font-bold py-3.5 px-4 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-1.5">
             <span>📞 032-427-7749 전화상담</span>
@@ -2700,6 +3704,7 @@
   <script>
     // Application State
     const state = {
+      theme: 'light', // 'light' (기본 화이트모드) | 'dark' (다크모드)
       category: 'waterproof', // 'waterproof' | 'elastic' | 'epoxy'
       
       waterproof: {
@@ -2754,6 +3759,14 @@
     // Load saved data from localStorage
     function loadStorage() {
       try {
+        const savedTheme = localStorage.getItem('garam_theme_mode');
+        if (savedTheme === 'dark' || savedTheme === 'light') {
+          state.theme = savedTheme;
+        } else {
+          state.theme = 'light';
+        }
+        document.documentElement.setAttribute('data-theme', state.theme);
+
         const savedCfg = localStorage.getItem('garam_admin_cfg_v2');
         if (savedCfg) state.adminConfig = Object.assign(state.adminConfig, JSON.parse(savedCfg));
 
@@ -2808,9 +3821,9 @@
             const isSel = b.getAttribute('data-wpmethod') === 'two_part';
             b.classList.toggle('selectable-card-active', isSel);
             b.classList.toggle('selectable-card-inactive', !isSel);
-            b.style.borderColor = isSel ? '#f59e0b' : '#334155';
-            b.style.backgroundColor = isSel ? 'rgba(245, 158, 11, 0.12)' : 'rgba(9, 14, 28, 0.78)';
-            b.style.boxShadow = isSel ? '0 0 25px -4px rgba(245, 158, 11, 0.35)' : 'none';
+            b.style.borderColor = '';
+            b.style.backgroundColor = '';
+            b.style.boxShadow = '';
             const badge = b.querySelector('.wp-select-badge');
             if (badge) {
               badge.classList.toggle('status-check-active', isSel);
@@ -2906,8 +3919,9 @@
         document.querySelectorAll('.wp-tier-btn').forEach(tb => {
           const isTierSel = (p >= 50) && (tb.getAttribute('data-wptier') === activeTierKey);
           tb.classList.toggle('selectable-card-active', isTierSel);
-          tb.style.borderColor = isTierSel ? '#fbbf24' : '#334155';
-          tb.style.backgroundColor = isTierSel ? 'rgba(245, 158, 11, 0.18)' : 'rgba(15, 23, 42, 0.9)';
+          tb.classList.toggle('selectable-card-inactive', !isTierSel);
+          tb.style.borderColor = '';
+          tb.style.backgroundColor = '';
         });
 
         const unitTxtEl = document.getElementById('wpLargeUnitPriceText');
@@ -2937,15 +3951,15 @@
         }
 
         material = isTwo
-          ? 'KCC·노루 정품 하도(프라이머) + 2액형 우레탄 중도(두께 2~3mm 정량 방수층) + 상도(자외선 코팅)'
-          : 'KCC·노루 정품 하도(프라이머) + 1액형 우레탄 방수·코팅 겸용 (50평 이하 전용)';
+          ? 'KCC·노루 정품 하도(프라이머) + 2액형 우레탄 중도(두께 2~3mm 방수층) + 상도(자외선 코팅) [3단계 완전 분리]'
+          : 'KCC·노루 정품 하도(프라이머) + 중도·상도 일체형 1액형 탄성 방수재 [50평 이하 전용]';
         if (state.waterproof.optHeat) {
           material += ` + ☀️ 고기능성 옥상 차열페인트 코팅`;
         }
 
         subDesc = isTwo
-          ? '✓ 중도 물량을 줄이지 않는 두께 2~3mm 정석 방수층 + 상도 코팅 완벽 분리 이틀(2일) 양생 (타 업체에도 두께 2~3mm 시공인지 꼭 물어보세요!)'
-          : '✓ 하도 밀착 도포 후 1액형 우레탄 하루(1일) 신속 시공 (1액형은 50평까지만 운영 · 50평 초과 시 2액형 정석 시공)';
+          ? '✓ [하도 ➔ 중도(두께 2~3mm 방수층) ➔ 상도(보호코팅)] 이틀(2일) 정석 양생 시공 (타 업체에도 중도 두께 2~3mm 정석 시공인지 꼭 물어보세요!)'
+          : '✓ [하도 ➔ 중도·상도 일체형 탄성 방수재] 하루(1일) 신속 마감 시공 (1액형은 50평까지만 운영 · 50평 초과 시 2액형 정석 시공)';
 
         const rangeLabel = `${effectivePyung}평 (약 ${sqm}㎡)`;
 
@@ -3250,12 +4264,12 @@
         const largeBoxEl = document.getElementById('epoxyLargeSection');
         const isLargeActive = state.epoxy.range === '50_plus';
         if (smallBoxEl) {
-          smallBoxEl.style.borderColor = !isLargeActive ? '#f59e0b' : '#334155';
-          smallBoxEl.style.boxShadow = !isLargeActive ? '0 0 25px -5px rgba(245, 158, 11, 0.28)' : 'none';
+          smallBoxEl.style.borderColor = !isLargeActive ? (state.theme === 'light' ? '#4c685c' : '#e58b47') : '';
+          smallBoxEl.style.boxShadow = !isLargeActive ? (state.theme === 'light' ? '0 4px 14px -2px rgba(76, 104, 92, 0.18)' : '0 0 25px -5px rgba(245, 158, 11, 0.28)') : 'none';
         }
         if (largeBoxEl) {
-          largeBoxEl.style.borderColor = isLargeActive ? '#f59e0b' : '#334155';
-          largeBoxEl.style.boxShadow = isLargeActive ? '0 0 25px -5px rgba(245, 158, 11, 0.28)' : 'none';
+          largeBoxEl.style.borderColor = isLargeActive ? (state.theme === 'light' ? '#4c685c' : '#e58b47') : '';
+          largeBoxEl.style.boxShadow = isLargeActive ? (state.theme === 'light' ? '0 4px 14px -2px rgba(76, 104, 92, 0.18)' : '0 0 25px -5px rgba(245, 158, 11, 0.28)') : 'none';
         }
 
         let rLabel = '';
@@ -3335,7 +4349,7 @@
           if (badge) {
             badge.classList.remove('hidden', 'status-check-inactive');
             badge.classList.add('status-check-active');
-            badge.textContent = '● 현재 선택됨 ✓';
+            badge.textContent = '선택됨';
           }
           if (titleEl) {
             titleEl.classList.add('text-amber-300');
@@ -3347,7 +4361,7 @@
           if (badge) {
             badge.classList.remove('hidden', 'status-check-active');
             badge.classList.add('status-check-inactive');
-            badge.textContent = '○ 터치하여 선택 →';
+            badge.textContent = '선택';
           }
           if (titleEl) {
             titleEl.classList.remove('text-amber-300');
@@ -3368,9 +4382,9 @@
       // Sync Active Category Banner Text
       const bannerTxt = document.getElementById('activeCategoryBannerText');
       const catNames = {
-        waterproof: '💧 1. 옥상 우레탄 방수 · 외벽 발수 견적 계산 중',
-        elastic: '✨ 2. 베란다 탄성코트 (1~5칸 정찰제) 견적 계산 중',
-        epoxy: '🛡️ 3. 바닥 에폭시 시공 (상가·창고·수평몰탈) 견적 계산 중'
+        waterproof: '옥상 우레탄 방수 · 외벽 발수',
+        elastic: '베란다 탄성코트 (1~5개소 정찰제)',
+        epoxy: '바닥 에폭시 시공 (투트랙 직영가)'
       };
       if (bannerTxt && catNames[cat]) {
         bannerTxt.textContent = catNames[cat];
@@ -3536,8 +4550,42 @@
     }
 
     // Initialize All Listeners
+    function applyThemeUI(theme, notify = false) {
+      state.theme = theme === 'dark' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', state.theme);
+      try {
+        localStorage.setItem('garam_theme_mode', state.theme);
+      } catch (e) {}
+
+      const iconEl = document.getElementById('themeToggleIcon');
+      const textEl = document.getElementById('themeToggleText');
+      if (state.theme === 'light') {
+        if (iconEl) iconEl.textContent = '🌙';
+        if (textEl) textEl.textContent = '다크모드';
+      } else {
+        if (iconEl) iconEl.textContent = '☀️';
+        if (textEl) textEl.textContent = '화이트모드';
+      }
+      updateCalculation();
+      if (notify) {
+        showToast(
+          state.theme === 'light'
+            ? '☀️ 깔끔한 전문가용 화이트모드로 전환되었습니다.'
+            : '🌙 눈이 편안한 다크모드로 전환되었습니다.',
+          state.theme === 'light' ? '☀️' : '🌙'
+        );
+      }
+    }
+
     function initApp() {
       loadStorage();
+      applyThemeUI(state.theme, false);
+      const themeBtn = document.getElementById('themeToggleBtn');
+      if (themeBtn) {
+        themeBtn.addEventListener('click', () => {
+          applyThemeUI(state.theme === 'light' ? 'dark' : 'light', true);
+        });
+      }
       updateCalculation();
       renderCart();
       renderOrdersAndLeads();
@@ -3574,17 +4622,17 @@
           const isSel = b.getAttribute("data-wpmethod") === selectedMethod;
           b.classList.toggle("selectable-card-active", isSel);
           b.classList.toggle("selectable-card-inactive", !isSel);
-          b.style.borderColor = isSel ? "#f59e0b" : "#334155";
-          b.style.backgroundColor = isSel ? "rgba(245, 158, 11, 0.12)" : "rgba(9, 14, 28, 0.78)";
-          b.style.boxShadow = isSel ? "0 0 25px -4px rgba(245, 158, 11, 0.35)" : "none";
+          b.style.borderColor = "";
+          b.style.backgroundColor = "";
+          b.style.boxShadow = "";
 
           const topPill = b.querySelector(".wp-top-pill");
           if (topPill) {
             topPill.classList.toggle("pill-active", isSel);
             topPill.classList.toggle("pill-inactive-blue", !isSel);
-            topPill.style.backgroundColor = isSel ? "#fbbf24" : "rgba(59, 130, 246, 0.18)";
-            topPill.style.color = isSel ? "#020617" : "#93c5fd";
-            topPill.style.borderColor = isSel ? "#fbbf24" : "rgba(59, 130, 246, 0.38)";
+            topPill.style.backgroundColor = "";
+            topPill.style.color = "";
+            topPill.style.borderColor = "";
           }
 
           const badge = b.querySelector(".wp-select-badge");
@@ -3592,35 +4640,35 @@
             badge.classList.toggle("status-check-active", isSel);
             badge.classList.toggle("status-check-inactive", !isSel);
             badge.textContent = isSel ? "✓ 선택됨" : "클릭하여 선택";
-            badge.style.backgroundColor = isSel ? "#fbbf24" : "rgba(30, 41, 59, 0.85)";
-            badge.style.color = isSel ? "#020617" : "#94a3b8";
+            badge.style.backgroundColor = "";
+            badge.style.color = "";
           }
 
           const titleEl = b.querySelector(".wp-card-title");
           if (titleEl) {
             titleEl.classList.toggle("text-amber-300", isSel);
             titleEl.classList.toggle("text-white", !isSel);
-            titleEl.style.color = isSel ? "#fcd34d" : "#ffffff";
+            titleEl.style.color = "";
           }
 
           const subHeading = b.querySelector(".wp-sub-heading");
           if (subHeading) {
             subHeading.classList.toggle("text-amber-300", isSel);
             subHeading.classList.toggle("text-blue-300", !isSel);
-            subHeading.style.color = isSel ? "#fcd34d" : "#93c5fd";
+            subHeading.style.color = "";
           }
 
           const divider = b.querySelector(".wp-divider");
           if (divider) {
             divider.classList.toggle("border-amber-500/40", isSel);
             divider.classList.toggle("border-slate-800", !isSel);
-            divider.style.borderColor = isSel ? "rgba(245, 158, 11, 0.35)" : "#1e293b";
+            divider.style.borderColor = "";
           }
 
           b.querySelectorAll(".wp-price-val").forEach(pv => {
             pv.classList.toggle("text-amber-300", isSel);
             pv.classList.toggle("text-white", !isSel);
-            pv.style.color = isSel ? "#fcd34d" : "#ffffff";
+            pv.style.color = "";
           });
         });
         updateCalculation();
@@ -3683,8 +4731,8 @@
         const largeBox = document.getElementById('wpLargeSliderBox');
         if (largeBox) {
           largeBox.classList.toggle('hidden', pyungVal < 50);
-          largeBox.style.borderColor = pyungVal >= 50 ? '#fbbf24' : 'rgba(16, 185, 129, 0.45)';
-          largeBox.style.boxShadow = pyungVal >= 50 ? '0 0 25px -5px rgba(245, 158, 11, 0.3)' : 'none';
+          largeBox.style.borderColor = pyungVal >= 50 ? (state.theme === 'light' ? '#4c685c' : '#e58b47') : '';
+          largeBox.style.boxShadow = pyungVal >= 50 ? (state.theme === 'light' ? '0 4px 14px -2px rgba(76, 104, 92, 0.18)' : '0 0 25px -5px rgba(245, 158, 11, 0.3)') : 'none';
         }
         updateCalculation();
       }
@@ -3850,31 +4898,37 @@
           const isSel = b.getAttribute('data-eptype') === typeVal;
           b.classList.toggle('selectable-card-active', isSel);
           b.classList.toggle('selectable-card-inactive', !isSel);
-          b.style.borderColor = isSel ? '#f59e0b' : '#334155';
-          b.style.backgroundColor = isSel ? 'rgba(245, 158, 11, 0.12)' : 'rgba(9, 14, 28, 0.78)';
-          b.style.boxShadow = isSel ? '0 0 25px -4px rgba(245, 158, 11, 0.35)' : 'none';
+          b.style.borderColor = '';
+          b.style.backgroundColor = '';
+          b.style.boxShadow = '';
 
           const pill = b.querySelector('.ep-type-pill');
           if (pill) {
             pill.classList.toggle('pill-active', isSel);
             pill.classList.toggle('pill-inactive-blue', !isSel);
-            pill.style.backgroundColor = isSel ? '#fbbf24' : 'rgba(59, 130, 246, 0.18)';
-            pill.style.color = isSel ? '#020617' : '#93c5fd';
+            pill.style.backgroundColor = '';
+            pill.style.color = '';
           }
           const badge = b.querySelector('.ep-type-badge');
           if (badge) {
             badge.classList.toggle('status-check-active', isSel);
             badge.classList.toggle('status-check-inactive', !isSel);
             badge.textContent = isSel ? '✓ 선택됨' : '클릭하여 선택';
-            badge.style.backgroundColor = isSel ? '#fbbf24' : 'rgba(30, 41, 59, 0.85)';
-            badge.style.color = isSel ? '#020617' : '#94a3b8';
+            badge.style.backgroundColor = '';
+            badge.style.color = '';
           }
           const titleEl = b.querySelector('.ep-type-title');
-          if (titleEl) titleEl.style.color = isSel ? '#fcd34d' : '#ffffff';
+          if (titleEl) {
+            titleEl.classList.toggle('text-amber-300', isSel);
+            titleEl.classList.toggle('text-white', !isSel);
+            titleEl.style.color = '';
+          }
           const priceEl = b.querySelector('.ep-type-price');
           if (priceEl) {
-            priceEl.style.color = isSel ? '#fcd34d' : '#e2e8f0';
-            priceEl.style.borderColor = isSel ? 'rgba(245, 158, 11, 0.35)' : '#1e293b';
+            priceEl.classList.toggle('text-amber-300', isSel);
+            priceEl.classList.toggle('text-slate-200', !isSel);
+            priceEl.style.color = '';
+            priceEl.style.borderColor = '';
           }
         });
         updateCalculation();
@@ -3893,17 +4947,17 @@
           const isSel = b.getAttribute('data-epprimer') === primerVal;
           b.classList.toggle('selectable-card-active', isSel);
           b.classList.toggle('selectable-card-inactive', !isSel);
-          b.style.borderColor = isSel ? '#f59e0b' : '#334155';
-          b.style.backgroundColor = isSel ? 'rgba(245, 158, 11, 0.12)' : 'rgba(9, 14, 28, 0.78)';
-          b.style.boxShadow = isSel ? '0 0 25px -4px rgba(245, 158, 11, 0.35)' : 'none';
+          b.style.borderColor = '';
+          b.style.backgroundColor = '';
+          b.style.boxShadow = '';
 
           const topPill = b.querySelector('.ep-primer-pill');
           if (topPill) {
             topPill.classList.toggle('pill-active', isSel);
             topPill.classList.toggle('pill-inactive-blue', !isSel);
-            topPill.style.backgroundColor = isSel ? '#fbbf24' : 'rgba(59, 130, 246, 0.18)';
-            topPill.style.color = isSel ? '#020617' : '#93c5fd';
-            topPill.style.borderColor = isSel ? '#fbbf24' : 'rgba(59, 130, 246, 0.38)';
+            topPill.style.backgroundColor = '';
+            topPill.style.color = '';
+            topPill.style.borderColor = '';
           }
 
           const badge = b.querySelector('.ep-primer-badge');
@@ -3911,31 +4965,33 @@
             badge.classList.toggle('status-check-active', isSel);
             badge.classList.toggle('status-check-inactive', !isSel);
             badge.textContent = isSel ? '✓ 선택됨' : '클릭하여 선택';
-            badge.style.backgroundColor = isSel ? '#fbbf24' : 'rgba(30, 41, 59, 0.85)';
-            badge.style.color = isSel ? '#020617' : '#94a3b8';
+            badge.style.backgroundColor = '';
+            badge.style.color = '';
           }
 
           const titleEl = b.querySelector('.ep-primer-title');
           if (titleEl) {
             titleEl.classList.toggle('text-amber-300', isSel);
             titleEl.classList.toggle('text-white', !isSel);
-            titleEl.style.color = isSel ? '#fcd34d' : '#ffffff';
+            titleEl.style.color = '';
           }
 
           const subHead = b.querySelector('.ep-primer-subhead');
           if (subHead) {
             subHead.classList.toggle('text-amber-300', isSel);
             subHead.classList.toggle('text-blue-300', !isSel);
-            subHead.style.color = isSel ? '#fcd34d' : '#93c5fd';
+            subHead.style.color = '';
           }
 
           const divider = b.querySelector('.ep-primer-divider');
           if (divider) {
-            divider.style.borderColor = isSel ? 'rgba(245, 158, 11, 0.35)' : '#1e293b';
+            divider.style.borderColor = '';
           }
 
           b.querySelectorAll('.ep-primer-val').forEach(pv => {
-            pv.style.color = isSel ? '#fcd34d' : '#ffffff';
+            pv.classList.toggle('text-amber-300', isSel);
+            pv.classList.toggle('text-white', !isSel);
+            pv.style.color = '';
           });
         });
         updateCalculation();
@@ -3960,20 +5016,24 @@
           const isSel = b.getAttribute('data-eprange') === rangeVal;
           b.classList.toggle('selectable-card-active', isSel);
           b.classList.toggle('selectable-card-inactive', !isSel);
-          b.style.borderColor = isSel ? '#f59e0b' : '#334155';
-          b.style.backgroundColor = isSel ? 'rgba(245, 158, 11, 0.14)' : 'rgba(9, 14, 28, 0.78)';
-          b.style.boxShadow = isSel ? '0 0 22px -4px rgba(245, 158, 11, 0.35)' : 'none';
+          b.style.borderColor = '';
+          b.style.backgroundColor = '';
+          b.style.boxShadow = '';
 
           const badge = b.querySelector('.ep-range-badge');
           if (badge) {
             badge.classList.toggle('status-check-active', isSel);
             badge.classList.toggle('status-check-inactive', !isSel);
             badge.textContent = isSel ? '✓ 선택됨' : (b.getAttribute('data-eprange') === '50_plus' ? '투트랙 특가' : '선택');
-            badge.style.backgroundColor = isSel ? '#fbbf24' : 'rgba(30, 41, 59, 0.85)';
-            badge.style.color = isSel ? '#020617' : '#94a3b8';
+            badge.style.backgroundColor = '';
+            badge.style.color = '';
           }
           const titleEl = b.querySelector('.ep-range-title');
-          if (titleEl) titleEl.style.color = isSel ? '#fcd34d' : '#ffffff';
+          if (titleEl) {
+            titleEl.classList.toggle('text-amber-300', isSel);
+            titleEl.classList.toggle('text-white', !isSel);
+            titleEl.style.color = '';
+          }
         });
         updateCalculation();
       }
@@ -3990,18 +5050,21 @@
           const bPyung = parseInt(b.getAttribute('data-epsmall'), 10);
           const isSel = (state.epoxy.range !== '50_plus') && (bPyung === pyungVal);
           b.classList.toggle('selectable-card-active', isSel);
+          b.classList.toggle('selectable-card-inactive', !isSel);
           b.classList.toggle('border-2', isSel);
           b.classList.toggle('border-amber-500', isSel);
           b.classList.toggle('bg-amber-500/20', isSel);
           b.classList.toggle('shadow-md', isSel);
-          b.style.borderColor = isSel ? '#f59e0b' : '#334155';
-          b.style.backgroundColor = isSel ? 'rgba(245, 158, 11, 0.2)' : '#0f172a';
+          b.style.borderColor = '';
+          b.style.backgroundColor = '';
 
           const divs = b.querySelectorAll('div');
           if (divs.length >= 2) {
             divs[0].textContent = (isSel ? '✓ ' : '') + bPyung + '평';
-            divs[0].style.color = isSel ? '#fcd34d' : '#ffffff';
-            divs[1].style.color = isSel ? '#fde68a' : '#94a3b8';
+            divs[0].className = isSel ? 'text-xs sm:text-sm font-black text-amber-300' : 'text-xs sm:text-sm font-extrabold text-white';
+            divs[1].className = isSel ? 'text-[10px] font-bold text-amber-200' : 'text-[10px] text-slate-400';
+            divs[0].style.color = '';
+            divs[1].style.color = '';
           }
         });
 
@@ -4009,16 +5072,16 @@
         document.querySelectorAll('.ep-tier-btn').forEach(tb => {
           tb.classList.remove('selectable-card-active');
           tb.classList.add('selectable-card-inactive');
-          tb.style.borderColor = '#334155';
-          tb.style.backgroundColor = 'rgba(9, 14, 28, 0.78)';
-          tb.style.boxShadow = 'none';
+          tb.style.borderColor = '';
+          tb.style.backgroundColor = '';
+          tb.style.boxShadow = '';
           const badge = tb.querySelector('.ep-tier-badge');
           if (badge) {
             badge.classList.remove('status-check-active');
             badge.classList.add('status-check-inactive');
             badge.textContent = '클릭하여 선택';
-            badge.style.backgroundColor = 'rgba(30, 41, 59, 0.85)';
-            badge.style.color = '#94a3b8';
+            badge.style.backgroundColor = '';
+            badge.style.color = '';
           }
         });
 
@@ -4079,13 +5142,16 @@
         document.querySelectorAll('.ep-small-btn').forEach(b => {
           const bPyung = parseInt(b.getAttribute('data-epsmall'), 10);
           b.classList.remove('selectable-card-active', 'border-amber-500', 'bg-amber-500/20', 'shadow-md');
-          b.style.borderColor = '#334155';
-          b.style.backgroundColor = '#0f172a';
+          b.classList.add('selectable-card-inactive');
+          b.style.borderColor = '';
+          b.style.backgroundColor = '';
           const divs = b.querySelectorAll('div');
           if (divs.length >= 2) {
             divs[0].textContent = bPyung + '평';
-            divs[0].style.color = '#ffffff';
-            divs[1].style.color = '#94a3b8';
+            divs[0].className = 'text-xs sm:text-sm font-extrabold text-white';
+            divs[1].className = 'text-[10px] text-slate-400';
+            divs[0].style.color = '';
+            divs[1].style.color = '';
           }
         });
 
@@ -4093,36 +5159,40 @@
           const isSel = b.getAttribute('data-eptier') === tierKey;
           b.classList.toggle('selectable-card-active', isSel);
           b.classList.toggle('selectable-card-inactive', !isSel);
-          b.style.borderColor = isSel ? '#f59e0b' : '#334155';
-          b.style.backgroundColor = isSel ? 'rgba(245, 158, 11, 0.12)' : 'rgba(9, 14, 28, 0.78)';
-          b.style.boxShadow = isSel ? '0 0 25px -4px rgba(245, 158, 11, 0.35)' : 'none';
+          b.style.borderColor = '';
+          b.style.backgroundColor = '';
+          b.style.boxShadow = '';
 
           const pill = b.querySelector('.ep-tier-pill');
           if (pill) {
             pill.classList.toggle('pill-active', isSel);
             pill.classList.toggle('pill-inactive-blue', !isSel);
-            pill.style.backgroundColor = isSel ? '#fbbf24' : 'rgba(59, 130, 246, 0.18)';
-            pill.style.color = isSel ? '#020617' : '#93c5fd';
+            pill.style.backgroundColor = '';
+            pill.style.color = '';
           }
           const badge = b.querySelector('.ep-tier-badge');
           if (badge) {
             badge.classList.toggle('status-check-active', isSel);
             badge.classList.toggle('status-check-inactive', !isSel);
             badge.textContent = isSel ? '✓ 선택됨' : '클릭하여 선택';
-            badge.style.backgroundColor = isSel ? '#fbbf24' : 'rgba(30, 41, 59, 0.85)';
-            badge.style.color = isSel ? '#020617' : '#94a3b8';
+            badge.style.backgroundColor = '';
+            badge.style.color = '';
           }
           b.querySelectorAll('.ep-tier-val').forEach(v => {
-            v.style.color = isSel ? '#fcd34d' : '#ffffff';
+            v.classList.toggle('text-amber-300', isSel);
+            v.classList.toggle('text-white', !isSel);
+            v.style.color = '';
           });
         });
 
         document.querySelectorAll('.ep-quick-btn').forEach(qb => {
           const qVal = parseInt(qb.getAttribute('data-epquick'), 10);
           const isQ = qVal === pyungVal;
-          qb.style.borderColor = isQ ? '#fbbf24' : '#334155';
-          qb.style.backgroundColor = isQ ? 'rgba(245, 158, 11, 0.22)' : '#020617';
-          qb.style.color = isQ ? '#fcd34d' : '#cbd5e1';
+          qb.classList.toggle('selectable-card-active', isQ);
+          qb.classList.toggle('selectable-card-inactive', !isQ);
+          qb.style.borderColor = '';
+          qb.style.backgroundColor = '';
+          qb.style.color = '';
         });
 
         syncEpoxyRangeUI('50_plus');
@@ -4171,8 +5241,8 @@
           const isSel = parseInt(b.getAttribute('data-mthick'), 10) === thickVal;
           b.classList.toggle('selectable-card-active', isSel);
           b.classList.toggle('selectable-card-inactive', !isSel);
-          b.style.borderColor = isSel ? '#f59e0b' : '#334155';
-          b.style.backgroundColor = isSel ? 'rgba(245, 158, 11, 0.12)' : 'rgba(9, 14, 28, 0.78)';
+          b.style.borderColor = '';
+          b.style.backgroundColor = '';
         });
         updateCalculation();
       }
